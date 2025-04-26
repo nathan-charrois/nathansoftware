@@ -20,7 +20,10 @@ export default [
     },
     rules: {
       'simple-import-sort/imports': [
-        'error', { groups: [['^react', '^@?\\w'], ['^\\u0000']] }],
+        'error', {
+          groups: [['^react', '^@?\\w'], ['^\\u0000']],
+        },
+      ],
       'simple-import-sort/exports': 'error',
     },
   },

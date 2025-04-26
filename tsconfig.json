@@ -15,13 +15,18 @@
     "rootDirs": [".", "./.react-router/types"],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./app/*"],
+      "@app/*": ["./app/*"],
+      "@route/*": ["./app/routes/*"]
     },
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true
   }
 }

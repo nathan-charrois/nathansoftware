@@ -1,6 +1,5 @@
 import type { MetaArgs } from 'react-router'
-
-import { Welcome } from '../welcome/welcome'
+import { Welcome } from '@app/welcome/welcome'
 
 export function meta({}: MetaArgs) {
   return [
