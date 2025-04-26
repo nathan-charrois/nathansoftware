@@ -7,6 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'react-router'
+import { MantineProvider } from '@mantine/core'
 
 import './app.css'
 
@@ -42,7 +43,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />
+  return (
+    <MantineProvider withGlobalClasses>
+      <Outlet />
+    </MantineProvider>
+  )
 }
 
 export function ErrorBoundary(error: Error) {
