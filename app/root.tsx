@@ -1,6 +1,5 @@
 import type { LinksFunction } from 'react-router'
 import {
-  isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
@@ -10,6 +9,8 @@ import {
 import { MantineProvider } from '@mantine/core'
 
 import './app.css'
+
+import RootErrorBoundary from '~/components/ErrorBoundary/RootErrorBoundary'
 
 export const links: LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -50,32 +51,12 @@ export default function App() {
   )
 }
 
-export function ErrorBoundary(error: Error) {
-  let message = 'Oops!'
-  let details = 'An unexpected error occurred.'
-  let stack: string | undefined
+interface ErrorBoundaryProps {
+  error: Error
+}
 
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404' : 'Error'
-    details
-      = error.status === 404
-        ? 'The requested page could not be found.'
-        : error.statusText || details
-  }
-  else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message
-    stack = error.stack
-  }
-
+export function ErrorBoundary(props: ErrorBoundaryProps) {
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
+    <RootErrorBoundary {...props} />
   )
 }
