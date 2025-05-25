@@ -1,4 +1,4 @@
-import type { MetaArgs } from 'react-router'
+import { Link, type MetaArgs } from 'react-router'
 
 export function meta({}: MetaArgs) {
   return [
@@ -8,5 +8,10 @@ export function meta({}: MetaArgs) {
 }
 
 export default function Home() {
-  return <>Hello World!!</>
+  return (
+    <>
+      <Link to="/">Go to Home</Link>
+      <Link to="/diet">Go to Diet</Link>
+    </>
+  )
 }
