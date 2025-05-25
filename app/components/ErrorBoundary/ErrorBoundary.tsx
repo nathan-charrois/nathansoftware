@@ -1,10 +1,10 @@
 import { isRouteErrorResponse } from 'react-router'
 
-interface RootErrorBoundaryProps {
+interface ErrorBoundaryProps {
   error: Error
 }
 
-function RootErrorBoundary({ error }: RootErrorBoundaryProps) {
+function ErrorBoundary({ error }: ErrorBoundaryProps) {
   let message = 'Oops!'
   let details = 'An unexpected error occurred.'
   let stack: string | undefined
@@ -34,4 +34,4 @@ function RootErrorBoundary({ error }: RootErrorBoundaryProps) {
   )
 }
 
-export default RootErrorBoundary
+export default ErrorBoundary
