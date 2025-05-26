@@ -4,11 +4,12 @@ import { isInRange, useForm } from '@mantine/form'
 import { useDietForm } from './DietFormContext'
 
 export default function DietForm() {
-  const { values, setValue, reset, transform } = useDietForm()
+  const { values, setValues, reset, transform } = useDietForm()
 
   const form = useForm({
     initialValues: values,
     transformValues: transform,
+    onValuesChange: setValues,
     validate: {
       preference1: isInRange({ min: 1, max: 10 }, 'Required (1-10)'),
       preference2: isInRange({ min: 1, max: 10 }, 'Required (1-10)'),
@@ -18,17 +19,14 @@ export default function DietForm() {
 
   const handlePreference1Change = (val: string | number) => {
     form.setFieldValue('preference1', val)
-    setValue('preference1', val)
   }
 
   const handlePreference2Change = (val: string | number) => {
     form.setFieldValue('preference2', val)
-    setValue('preference2', val)
   }
 
   const handlePreference3Change = (val: string | number) => {
     form.setFieldValue('preference3', val)
-    setValue('preference3', val)
   }
 
   const handleSubmit = async (formValues: typeof values) => {

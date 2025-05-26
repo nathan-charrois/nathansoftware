@@ -7,28 +7,26 @@ interface DietFormData {
   preference3: number | string
 }
 
+const initialValues: DietFormData = {
+  preference1: 0,
+  preference2: 0,
+  preference3: 0,
+}
+
 interface DietFormContextType {
   values: DietFormData
-  setValue: (field: keyof DietFormData, value: number | string) => void
   reset: () => void
+  setValues: (values: DietFormData) => void
   transform: (values: DietFormData) => DietFormData
 }
 
 const DietFormContext = createContext<DietFormContextType | undefined>(undefined)
 
 export const DietFormProvider = ({ children }: { children: ReactNode }) => {
-  const [values, setValues] = useState<DietFormData>({
-    preference1: 0,
-    preference2: 0,
-    preference3: 0,
-  })
-
-  const setValue = (field: keyof DietFormData, value: number | string) => {
-    setValues(prev => ({ ...prev, [field]: value }))
-  }
+  const [values, setValues] = useState<DietFormData>(initialValues)
 
   const reset = () => {
-    setValues({ preference1: 0, preference2: 0, preference3: 0 })
+    setValues(initialValues)
   }
 
   const transform = (values: DietFormData) => {
@@ -40,7 +38,7 @@ export const DietFormProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <DietFormContext.Provider value={{ values, setValue, reset, transform }}>
+    <DietFormContext.Provider value={{ values, setValues, reset, transform }}>
       {children}
     </DietFormContext.Provider>
   )
