@@ -1,5 +1,8 @@
 import type { MetaArgs } from 'react-router'
 
+import DietForm from './components/DietForm'
+import { DietFormProvider } from './components/DietFormContext'
+
 export function meta({}: MetaArgs) {
   return [
     { title: 'Diet' },
@@ -9,6 +12,8 @@ export function meta({}: MetaArgs) {
 
 export default function Diet() {
   return (
-    <>New Diet</>
+    <DietFormProvider>
+      <DietForm />
+    </DietFormProvider>
   )
 }
