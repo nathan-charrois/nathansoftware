@@ -1,28 +1,18 @@
 import cors from 'cors'
+import dotenv from 'dotenv'
 import express from 'express'
+
+import { handlePreferencesRequest } from './preferencesHandler.js'
+
+dotenv.config()
+
 const app = express()
 const port = 3001
 
 app.use(cors())
 app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.send('Hello from the backend!')
-})
-
-app.post('/preferences', (req, res) => {
-  const formValues = req.body
-  console.log('Received form values:', formValues)
-
-  res.json({
-    message: 'Preferences received successfully!',
-    receivedValues: formValues,
-    meal: {
-      title: 'Sample Meal (from POST)',
-      imageUrl: 'https://example.com/sample-meal-post.jpg',
-    },
-  })
-})
+app.post('/preferences', handlePreferencesRequest)
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`)
