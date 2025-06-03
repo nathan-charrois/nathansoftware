@@ -7,17 +7,13 @@ import DietFormSlider from './DietFormSlider'
 import { useDietStep } from './DietStepContext'
 
 export default function DietForm() {
-  const { preferences, setPreferenceValue, initialValues, validate } = useDietForm()
+  const { preferences, setPreferenceValue, initialValues, onValuesChange, validate } = useDietForm()
   const { setActiveStep } = useDietStep()
 
   const form = useForm({
     initialValues,
     validate,
-    onValuesChange: (vals) => {
-      Object.entries(vals).forEach(([key, value]) => {
-        setPreferenceValue(key, typeof value === 'number' ? value : 0)
-      })
-    },
+    onValuesChange,
   })
 
   const handleChange = useCallback(

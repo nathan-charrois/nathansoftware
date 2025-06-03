@@ -38,6 +38,7 @@ interface DietFormContextType {
   preferences: DietPreference[]
   setPreferenceValue: (key: string, value: number) => void
   initialValues: Record<string, number>
+  onValuesChange: (values: Record<string, unknown>) => void
   validate: Record<string, ReturnType<typeof isInRange>>
 }
 
@@ -56,6 +57,12 @@ export const DietFormProvider = ({ children }: { children: ReactNode }) => {
     preferences.map(pref => [pref.key, pref.value]),
   )
 
+  const onValuesChange = (values: Record<string, unknown>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setPreferenceValue(key, typeof value === 'number' ? value : 0)
+    })
+  }
+
   const validate = Object.fromEntries(
     preferences.map(pref => [
       pref.key,
@@ -64,7 +71,7 @@ export const DietFormProvider = ({ children }: { children: ReactNode }) => {
   )
 
   return (
-    <DietFormContext.Provider value={{ preferences, setPreferenceValue, initialValues, validate }}>
+    <DietFormContext.Provider value={{ preferences, setPreferenceValue, initialValues, onValuesChange, validate }}>
       {children}
     </DietFormContext.Provider>
   )
