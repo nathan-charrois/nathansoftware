@@ -1,79 +1,51 @@
-import { Button, Group, NumberInput, Title } from '@mantine/core'
-import { isInRange, useForm } from '@mantine/form'
+import { Button, Group, NumberInput } from '@mantine/core'
+import { useForm } from '@mantine/form'
 
 import { useDietForm } from './DietFormContext'
 
 export default function DietForm() {
-  const { values, setValues, reset, transform } = useDietForm()
+  const { preferences, setPreferenceValue, initialValues, validate } = useDietForm()
 
   const form = useForm({
-    initialValues: values,
-    transformValues: transform,
-    onValuesChange: setValues,
-    validate: {
-      preference1: isInRange({ min: 1, max: 10 }, 'Required (1-10)'),
-      preference2: isInRange({ min: 1, max: 10 }, 'Required (1-10)'),
-      preference3: isInRange({ min: 1, max: 10 }, 'Required (1-10)'),
+    initialValues,
+    validate,
+    onValuesChange: (vals) => {
+      Object.entries(vals).forEach(([key, value]) => {
+        setPreferenceValue(key, typeof value === 'number' ? value : 0)
+      })
     },
   })
 
-  const handlePreference1Change = (val: string | number) => {
-    form.setFieldValue('preference1', val)
-  }
-
-  const handlePreference2Change = (val: string | number) => {
-    form.setFieldValue('preference2', val)
-  }
-
-  const handlePreference3Change = (val: string | number) => {
-    form.setFieldValue('preference3', val)
-  }
-
-  const handleSubmit = async (formValues: typeof values) => {
+  const handleSubmit = async (formValues: typeof initialValues) => {
     await fetch('/test', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formValues),
     })
-    reset()
-    form.reset()
   }
 
   return (
-    <form onSubmit={form.onSubmit(handleSubmit)}>
-      <Title order={2} mb="md">The Baby Diet</Title>
-      <NumberInput
-        label="Does your baby prefer an American Diet?"
-        min={1}
-        max={10}
-        value={values.preference1}
-        onChange={handlePreference1Change}
-        required
-        placeholder="Does your baby prefer an American Diet?"
-        mb="md"
-      />
-      <NumberInput
-        label="Does your baby prefer an American Diet?"
-        min={1}
-        max={10}
-        value={values.preference2}
-        onChange={handlePreference2Change}
-        required
-        placeholder="Does your baby prefer an American Diet?"
-        mb="md"
-      />
-      <NumberInput
-        label="Does your baby prefer an American Diet?"
-        min={1}
-        max={10}
-        value={values.preference3}
-        onChange={handlePreference3Change}
-        required
-        placeholder="Does your baby prefer an American Diet?"
-        mb="md"
-      />
+    <form onSubmit={form.onSubmit(handleSubmit)} onReset={form.reset}>
+      {preferences.map(pref => (
+        <NumberInput
+          key={pref.key}
+          label={pref.label}
+          min={pref.min}
+          max={pref.max}
+          value={form.values[pref.key]}
+          onChange={val => setPreferenceValue(pref.key, typeof val === 'number' ? val : 0)}
+          required
+          placeholder={pref.label}
+          mb="md"
+          clampBehavior="strict"
+          allowNegative={false}
+          allowDecimal={false}
+          error={form.errors[pref.key]}
+        />
+      ))}
       <Group justify="flex-end" mt="md">
         <Button type="submit">Submit</Button>
+        <Button type="reset">Reset</Button>
       </Group>
     </form>
   )
