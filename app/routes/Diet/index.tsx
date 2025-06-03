@@ -15,7 +15,7 @@ export function meta({}: MetaArgs) {
 export default function Diet() {
   return (
     <Center h="100vh">
-      <Stack align="center" w="100%" maw={400}>
+      <Stack align="center" w="100%" h={400} maw={400}>
         <DietStepperProvider>
           <DietTitle />
           <DietStepper />
