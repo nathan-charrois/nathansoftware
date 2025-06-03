@@ -1,8 +1,14 @@
 import type { MetaArgs } from 'react-router'
 import { Center, Stack } from '@mantine/core'
 
-import DietStepper from './components/DietStepper'
-import { DietStepperProvider } from './components/DietStepperContext'
+// import DietStepper from './components/DietStepper'
+import DietForm from './components/DietForm'
+import { DietFormProvider } from './components/DietFormContext'
+import DietFormError from './components/DietFormError'
+import DietFormLoading from './components/DietFormLoading'
+import DietFormSuccess from './components/DietFormSuccess'
+import DietStep from './components/DietStep'
+import { DietStepProvider } from './components/DietStepContext'
 import DietTitle from './components/DietTitle'
 
 export function meta({}: MetaArgs) {
@@ -14,13 +20,26 @@ export function meta({}: MetaArgs) {
 
 export default function Diet() {
   return (
-    <Center h="100vh">
-      <Stack align="center" w="100%" h={400} maw={400}>
-        <DietStepperProvider>
+    <DietStepProvider>
+      <Center h="100vh">
+        <Stack align="center" w="100%" h={400} maw={400}>
           <DietTitle />
-          <DietStepper />
-        </DietStepperProvider>
-      </Stack>
-    </Center>
+          <DietStep step="select-preference">
+            <DietFormProvider>
+              <DietForm />
+            </DietFormProvider>
+          </DietStep>
+          <DietStep step="loading">
+            <DietFormLoading />
+          </DietStep>
+          <DietStep step="success">
+            <DietFormSuccess />
+          </DietStep>
+          <DietStep step="error">
+            <DietFormError />
+          </DietStep>
+        </Stack>
+      </Center>
+    </DietStepProvider>
   )
 }

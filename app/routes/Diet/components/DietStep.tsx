@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
 import { Transition } from '@mantine/core'
 
-import type { DietStep as DietStepType } from './DietStepperContext'
-import { useDietStepper } from './DietStepperContext'
+import type { DietStep as DietStepType } from './DietStepContext'
+import { useDietStep } from './DietStepContext'
 
 interface DietStepProps {
   children: ReactNode
@@ -10,7 +10,7 @@ interface DietStepProps {
 }
 
 export default function DietStep({ children, step }: DietStepProps) {
-  const { activeStep } = useDietStepper()
+  const { activeStep } = useDietStep()
 
   return (
     <Transition

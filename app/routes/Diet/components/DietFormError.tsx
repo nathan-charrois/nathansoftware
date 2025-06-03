@@ -1,13 +1,13 @@
 import { Button, Stack, Text } from '@mantine/core'
 
-import { useDietStepper } from './DietStepperContext'
+import { useDietStep } from './DietStepContext'
 
 export default function DietFormError() {
-  const { setActiveStep } = useDietStepper()
+  const { setActiveStep } = useDietStep()
   return (
     <Stack align="center" py="xl">
       <Text c="red" fw={600} size="lg">Error saving preferences.</Text>
-      <Button onClick={() => setActiveStep('select-preferences')}>Try again</Button>
+      <Button onClick={() => setActiveStep('select-preference')}>Try again</Button>
     </Stack>
   )
 }
