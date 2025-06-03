@@ -8,7 +8,7 @@ export async function debugFetch(input: RequestInfo | URL, init?: RequestInit | 
         else {
           reject(new Error('Mocked server error'))
         }
-      }, 1600)
+      }, 1000)
     })
   }
   else {

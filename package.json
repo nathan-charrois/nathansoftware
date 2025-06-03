@@ -7,7 +7,8 @@
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "server": "cd server && node index.js"
   },
   "dependencies": {
     "@mantine/core": "^7.17.7",
