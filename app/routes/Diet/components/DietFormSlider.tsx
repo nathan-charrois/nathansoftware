@@ -24,7 +24,7 @@ export default function DietFormSlider({
   onChangeEnd,
 }: DietFormSliderProps) {
   return (
-    <Stack gap="xs" mb="md">
+    <Stack gap="lg" mb="lg">
       <Text component="label" htmlFor={id} fw={500} mb={4}>{label}</Text>
       <Slider
         id={id}

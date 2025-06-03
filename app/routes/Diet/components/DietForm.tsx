@@ -5,6 +5,7 @@ import { useForm } from '@mantine/form'
 import { useDietForm } from './DietFormContext'
 import DietFormSlider from './DietFormSlider'
 import { useDietStep } from './DietStepContext'
+import { debugFetch } from '~/utils/debugFetch'
 
 export default function DietForm() {
   const { preferences, setPreferenceValue, initialValues, validate } = useDietForm()
@@ -37,7 +38,7 @@ export default function DietForm() {
   const handleSubmit = async (formValues: typeof initialValues) => {
     setActiveStep('loading')
     try {
-      const res = await fetch('/test', {
+      const res = await debugFetch('/test', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formValues),
@@ -64,7 +65,7 @@ export default function DietForm() {
           onChangeEnd={handleChangeEnd(pref.key)}
         />
       ))}
-      <Group justify="flex-end" mt="md">
+      <Group justify="flex-end" mt="lg">
         <Button type="submit">Submit</Button>
         <Button type="reset">Reset</Button>
       </Group>
