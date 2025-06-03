@@ -1,12 +1,11 @@
 import type { MetaArgs } from 'react-router'
 import { Center, Stack } from '@mantine/core'
 
-// import DietStepper from './components/DietStepper'
 import DietForm from './components/DietForm'
 import { DietFormProvider } from './components/DietFormContext'
 import DietFormError from './components/DietFormError'
 import DietFormLoading from './components/DietFormLoading'
-import DietFormSuccess from './components/DietFormSuccess'
+import DietResult from './components/DietResult'
 import DietStep from './components/DietStep'
 import { DietStepProvider } from './components/DietStepContext'
 import DietTitle from './components/DietTitle'
@@ -32,8 +31,8 @@ export default function Diet() {
           <DietStep step="loading">
             <DietFormLoading />
           </DietStep>
-          <DietStep step="success">
-            <DietFormSuccess />
+          <DietStep step="result">
+            <DietResult />
           </DietStep>
           <DietStep step="error">
             <DietFormError />

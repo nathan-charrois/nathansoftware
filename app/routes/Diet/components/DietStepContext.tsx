@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 
-export type DietStep = 'select-preference' | 'loading' | 'success' | 'error'
+export type DietStep = 'select-preference' | 'loading' | 'error' | 'result'
 
 interface DietStepContextType {
   activeStep: DietStep

@@ -44,7 +44,7 @@ export default function DietForm() {
         body: JSON.stringify(formValues),
       })
       if (!res.ok) throw new Error('Failed')
-      setActiveStep('success')
+      setActiveStep('result')
     }
     catch {
       setActiveStep('error')
@@ -65,7 +65,7 @@ export default function DietForm() {
           onChangeEnd={handleChangeEnd(pref.key)}
         />
       ))}
-      <Group justify="flex-end" mt="lg">
+      <Group justify="center" mt="lg">
         <Button type="submit">Submit</Button>
         <Button type="reset">Reset</Button>
       </Group>
