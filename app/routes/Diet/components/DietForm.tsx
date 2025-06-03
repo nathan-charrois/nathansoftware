@@ -1,4 +1,5 @@
-import { Button, Group, Slider } from '@mantine/core'
+import { useCallback } from 'react'
+import { Button, Group, Slider, Stack, Text } from '@mantine/core'
 import { useForm } from '@mantine/form'
 
 import { useDietForm } from './DietFormContext'
@@ -24,21 +25,29 @@ export default function DietForm() {
     })
   }
 
+  const buildSliderMarks = useCallback(
+    (min: number, max: number) =>
+      Array.from({ length: max - min + 1 }).map((_, i) => ({ value: min + i })),
+    [],
+  )
+
   return (
     <form onSubmit={form.onSubmit(handleSubmit)} onReset={form.reset}>
       {preferences.map(pref => (
-        <Slider
-          key={pref.key}
-          label={form.values[pref.key].toString()}
-          min={pref.min}
-          max={pref.max}
-          value={form.values[pref.key]}
-          onChange={val => form.setFieldValue(pref.key, val)}
-          onChangeEnd={val => setPreferenceValue(pref.key, typeof val === 'number' ? val : 0)}
-          step={1}
-          marks={Array.from({ length: pref.max - pref.min + 1 }).map((_, i) => ({ value: pref.min + i }))}
-          mb="md"
-        />
+        <Stack key={pref.key} gap="xs" mb="md">
+          <Text component="label" htmlFor={pref.key} fw={500} mb={4}>{pref.label}</Text>
+          <Slider
+            id={pref.key}
+            label={form.values[pref.key].toString()}
+            min={pref.min}
+            max={pref.max}
+            value={form.values[pref.key]}
+            onChange={val => form.setFieldValue(pref.key, val)}
+            onChangeEnd={val => setPreferenceValue(pref.key, typeof val === 'number' ? val : 0)}
+            step={1}
+            marks={buildSliderMarks(pref.min, pref.max)}
+          />
+        </Stack>
       ))}
       <Group justify="flex-end" mt="md">
         <Button type="submit">Submit</Button>
