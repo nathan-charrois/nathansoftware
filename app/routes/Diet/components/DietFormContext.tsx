@@ -14,23 +14,23 @@ const defaultPreferences: DietPreference[] = [
   {
     key: 'preference1',
     label: 'Does your baby prefer an American Diet?',
+    value: 1,
     min: 1,
-    max: 10,
-    value: 0,
+    max: 3,
   },
   {
     key: 'preference2',
     label: 'Does your baby prefer an American Diet?',
+    value: 1,
     min: 1,
-    max: 10,
-    value: 0,
+    max: 3,
   },
   {
     key: 'preference3',
     label: 'Does your baby prefer an American Diet?',
     min: 1,
-    max: 10,
-    value: 0,
+    max: 3,
+    value: 1,
   },
 ]
 

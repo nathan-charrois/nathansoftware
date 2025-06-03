@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router'
 import { MantineProvider } from '@mantine/core'
 
+import '@mantine/core/styles.css'
 import './app.css'
 
 import RootErrorBoundary from '~/components/ErrorBoundary/ErrorBoundary'

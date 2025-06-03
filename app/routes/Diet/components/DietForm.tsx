@@ -1,4 +1,4 @@
-import { Button, Group, NumberInput } from '@mantine/core'
+import { Button, Group, Slider } from '@mantine/core'
 import { useForm } from '@mantine/form'
 
 import { useDietForm } from './DietFormContext'
@@ -27,20 +27,17 @@ export default function DietForm() {
   return (
     <form onSubmit={form.onSubmit(handleSubmit)} onReset={form.reset}>
       {preferences.map(pref => (
-        <NumberInput
+        <Slider
           key={pref.key}
-          label={pref.label}
+          label={form.values[pref.key].toString()}
           min={pref.min}
           max={pref.max}
           value={form.values[pref.key]}
-          onChange={val => setPreferenceValue(pref.key, typeof val === 'number' ? val : 0)}
-          required
-          placeholder={pref.label}
+          onChange={val => form.setFieldValue(pref.key, val)}
+          onChangeEnd={val => setPreferenceValue(pref.key, typeof val === 'number' ? val : 0)}
+          step={1}
+          marks={Array.from({ length: pref.max - pref.min + 1 }).map((_, i) => ({ value: pref.min + i }))}
           mb="md"
-          clampBehavior="strict"
-          allowNegative={false}
-          allowDecimal={false}
-          error={form.errors[pref.key]}
         />
       ))}
       <Group justify="flex-end" mt="md">
