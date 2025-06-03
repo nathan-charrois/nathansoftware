@@ -7,7 +7,7 @@ import DietFormSlider from './DietFormSlider'
 import { useDietStep } from './DietStepContext'
 
 export default function DietForm() {
-  const { preferences, setPreferenceValue, initialValues, onValuesChange, validate } = useDietForm()
+  const { preferences, setPreferenceValue, initialValues, validate, onValuesChange } = useDietForm()
   const { setActiveStep } = useDietStep()
 
   const form = useForm({

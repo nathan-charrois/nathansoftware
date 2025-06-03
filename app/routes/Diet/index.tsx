@@ -4,6 +4,7 @@ import { Center, Stack } from '@mantine/core'
 import DietForm from './components/DietForm'
 import { DietFormProvider } from './components/DietFormContext'
 import DietFormError from './components/DietFormError'
+import DietFormGet from './components/DietFormGet'
 import DietFormLoading from './components/DietFormLoading'
 import DietResult from './components/DietResult'
 import DietStep from './components/DietStep'
@@ -19,26 +20,29 @@ export function meta({}: MetaArgs) {
 
 export default function Diet() {
   return (
-    <DietStepProvider>
-      <Center h="100vh">
-        <Stack align="center" w="100%" h={400} maw={400}>
-          <DietTitle />
-          <DietStep step="select-preference">
-            <DietFormProvider>
+    <DietFormProvider>
+      <DietStepProvider>
+        <Center h="100vh">
+          <Stack align="center" w="100%" h={400} maw={400}>
+            <DietTitle />
+            <DietStep step="fetch-preference">
+              <DietFormGet />
+            </DietStep>
+            <DietStep step="select-preference">
               <DietForm />
-            </DietFormProvider>
-          </DietStep>
-          <DietStep step="loading">
-            <DietFormLoading />
-          </DietStep>
-          <DietStep step="result">
-            <DietResult />
-          </DietStep>
-          <DietStep step="error">
-            <DietFormError />
-          </DietStep>
-        </Stack>
-      </Center>
-    </DietStepProvider>
+            </DietStep>
+            <DietStep step="loading">
+              <DietFormLoading />
+            </DietStep>
+            <DietStep step="result">
+              <DietResult />
+            </DietStep>
+            <DietStep step="error">
+              <DietFormError />
+            </DietStep>
+          </Stack>
+        </Center>
+      </DietStepProvider>
+    </DietFormProvider>
   )
 }

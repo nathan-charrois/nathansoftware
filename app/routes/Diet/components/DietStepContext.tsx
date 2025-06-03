@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 
-export type DietStep = 'select-preference' | 'loading' | 'error' | 'result'
+export type DietStep = 'fetch-preference' | 'select-preference' | 'loading' | 'error' | 'result'
 
 interface DietStepContextType {
   activeStep: DietStep
@@ -10,7 +10,7 @@ interface DietStepContextType {
 const DietStepContext = createContext<DietStepContextType | undefined>(undefined)
 
 export function DietStepProvider({ children }: { children: React.ReactNode }) {
-  const [activeStep, setActiveStep] = useState<DietStep>('select-preference')
+  const [activeStep, setActiveStep] = useState<DietStep>('fetch-preference')
 
   return (
     <DietStepContext.Provider value={{ activeStep, setActiveStep }}>

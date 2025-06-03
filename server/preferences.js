@@ -27,7 +27,7 @@ const generateTitle = async (prompt) => {
   return response.text()
 }
 
-export const handlePreferencesRequest = async (req, res) => {
+export const handlePostPreferences = async (req, res) => {
   const prompt = buildPromptString(req.body)
   console.log('Received form values:', req.body)
   console.log('Generated LLM prompt:', prompt)
@@ -47,4 +47,32 @@ export const handlePreferencesRequest = async (req, res) => {
       error: error.message,
     })
   }
+}
+
+export const handleGetPreferences = (req, res) => {
+  const defaultPreferences = [
+    {
+      key: 'preference1',
+      label: 'Does your1 0baby prefer an American Diet?',
+      value: 1,
+      min: 1,
+      max: 3,
+    },
+    {
+      key: 'preference2',
+      label: 'Does your 1baby prefer an American Diet?',
+      value: 1,
+      min: 1,
+      max: 3,
+    },
+    {
+      key: 'preference3',
+      label: 'Does your 2baby prefer an American Diet?',
+      min: 1,
+      max: 3,
+      value: 1,
+    },
+  ]
+
+  res.json(defaultPreferences)
 }

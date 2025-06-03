@@ -10,42 +10,19 @@ export interface DietPreference {
   value: number
 }
 
-const defaultPreferences: DietPreference[] = [
-  {
-    key: 'preference1',
-    label: 'Does your baby prefer an American Diet?',
-    value: 1,
-    min: 1,
-    max: 3,
-  },
-  {
-    key: 'preference2',
-    label: 'Does your baby prefer an American Diet?',
-    value: 1,
-    min: 1,
-    max: 3,
-  },
-  {
-    key: 'preference3',
-    label: 'Does your baby prefer an American Diet?',
-    min: 1,
-    max: 3,
-    value: 1,
-  },
-]
-
 interface DietFormContextType {
   preferences: DietPreference[]
   setPreferenceValue: (key: string, value: number) => void
   initialValues: Record<string, number>
   onValuesChange: (values: Record<string, unknown>) => void
   validate: Record<string, ReturnType<typeof isInRange>>
+  setPreferences: (preferences: DietPreference[]) => void
 }
 
 const DietFormContext = createContext<DietFormContextType | undefined>(undefined)
 
 export const DietFormProvider = ({ children }: { children: ReactNode }) => {
-  const [preferences, setPreferences] = useState<DietPreference[]>(defaultPreferences)
+  const [preferences, setPreferences] = useState<DietPreference[]>([])
 
   const setPreferenceValue = (key: string, value: number) => {
     setPreferences(prev =>
@@ -71,7 +48,7 @@ export const DietFormProvider = ({ children }: { children: ReactNode }) => {
   )
 
   return (
-    <DietFormContext.Provider value={{ preferences, setPreferenceValue, initialValues, onValuesChange, validate }}>
+    <DietFormContext.Provider value={{ preferences, setPreferenceValue, initialValues, onValuesChange, validate, setPreferences }}>
       {children}
     </DietFormContext.Provider>
   )
