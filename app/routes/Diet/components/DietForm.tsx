@@ -3,9 +3,11 @@ import { Button, Group, Slider, Stack, Text } from '@mantine/core'
 import { useForm } from '@mantine/form'
 
 import { useDietForm } from './DietFormContext'
+import { useDietStepper } from './DietStepperContext'
 
 export default function DietForm() {
   const { preferences, setPreferenceValue, initialValues, validate } = useDietForm()
+  const { setActiveStep } = useDietStepper()
 
   const form = useForm({
     initialValues,
@@ -18,11 +20,19 @@ export default function DietForm() {
   })
 
   const handleSubmit = async (formValues: typeof initialValues) => {
-    await fetch('/test', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formValues),
-    })
+    setActiveStep('loading')
+    try {
+      const res = await fetch('/test', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formValues),
+      })
+      if (!res.ok) throw new Error('Failed')
+      setActiveStep('success')
+    }
+    catch {
+      setActiveStep('error')
+    }
   }
 
   const buildSliderMarks = useCallback(
