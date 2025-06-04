@@ -1,7 +1,7 @@
 import cors from 'cors'
 import express from 'express'
 
-import { handleGetPreferences, handlePostPreferences } from './preferences.ts'
+import { handleGetPreferences, handlePostPreferences } from './models/preferences.ts'
 
 const app = express()
 const port = 3001

@@ -1,11 +1,10 @@
-import OpenAI from 'openai';
+import { OPENAI_API_KEY } from '@server/utils/config.ts'
 import { Request, Response } from 'express'
-
-import { OPENAI_API_KEY } from './config.ts'
+import OpenAI from 'openai'
 
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY,
-});
+})
 
 const buildPreferenceString = ([key, value]: [string, number]): string => {
   const level = typeof value === 'number' ? value : 0
@@ -28,33 +27,30 @@ const buildTitleOrError = async (prompt: string): Promise<string> => {
     model: 'gpt-3.5-turbo',
     messages: [{
       role: 'user',
-      content: prompt
+      content: prompt,
     }],
-  });
+  })
 
-  const title = chatCompletion.choices[0]?.message?.content;
-  console.log('LLM generated title:', title)
+  const title = chatCompletion.choices[0]?.message?.content
 
   if (!title) {
-    throw new Error("OpenAI returned an empty response.");
+    throw new Error('OpenAI returned an empty response.')
   }
 
-  return title;
+  return title
 }
 
 export const handlePostPreferences = async (req: Request, res: Response) => {
   const prompt = buildPromptString(req.body)
-  console.log('Received form values:', req.body)
-  console.log('Generated LLM prompt:', prompt)
 
   try {
     const title = await buildTitleOrError(prompt)
     res.json({ title })
   }
-  catch (error: any) {
+  catch (error) {
     res.status(500).json({
       message: 'Error generating meal suggestion.',
-      error: error.message,
+      error: error instanceof Error ? error.message : error,
     })
   }
 }
