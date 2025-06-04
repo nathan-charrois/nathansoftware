@@ -1,10 +1,7 @@
 import cors from 'cors'
-import dotenv from 'dotenv'
 import express from 'express'
 
 import { handleGetPreferences, handlePostPreferences } from './preferences.ts'
-
-dotenv.config()
 
 const app = express()
 const port = 3001

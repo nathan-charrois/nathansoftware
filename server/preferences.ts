@@ -1,6 +1,12 @@
 import OpenAI from 'openai';
 import { Request, Response } from 'express'
 
+import { OPENAI_API_KEY } from './config.ts'
+
+const openai = new OpenAI({
+  apiKey: OPENAI_API_KEY,
+});
+
 const buildPreferenceString = ([key, value]: [string, number]): string => {
   const level = typeof value === 'number' ? value : 0
   return `${key} preference level ${level}`
@@ -17,30 +23,23 @@ const buildPromptString = (preferences: Record<string, number>): string => {
   return `Generate a meal based on the following preferences: ${preferencesString}.`
 }
 
-const generateTitle = async (prompt: string): Promise<string> => {
-  const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+const buildTitleOrError = async (prompt: string): Promise<string> => {
+  const chatCompletion = await openai.chat.completions.create({
+    model: 'gpt-3.5-turbo',
+    messages: [{
+      role: 'user',
+      content: prompt
+    }],
   });
 
-  try {
-    const chatCompletion = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
-      messages: [{
-        role: 'user',
-        content: prompt
-      }],
-    });
+  const title = chatCompletion.choices[0]?.message?.content;
+  console.log('LLM generated title:', title)
 
-    const title = chatCompletion.choices[0]?.message?.content;
-    if (!title) {
-      throw new Error("OpenAI returned an empty response.");
-    }
-
-    return title;
-  } catch (error) {
-    console.error('Error calling OpenAI LLM:', error);
-    throw new Error('Failed to generate title using OpenAI.');
+  if (!title) {
+    throw new Error("OpenAI returned an empty response.");
   }
+
+  return title;
 }
 
 export const handlePostPreferences = async (req: Request, res: Response) => {
@@ -49,15 +48,10 @@ export const handlePostPreferences = async (req: Request, res: Response) => {
   console.log('Generated LLM prompt:', prompt)
 
   try {
-    const title = await generateTitle(prompt)
-    console.log('LLM generated title:', title)
-
-    res.json({
-      meal: { title },
-    })
+    const title = await buildTitleOrError(prompt)
+    res.json({ title })
   }
   catch (error: any) {
-    console.error('Error calling LLM:', error)
     res.status(500).json({
       message: 'Error generating meal suggestion.',
       error: error.message,
