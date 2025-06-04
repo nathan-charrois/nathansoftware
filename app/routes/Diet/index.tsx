@@ -45,10 +45,8 @@ export default function Diet() {
           </Center>
         </AppShell.Main>
         <AppShell.Footer>
-          <Center w="100%">
-            <Stack align="flex-start" w="100%" h={75} maw={75}>
-              <DietResultCount />
-            </Stack>
+          <Center w="100%" h={100}>
+            <DietResultCount />
           </Center>
         </AppShell.Footer>
       </AppShell>
