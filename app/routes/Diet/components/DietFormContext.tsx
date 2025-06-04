@@ -11,12 +11,11 @@ export interface DietPreference {
 }
 
 interface DietFormContextType {
-  preferences: DietPreference[]
-  setPreferenceValue: (key: string, value: number) => void
   initialValues: Record<string, number>
-  onValuesChange: (values: Record<string, unknown>) => void
-  validate: Record<string, ReturnType<typeof isInRange>>
+  preferences: DietPreference[]
   setPreferences: (preferences: DietPreference[]) => void
+  setPreference: (key: string, value: number) => void
+  validate: Record<string, ReturnType<typeof isInRange>>
 }
 
 const DietFormContext = createContext<DietFormContextType | undefined>(undefined)
@@ -24,7 +23,7 @@ const DietFormContext = createContext<DietFormContextType | undefined>(undefined
 export const DietFormProvider = ({ children }: { children: ReactNode }) => {
   const [preferences, setPreferences] = useState<DietPreference[]>([])
 
-  const setPreferenceValue = (key: string, value: number) => {
+  const setPreference = (key: string, value: number) => {
     setPreferences(prev =>
       prev.map(pref => (pref.key === key ? { ...pref, value } : pref)),
     )
@@ -34,12 +33,6 @@ export const DietFormProvider = ({ children }: { children: ReactNode }) => {
     preferences.map(pref => [pref.key, pref.value]),
   )
 
-  const onValuesChange = (values: Record<string, unknown>) => {
-    Object.entries(values).forEach(([key, value]) => {
-      setPreferenceValue(key, typeof value === 'number' ? value : 0)
-    })
-  }
-
   const validate = Object.fromEntries(
     preferences.map(pref => [
       pref.key,
@@ -48,7 +41,14 @@ export const DietFormProvider = ({ children }: { children: ReactNode }) => {
   )
 
   return (
-    <DietFormContext.Provider value={{ preferences, setPreferenceValue, initialValues, onValuesChange, validate, setPreferences }}>
+    <DietFormContext.Provider value={{
+      initialValues,
+      preferences,
+      setPreference,
+      setPreferences,
+      validate,
+    }}
+    >
       {children}
     </DietFormContext.Provider>
   )

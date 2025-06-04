@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 import { Loader, Stack, Text } from '@mantine/core'
+import { fetchData } from 'app/utils/fetchUtils'
+import { type GetPreferencesResponse } from 'shared/types/api'
 
-import { type DietPreference, useDietForm } from './DietFormContext'
+import { useDietForm } from './DietFormContext'
 import { useDietStep } from './DietStepContext'
 
 export default function DietFormGet() {
@@ -11,15 +13,14 @@ export default function DietFormGet() {
   useEffect(() => {
     const fetchPreferences = async () => {
       try {
-        const res = await fetch('http://localhost:3001/preferences')
-        if (!res.ok) throw new Error('Failed to fetch preferences')
-        const fetchedPreferences: DietPreference[] = await res.json()
+        const preferences = await fetchData<GetPreferencesResponse[]>({
+          url: '/preferences',
+        })
 
-        setPreferences(fetchedPreferences)
+        setPreferences(preferences)
         setActiveStep('select-preference')
       }
-      catch (error) {
-        console.error('Error fetching preferences:', error)
+      catch {
         setActiveStep('error')
       }
     }

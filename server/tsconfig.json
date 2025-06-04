@@ -10,7 +10,8 @@
     "skipLibCheck": true,
     "noEmit": true,
     "paths": {
-      "@server/*": ["./*"]
+      "@server/*": ["./*"],
+      "@shared/*": ["../shared/*"]
     },
     "noImplicitAny": true,
     "strictNullChecks": true

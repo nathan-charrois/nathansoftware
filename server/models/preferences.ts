@@ -1,17 +1,19 @@
 import { generateMealPrompt } from '@server/services/openai'
-import { buildPrompt } from '@server/utils/preferences'
+import { buildPrompt } from '@server/utils/prompt'
+import type { GetPreferencesResponse, PostPreferencesResponse } from '@shared/types/api'
 import { NextFunction, Request, Response } from 'express'
 
 export const handlePostPreferences = async (
   req: Request,
-  res: Response,
+  res: Response<PostPreferencesResponse>,
   next: NextFunction,
 ) => {
   try {
     const prompt = buildPrompt(req.body)
     const title = await generateMealPrompt(prompt)
+    const image = ''
 
-    res.status(200).json({ title })
+    res.status(200).json({ title, image })
   }
   catch (error) {
     next(error)
@@ -20,31 +22,31 @@ export const handlePostPreferences = async (
 
 export const handleGetPreferences = (
   req: Request,
-  res: Response,
+  res: Response<GetPreferencesResponse[]>,
 ) => {
   const defaultPreferences = [
     {
-      key: 'preference1',
-      label: 'Does your1 0baby prefer an American Diet?',
+      key: 'american-food',
+      label: 'Inspration from American food?',
       value: 1,
       min: 1,
-      max: 3,
+      max: 5,
     },
     {
-      key: 'preference2',
-      label: 'Does your 1baby prefer an American Diet?',
+      key: 'sea-food',
+      label: 'Inspration from SeaFood and Asian Pacific?',
       value: 1,
       min: 1,
-      max: 3,
+      max: 5,
     },
     {
-      key: 'preference3',
-      label: 'Does your 2baby prefer an American Diet?',
-      min: 1,
-      max: 3,
+      key: 'stomach-safe',
+      label: 'Inspration from Stomach Safe?',
       value: 1,
+      min: 1,
+      max: 5,
     },
   ]
 
-  res.json(defaultPreferences)
+  res.status(200).json(defaultPreferences)
 }

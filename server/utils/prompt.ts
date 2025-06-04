@@ -14,5 +14,5 @@ export const buildPreferencesString = (preferences: Preferences): string => {
 
 export const buildPrompt = (preferences: Preferences): string => {
   const preferencesStr = buildPreferencesString(preferences)
-  return `Generate a meal based on the following preferences: ${preferencesStr}.`
+  return `Generate a meal based on the following preferences (scored 1 to 5, limit 8 words): ${preferencesStr}.`
 }

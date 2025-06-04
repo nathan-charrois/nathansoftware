@@ -18,6 +18,7 @@
       "~/*": ["./app/*"],
       "@app/*": ["./app/*"],
       "@route/*": ["./app/routes/*"],
+      "@shared/*": ["./shared/*"],
       "@utils/*": ["./app/utils/*"]
     },
     "esModuleInterop": true,

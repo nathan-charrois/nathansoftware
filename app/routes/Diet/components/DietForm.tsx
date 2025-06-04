@@ -1,19 +1,20 @@
 import { useCallback } from 'react'
 import { Button, Group } from '@mantine/core'
 import { useForm } from '@mantine/form'
+import { fetchData } from 'app/utils/fetchUtils'
+import { type PostPreferencesResponse } from 'shared/types/api'
 
 import { useDietForm } from './DietFormContext'
 import DietFormSlider from './DietFormSlider'
 import { useDietStep } from './DietStepContext'
 
 export default function DietForm() {
-  const { preferences, setPreferenceValue, initialValues, validate, onValuesChange } = useDietForm()
+  const { initialValues, preferences, setPreference, validate } = useDietForm()
   const { setActiveStep } = useDietStep()
 
   const form = useForm({
     initialValues,
     validate,
-    onValuesChange,
   })
 
   const handleChange = useCallback(
@@ -25,20 +26,21 @@ export default function DietForm() {
 
   const handleChangeEnd = useCallback(
     (key: string) => (val: number) => {
-      setPreferenceValue(key, typeof val === 'number' ? val : 0)
+      setPreference(key, typeof val === 'number' ? val : 0)
     },
-    [setPreferenceValue],
+    [setPreference],
   )
 
   const handleSubmit = async (formValues: typeof initialValues) => {
     setActiveStep('loading')
+
     try {
-      const res = await fetch('http://localhost:3001/preferences', {
+      await fetchData<PostPreferencesResponse>({
+        url: '/preferences',
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formValues),
+        body: formValues,
       })
-      if (!res.ok) throw new Error('Failed')
+
       setActiveStep('result')
     }
     catch {
