@@ -6,11 +6,13 @@ import { type PostPreferencesResponse } from 'shared/types/api'
 
 import { useDietForm } from './DietFormContext'
 import DietFormSlider from './DietFormSlider'
+import { useDietResult } from './DietResultContext'
 import { useDietStep } from './DietStepContext'
 
 export default function DietForm() {
   const { initialValues, preferences, setPreference, validate } = useDietForm()
   const { setActiveStep } = useDietStep()
+  const { addResult } = useDietResult()
 
   const form = useForm({
     initialValues,
@@ -35,12 +37,13 @@ export default function DietForm() {
     setActiveStep('loading')
 
     try {
-      await fetchData<PostPreferencesResponse>({
+      const response = await fetchData<PostPreferencesResponse>({
         url: '/preferences',
         method: 'POST',
         body: formValues,
       })
 
+      addResult(response)
       setActiveStep('result')
     }
     catch {

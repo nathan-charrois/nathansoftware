@@ -17,6 +17,7 @@
     "@mantine/hooks": "^7.17.5",
     "@react-router/node": "^7.5.2",
     "@react-router/serve": "^7.5.2",
+    "@tabler/icons-react": "^3.17.0",
     "isbot": "^5.1.17",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

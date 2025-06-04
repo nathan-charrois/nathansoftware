@@ -6,7 +6,6 @@ const openai = new OpenAI({
 })
 
 export const generateMealPrompt = async (prompt: string): Promise<string> => {
-  console.log('prompt', prompt)
   const response = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo',
     messages: [{ role: 'user', content: prompt }],

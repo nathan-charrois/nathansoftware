@@ -4,6 +4,7 @@ import { MantineProvider } from '@mantine/core'
 import '@mantine/core/styles.css'
 import './app.css'
 
+import { theme } from './utils/theme'
 import RootErrorBoundary from '~/components/ErrorBoundary/ErrorBoundary'
 import RootLayout from '~/components/Layout/Layout'
 
@@ -19,7 +20,7 @@ export function Layout(props: LayoutProps) {
 
 export default function App() {
   return (
-    <MantineProvider withGlobalClasses>
+    <MantineProvider theme={theme}>
       <Outlet />
     </MantineProvider>
   )
