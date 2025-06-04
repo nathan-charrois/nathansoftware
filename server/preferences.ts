@@ -1,24 +1,25 @@
 import { GoogleGenerativeAI } from '@google/generative-ai'
+import { Request, Response } from 'express'
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || 'YOUR_API_KEY')
 
-const buildPreferenceString = ([key, value]) => {
+const buildPreferenceString = ([key, value]: [string, number]): string => {
   const level = typeof value === 'number' ? value : 0
   return `${key} preference level ${level}`
 }
 
-const buildPreferencesString = (preferences) => {
+const buildPreferencesString = (preferences: Record<string, number>): string => {
   return Object.entries(preferences)
     .map(buildPreferenceString)
     .join(', ')
 }
 
-const buildPromptString = (preferences) => {
+const buildPromptString = (preferences: Record<string, number>): string => {
   const preferencesString = buildPreferencesString(preferences)
   return `Generate a meal based on the following preferences: ${preferencesString}.`
 }
 
-const generateTitle = async (prompt) => {
+const generateTitle = async (prompt: string): Promise<string> => {
   const model = genAI.getGenerativeModel({ model: 'gemini-pro' })
 
   const result = await model.generateContent(prompt)
@@ -27,7 +28,7 @@ const generateTitle = async (prompt) => {
   return response.text()
 }
 
-export const handlePostPreferences = async (req, res) => {
+export const handlePostPreferences = async (req: Request, res: Response) => {
   const prompt = buildPromptString(req.body)
   console.log('Received form values:', req.body)
   console.log('Generated LLM prompt:', prompt)
@@ -40,7 +41,7 @@ export const handlePostPreferences = async (req, res) => {
       meal: { title },
     })
   }
-  catch (error) {
+  catch (error: any) {
     console.error('Error calling LLM:', error)
     res.status(500).json({
       message: 'Error generating meal suggestion.',
@@ -49,7 +50,7 @@ export const handlePostPreferences = async (req, res) => {
   }
 }
 
-export const handleGetPreferences = (req, res) => {
+export const handleGetPreferences = (req: Request, res: Response) => {
   const defaultPreferences = [
     {
       key: 'preference1',
