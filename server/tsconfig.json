@@ -12,6 +12,8 @@
     "paths": {
       "@server/*": ["./*"]
     },
+    "noImplicitAny": true,
+    "strictNullChecks": true
   },
   "include": [
     "**/*.ts"
