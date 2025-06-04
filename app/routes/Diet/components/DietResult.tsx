@@ -18,7 +18,7 @@ export default function DietResult() {
   }, [])
 
   const handleClick = useCallback(() => {
-    setActiveStep('select-preference')
+    setActiveStep('form')
   }, [setActiveStep])
 
   return (

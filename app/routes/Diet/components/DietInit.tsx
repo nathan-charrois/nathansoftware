@@ -6,7 +6,7 @@ import { type GetPreferencesResponse } from 'shared/types/api'
 import { useDietForm } from './DietFormContext'
 import { useDietStep } from './DietStepContext'
 
-export default function DietFormGet() {
+export default function DietInit() {
   const { setActiveStep } = useDietStep()
   const { setPreferences } = useDietForm()
 
@@ -18,7 +18,7 @@ export default function DietFormGet() {
         })
 
         setPreferences(preferences)
-        setActiveStep('select-preference')
+        setActiveStep('form')
       }
       catch {
         setActiveStep('error')

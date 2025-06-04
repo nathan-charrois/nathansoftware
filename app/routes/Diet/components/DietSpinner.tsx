@@ -1,6 +1,6 @@
 import { Loader, Stack, Text } from '@mantine/core'
 
-export default function DietFormLoading() {
+export default function DietSpinner() {
   return (
     <Stack align="center" py="xl">
       <Loader size="lg" />
