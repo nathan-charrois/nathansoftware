@@ -10,12 +10,11 @@ export const playSuccessSound = () => {
   return null
 }
 
-export const playSlideSound = (playbackRate = 0.25) => {
+export const playSlideSound = () => {
   if (typeof Audio !== 'undefined') {
     const slideSound = new Audio('/sounds/drag-slider.wav')
     slideSound.currentTime = 0
-    slideSound.playbackRate = playbackRate
-    slideSound.volume = 0.20
+    slideSound.volume = 0.1
 
     slideSound.play()
   }

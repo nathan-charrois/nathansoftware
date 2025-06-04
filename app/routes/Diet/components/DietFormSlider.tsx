@@ -1,4 +1,6 @@
+import { useCallback, useRef } from 'react'
 import { Slider, Stack, Text } from '@mantine/core'
+import { playSlideSound } from '@utils/sound'
 
 interface DietFormSliderProps {
   label: string
@@ -23,6 +25,17 @@ export default function DietFormSlider({
   onChange,
   onChangeEnd,
 }: DietFormSliderProps) {
+  const lastSoundValue = useRef(value)
+
+  const handleOnChangeSound = useCallback((val: number) => {
+    if (val !== lastSoundValue.current) {
+      playSlideSound()
+      lastSoundValue.current = val
+    }
+
+    onChange(val)
+  }, [])
+
   return (
     <Stack gap="lg" mb="lg">
       <Text component="label" htmlFor={id} fw={500} mb={4}>{label}</Text>
@@ -32,7 +45,7 @@ export default function DietFormSlider({
         min={min}
         max={max}
         value={value}
-        onChange={onChange}
+        onChange={handleOnChangeSound}
         onChangeEnd={onChangeEnd}
         step={1}
         marks={buildSliderMarks(min, max)}
