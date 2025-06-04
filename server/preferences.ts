@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import { Request, Response } from 'express'
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || 'YOUR_API_KEY')
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || '')
 
 const buildPreferenceString = ([key, value]: [string, number]): string => {
   const level = typeof value === 'number' ? value : 0
@@ -20,6 +20,7 @@ const buildPromptString = (preferences: Record<string, number>): string => {
 }
 
 const generateTitle = async (prompt: string): Promise<string> => {
+  console.log('ke1y', process.env.GOOGLE_API_KEY)
   const model = genAI.getGenerativeModel({ model: 'gemini-pro' })
 
   const result = await model.generateContent(prompt)
