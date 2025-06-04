@@ -1,61 +1,27 @@
-import { OPENAI_API_KEY } from '@server/utils/config.ts'
-import { Request, Response } from 'express'
-import OpenAI from 'openai'
+import { generateMealPrompt } from '@server/services/openai'
+import { buildPrompt } from '@server/utils/preferences'
+import { NextFunction, Request, Response } from 'express'
 
-const openai = new OpenAI({
-  apiKey: OPENAI_API_KEY,
-})
-
-const buildPreferenceString = ([key, value]: [string, number]): string => {
-  const level = typeof value === 'number' ? value : 0
-  return `${key} preference level ${level}`
-}
-
-const buildPreferencesString = (preferences: Record<string, number>): string => {
-  return Object.entries(preferences)
-    .map(buildPreferenceString)
-    .join(', ')
-}
-
-const buildPromptString = (preferences: Record<string, number>): string => {
-  const preferencesString = buildPreferencesString(preferences)
-  return `Generate a meal based on the following preferences: ${preferencesString}.`
-}
-
-const buildTitleOrError = async (prompt: string): Promise<string> => {
-  const chatCompletion = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
-    messages: [{
-      role: 'user',
-      content: prompt,
-    }],
-  })
-
-  const title = chatCompletion.choices[0]?.message?.content
-
-  if (!title) {
-    throw new Error('OpenAI returned an empty response.')
-  }
-
-  return title
-}
-
-export const handlePostPreferences = async (req: Request, res: Response) => {
-  const prompt = buildPromptString(req.body)
-
+export const handlePostPreferences = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
-    const title = await buildTitleOrError(prompt)
-    res.json({ title })
+    const prompt = buildPrompt(req.body)
+    const title = await generateMealPrompt(prompt)
+
+    res.status(200).json({ title })
   }
   catch (error) {
-    res.status(500).json({
-      message: 'Error generating meal suggestion.',
-      error: error instanceof Error ? error.message : error,
-    })
+    next(error)
   }
 }
 
-export const handleGetPreferences = (req: Request, res: Response) => {
+export const handleGetPreferences = (
+  req: Request,
+  res: Response,
+) => {
   const defaultPreferences = [
     {
       key: 'preference1',
