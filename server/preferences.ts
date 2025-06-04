@@ -1,7 +1,5 @@
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import OpenAI from 'openai';
 import { Request, Response } from 'express'
-
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || '')
 
 const buildPreferenceString = ([key, value]: [string, number]): string => {
   const level = typeof value === 'number' ? value : 0
@@ -20,13 +18,29 @@ const buildPromptString = (preferences: Record<string, number>): string => {
 }
 
 const generateTitle = async (prompt: string): Promise<string> => {
-  console.log('ke1y', process.env.GOOGLE_API_KEY)
-  const model = genAI.getGenerativeModel({ model: 'gemini-pro' })
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
 
-  const result = await model.generateContent(prompt)
-  const response = result.response
+  try {
+    const chatCompletion = await openai.chat.completions.create({
+      model: 'gpt-3.5-turbo',
+      messages: [{
+        role: 'user',
+        content: prompt
+      }],
+    });
 
-  return response.text()
+    const title = chatCompletion.choices[0]?.message?.content;
+    if (!title) {
+      throw new Error("OpenAI returned an empty response.");
+    }
+
+    return title;
+  } catch (error) {
+    console.error('Error calling OpenAI LLM:', error);
+    throw new Error('Failed to generate title using OpenAI.');
+  }
 }
 
 export const handlePostPreferences = async (req: Request, res: Response) => {
