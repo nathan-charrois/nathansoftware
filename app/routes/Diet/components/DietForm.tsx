@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { Button, Group } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import { fetchData } from 'app/utils/fetchUtils'
-import { type PostPreferencesResponse } from 'shared/types/api'
+import { type PostPreferencesResponse } from '@shared/types/api'
+import { fetchData } from '@utils/fetchUtils'
 
 import { useDietForm } from './DietFormContext'
 import DietFormSlider from './DietFormSlider'
@@ -10,7 +10,7 @@ import { useDietResult } from './DietResultContext'
 import { useDietStep } from './DietStepContext'
 
 export default function DietForm() {
-  const { initialValues, preferences, setPreference, validate } = useDietForm()
+  const { initialValues, preferencesByType, setPreference, validate } = useDietForm()
   const { setActiveStep } = useDietStep()
   const { addResult } = useDietResult()
 
@@ -53,7 +53,7 @@ export default function DietForm() {
 
   return (
     <form onSubmit={form.onSubmit(handleSubmit)} onReset={form.reset}>
-      {preferences.map(pref => (
+      {preferencesByType.range.map(pref => (
         <DietFormSlider
           key={pref.key}
           label={pref.label}

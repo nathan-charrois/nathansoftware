@@ -13,7 +13,9 @@ interface DietFormSliderProps {
 }
 
 function buildSliderMarks(min: number, max: number) {
-  return Array.from({ length: max - min + 1 }).map((_, i) => ({ value: min + i }))
+  return Array
+    .from({ length: max - min + 1 })
+    .map((_, i) => ({ value: min + i }))
 }
 
 export default function DietFormSlider({

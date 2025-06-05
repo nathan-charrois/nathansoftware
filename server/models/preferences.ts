@@ -26,25 +26,56 @@ export const handleGetPreferences = (
 ) => {
   const defaultPreferences = [
     {
-      key: 'american-food',
-      label: 'Inspration from American food?',
+      type: 'range',
+      key: 'mushy-crunchy',
+      label: 'Mushy <--> Crunchy',
       value: 1,
       min: 1,
       max: 5,
     },
     {
-      key: 'sea-food',
-      label: 'Inspration from SeaFood and Asian Pacific?',
+      type: 'range',
+      key: 'grabbable-slippery',
+      label: 'Grabbable <--> Slippery',
       value: 1,
       min: 1,
       max: 5,
     },
     {
-      key: 'stomach-safe',
-      label: 'Inspration from Stomach Safe?',
-      value: 1,
-      min: 1,
-      max: 5,
+      type: 'boolean',
+      key: 'cute',
+      label: 'Cute',
+      value: 0,
+    },
+    {
+      type: 'boolean',
+      key: 'veggie-boost',
+      label: 'Veggie Boost',
+      value: 0,
+    },
+    {
+      key: 'eat-with-hands',
+      label: 'Eat with Hands',
+      type: 'boolean',
+      value: 0,
+    },
+    {
+      type: 'boolean',
+      key: 'on-the-go',
+      label: 'On-the-Go',
+      value: 0,
+    },
+    {
+      type: 'boolean',
+      key: 'brain-food',
+      label: 'Brain Food',
+      value: 0,
+    },
+    {
+      type: 'boolean',
+      key: 'animal-theme',
+      label: 'Animal Theme',
+      value: 0,
     },
   ]
 
