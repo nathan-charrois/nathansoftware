@@ -11,7 +11,7 @@ export default function Application({ children, footer }: ApplicationProps) {
     <AppShell withBorder={false}>
       <AppShell.Main>
         <Center h="100vh">
-          <Stack w="100%" h={800} maw={400}>
+          <Stack w="100%" h={800} maw={650}>
             {children}
           </Stack>
         </Center>

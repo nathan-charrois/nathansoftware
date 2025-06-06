@@ -47,13 +47,13 @@ export default function DietFormSlider({
   return (
     <Stack gap="lg" mb="lg">
       <Flex justify="space-between" align="center">
-        <Image flex={5} src={mushy} />
-        <Flex flex={25} justify="center" align="center" gap={10}>
+        <Image flex="40px" src={mushy} />
+        <Flex flex={10} justify="center" align="center" gap={10}>
           <Text component="label" htmlFor={id}>{labelStart}</Text>
           <Text component="label" htmlFor={id}>↔</Text>
           <Text component="label" htmlFor={id}>{labelEnd}</Text>
         </Flex>
-        <Image flex={5} src={crunchy} />
+        <Image flex="40px" src={crunchy} />
       </Flex>
       <Slider
         id={id}

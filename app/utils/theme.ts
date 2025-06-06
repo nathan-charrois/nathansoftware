@@ -20,12 +20,12 @@ export const theme = createTheme({
   },
   fontFamily: 'Dongle, sans-serif',
   fontSizes: {
-    sm: '15px',
-    md: '35px',
-    lg: '80px',
+    sm: '25px',
+    md: '40px',
+    lg: '120px',
   },
   lineHeights: {
-    sm: '0.75',
+    sm: '0.65',
     md: '1.25',
     lg: '1.50',
   },
