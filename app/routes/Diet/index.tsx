@@ -1,5 +1,4 @@
 import type { MetaArgs } from 'react-router'
-import { Card } from '@mantine/core'
 
 import DietError from './components/DietError'
 import DietForm from './components/DietForm'
