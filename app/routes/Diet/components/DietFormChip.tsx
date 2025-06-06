@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react'
-import { Chip, Stack, Text } from '@mantine/core'
+import { Chip, Stack } from '@mantine/core'
 import { playSlideSound } from '@utils/sound'
 
 interface DietFormChipProps {
@@ -23,8 +23,7 @@ export default function DietFormChip({ label, id, value, onChange }: DietFormChi
 
   return (
     <Stack gap="md" mb="sm" justify="center" align="center">
-      <Text component="label" htmlFor={id} fw={500}>{label}</Text>
-      <Chip checked={!!value} onChange={handleOnChangeSound}>
+      <Chip id={id} checked={!!value} onChange={handleOnChangeSound}>
         {label}
       </Chip>
     </Stack>

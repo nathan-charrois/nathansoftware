@@ -79,8 +79,8 @@ export default function DietForm() {
         ))}
       </SimpleGrid>
       <Group justify="center" mt="lg">
-        <Button type="submit">Submit</Button>
-        <Button type="reset">Reset</Button>
+        <Button type="submit" variant="primary">Submit</Button>
+        <Button type="reset" variant="secondary">Reset</Button>
       </Group>
     </form>
   )
