@@ -57,7 +57,8 @@ export default function DietForm() {
         {preferencesByType.range.map(pref => (
           <DietFormSlider
             key={pref.key}
-            label={pref.label}
+            labelStart={pref.labelStart}
+            labelEnd={pref.labelEnd}
             id={pref.key}
             value={form.values[pref.key]}
             min={pref.min}

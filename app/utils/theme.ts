@@ -10,6 +10,8 @@ const fierceGreen = '#5D9220'
 const paleOrange = '#F8DD94'
 const fierceOrange = '#F2B258'
 
+const paleBlue = '#C5DCE0'
+
 export const theme = createTheme({
   white: paleYellow,
   colors: {
@@ -97,6 +99,26 @@ export const theme = createTheme({
                 backgroundColor: theme.other.chips.default.background,
                 fontSize: theme.fontSizes.md,
               }),
+        },
+      }),
+    },
+    Slider: {
+      styles: () => ({
+        bar: {
+          backgroundColor: paleBlue,
+        },
+        track: {
+          backgroundColor: paleBlue,
+        },
+        mark: {
+          backgroundColor: paleBlue,
+          borderColor: paleBlue,
+        },
+        thumb: {
+          backgroundColor: paleYellow,
+          color: fierceOrange,
+          borderColor: fierceOrange,
+          borderWidth: '6px',
         },
       }),
     },
