@@ -24,7 +24,7 @@ export default function Diet() {
       <AppShell withBorder={false}>
         <AppShell.Main>
           <Center h="100vh">
-            <Stack align="center" w="100%" h={400} maw={400}>
+            <Stack align="center" w="100%" h={800} maw={400}>
               <DietTitle />
               <DietStep step="initialize">
                 <DietInit />
