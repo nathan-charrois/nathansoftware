@@ -15,9 +15,9 @@ export default function DietStep({ children, step }: DietStepProps) {
   return (
     <Transition
       mounted={activeStep === step}
-      transition="fade-left"
-      duration={100}
-      enterDelay={100}
+      transition="fade-up"
+      duration={150}
+      enterDelay={150}
       timingFunction="ease-in-out"
     >
       {styles => <div style={styles}>{children}</div>}

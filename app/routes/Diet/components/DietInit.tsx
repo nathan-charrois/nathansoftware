@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Loader, Stack, Text } from '@mantine/core'
+import type { DietPreference } from '@shared/types/context'
 import { fetchData } from 'app/utils/fetchUtils'
 import { type GetPreferencesResponse } from 'shared/types/api'
 
@@ -28,10 +28,5 @@ export default function DietInit() {
     fetchPreferences()
   }, [setActiveStep, setPreferences])
 
-  return (
-    <Stack align="center" py="xl">
-      <Text size="lg">Fetching your diet preferences...</Text>
-      <Loader />
-    </Stack>
-  )
+  return null
 }
