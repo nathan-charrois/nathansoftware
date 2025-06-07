@@ -27,7 +27,7 @@ export const handleGetPreferences = (
   const defaultPreferences = [
     {
       type: 'range',
-      key: 'mushy-crunchy',
+      key: 'squish-crunch',
       labelStart: 'Squish',
       labelEnd: 'Crunch',
       value: 3,
@@ -36,7 +36,7 @@ export const handleGetPreferences = (
     },
     {
       type: 'range',
-      key: 'grabbable-slippery',
+      key: 'grab-slip',
       labelStart: 'Grab',
       labelEnd: 'Slip',
       value: 3,

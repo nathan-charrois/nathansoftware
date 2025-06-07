@@ -22,7 +22,7 @@ export default function DietFormChip({ label, id, value, onChange }: DietFormChi
   }, [])
 
   return (
-    <Stack gap="md" mb="sm" justify="center" align="center">
+    <Stack justify="center" align="flex-start">
       <Chip id={id} checked={!!value} onChange={handleOnChangeSound}>
         {label}
       </Chip>

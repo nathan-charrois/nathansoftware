@@ -73,7 +73,7 @@ export default function DietForm() {
               />
             ))}
           </Stack>
-          <SimpleGrid cols={3} mt="lg">
+          <SimpleGrid cols={1}>
             {preferencesByType.boolean.map(pref => (
               <DietFormChip
                 key={pref.key}

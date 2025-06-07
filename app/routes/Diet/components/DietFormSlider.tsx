@@ -3,9 +3,6 @@ import { Flex, Slider, Stack, Text } from '@mantine/core'
 import { Image } from '@mantine/core'
 import { playSlideSound } from '@utils/sound'
 
-import crunchy from '/public/images/crunchy.png'
-import mushy from '/public/images/mushy.png'
-
 interface DietFormSliderProps {
   labelStart: string
   labelEnd: string
@@ -45,15 +42,15 @@ export default function DietFormSlider({
   }, [])
 
   return (
-    <Stack gap="lg" mb="lg">
+    <Stack gap="lg" mb="xl">
       <Flex justify="space-between" align="center">
-        <Image flex="40px" src={mushy} />
-        <Flex flex={10} justify="center" align="center" gap={10}>
+        <Image flex="60px" src={`/public/images/${labelStart}.png`} />
+        <Flex flex={10} justify="center" align="center" gap={8}>
           <Text component="label" htmlFor={id}>{labelStart}</Text>
           <Text component="label" htmlFor={id}>↔</Text>
           <Text component="label" htmlFor={id}>{labelEnd}</Text>
         </Flex>
-        <Image flex="40px" src={crunchy} />
+        <Image flex="60px" src={`/public/images/${labelEnd}.png`} />
       </Flex>
       <Slider
         id={id}
@@ -62,7 +59,7 @@ export default function DietFormSlider({
         max={max}
         value={value}
         size={10}
-        thumbSize={24}
+        thumbSize={28}
         onChange={handleOnChangeSound}
         onChangeEnd={onChangeEnd}
         marks={buildSliderMarks(min, max)}

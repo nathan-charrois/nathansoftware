@@ -21,8 +21,8 @@ export const theme = createTheme({
   fontFamily: 'Dongle, sans-serif',
   fontSizes: {
     sm: '25px',
-    md: '40px',
-    lg: '120px',
+    md: '44px',
+    lg: '128px',
   },
   lineHeights: {
     sm: '0.65',
@@ -87,6 +87,7 @@ export const theme = createTheme({
     },
     Chip: {
       styles: (theme: MantineTheme, props: ChipProps) => ({
+        root: {},
         label: {
           ...(props.checked
             ? {
@@ -98,6 +99,8 @@ export const theme = createTheme({
                 color: theme.other.chips.default.text,
                 backgroundColor: theme.other.chips.default.background,
                 fontSize: theme.fontSizes.md,
+                border: '1px',
+                borderColor: '#000000',
               }),
         },
       }),
@@ -118,7 +121,7 @@ export const theme = createTheme({
           backgroundColor: paleYellow,
           color: fierceOrange,
           borderColor: fierceOrange,
-          borderWidth: '6px',
+          borderWidth: '8px',
         },
       }),
     },
