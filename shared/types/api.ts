@@ -15,5 +15,6 @@ export type GetPreferencesResponse = {
   type: string
   key: string
   label: string
+  icon: string
   value: number
 }

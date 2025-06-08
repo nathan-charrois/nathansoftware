@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { Button, Group, Stack } from '@mantine/core'
+import { Button, Group } from '@mantine/core'
 import { SimpleGrid } from '@mantine/core'
 import { Image } from '@mantine/core'
 import { Grid } from '@mantine/core'
@@ -21,6 +21,8 @@ export default function DietForm() {
   const { addResult } = useDietResult()
 
   const form = useForm({ initialValues, validate })
+
+  const [firstPreference, ...restPreferences] = preferencesByType.range
 
   const handleChange = useCallback(
     (key: string) => (val: number) => {
@@ -56,40 +58,52 @@ export default function DietForm() {
 
   return (
     <form onSubmit={form.onSubmit(handleSubmit)} onReset={form.reset}>
-      <Grid columns={10}>
-        <Grid.Col span={6}>
-          <Stack mb="lg">
-            {preferencesByType.range.map(pref => (
-              <DietFormSlider
-                key={pref.key}
-                labelStart={pref.labelStart}
-                labelEnd={pref.labelEnd}
-                id={pref.key}
-                value={form.values[pref.key]}
-                min={pref.min}
-                max={pref.max}
-                onChange={handleChange(pref.key)}
-                onChangeEnd={handleChangeEnd(pref.key)}
-              />
-            ))}
-          </Stack>
-          <SimpleGrid cols={1}>
+      <Grid columns={20}>
+        <Grid.Col span={20}>
+          <DietFormSlider
+            key={firstPreference.key}
+            labelStart={firstPreference.labelStart}
+            labelEnd={firstPreference.labelEnd}
+            id={firstPreference.key}
+            value={form.values[firstPreference.key]}
+            min={firstPreference.min}
+            max={firstPreference.max}
+            onChange={handleChange(firstPreference.key)}
+            onChangeEnd={handleChangeEnd(firstPreference.key)}
+          />
+        </Grid.Col>
+        <Grid.Col span={11}>
+          {restPreferences.map(pref => (
+            <DietFormSlider
+              key={pref.key}
+              labelStart={pref.labelStart}
+              labelEnd={pref.labelEnd}
+              id={pref.key}
+              min={pref.min}
+              max={pref.max}
+              value={form.values[pref.key]}
+              onChange={handleChange(pref.key)}
+              onChangeEnd={handleChangeEnd(pref.key)}
+            />
+          ))}
+          <SimpleGrid cols={1} mb="lg">
             {preferencesByType.boolean.map(pref => (
               <DietFormChip
                 key={pref.key}
                 label={pref.label}
                 id={pref.key}
+                icon={pref.icon}
                 value={form.values[pref.key]}
                 onChange={handleChange(pref.key)}
               />
             ))}
           </SimpleGrid>
-          <Group justify="center" mt="lg">
-            <Button type="submit" variant="primary">Submit</Button>
-            <Button type="reset" variant="secondary">Reset</Button>
+          <Group pt="md">
+            <Button type="submit" variant="primary" radius="lg">Submit</Button>
+            <Button type="reset" variant="secondary" radius="lg">Reset</Button>
           </Group>
         </Grid.Col>
-        <Grid.Col span={4}>
+        <Grid.Col span={9}>
           <Image src={baby} />
         </Grid.Col>
       </Grid>

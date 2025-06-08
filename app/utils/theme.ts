@@ -1,16 +1,18 @@
 import { generateColors } from '@mantine/colors-generator'
 import { type ButtonProps, type ChipProps, createTheme, type MantineTheme } from '@mantine/core'
 
-const paleYellow = '#FEFADF'
-const fierceYellow = '#D8923C'
-
-const paleGreen = '#CDDA86'
-const fierceGreen = '#5D9220'
-
-const paleOrange = '#F8DD94'
-const fierceOrange = '#F2B258'
-
-const paleBlue = '#C5DCE0'
+import {
+  borderWidth,
+  defaultPadding,
+  fierceGreen,
+  fierceOrange,
+  fierceYellow,
+  paleBlue,
+  paleGreen,
+  paleOrange,
+  paleYellow,
+  sunshineYellow,
+} from './colors'
 
 export const theme = createTheme({
   white: paleYellow,
@@ -22,34 +24,12 @@ export const theme = createTheme({
   fontSizes: {
     sm: '25px',
     md: '44px',
-    lg: '128px',
+    lg: '126px',
   },
   lineHeights: {
     sm: '0.65',
     md: '1.25',
     lg: '1.50',
-  },
-  other: {
-    buttons: {
-      primary: {
-        background: paleGreen,
-        text: paleYellow,
-      },
-      secondary: {
-        background: paleOrange,
-        text: fierceYellow,
-      },
-    },
-    chips: {
-      default: {
-        background: 'transparent',
-        text: fierceOrange,
-      },
-      selected: {
-        background: paleGreen,
-        text: fierceGreen,
-      },
-    },
   },
   components: {
     Title: {
@@ -71,15 +51,17 @@ export const theme = createTheme({
     },
     Button: {
       styles: (theme: MantineTheme, props: ButtonProps) => ({
+
         root: {
+          padding: '30px 18px 24px 18px',
           ...(props.variant === 'primary' && {
-            backgroundColor: theme.other.buttons.primary.background,
-            color: theme.other.buttons.primary.text,
+            backgroundColor: paleGreen,
+            color: paleYellow,
             fontSize: theme.fontSizes.md,
           }),
           ...(props.variant === 'secondary' && {
-            backgroundColor: theme.other.buttons.secondary.background,
-            color: theme.other.buttons.secondary.text,
+            backgroundColor: paleOrange,
+            color: fierceYellow,
             fontSize: theme.fontSizes.md,
           }),
         },
@@ -87,20 +69,22 @@ export const theme = createTheme({
     },
     Chip: {
       styles: (theme: MantineTheme, props: ChipProps) => ({
-        root: {},
+        iconWrapper: {
+          display: 'none',
+        },
         label: {
           ...(props.checked
             ? {
-                color: theme.other.chips.selected.text,
-                backgroundColor: theme.other.chips.selected.background,
+                color: fierceGreen,
+                backgroundColor: paleGreen,
                 fontSize: theme.fontSizes.md,
+                padding: defaultPadding,
               }
             : {
-                color: theme.other.chips.default.text,
-                backgroundColor: theme.other.chips.default.background,
+                color: fierceOrange,
+                backgroundColor: sunshineYellow,
                 fontSize: theme.fontSizes.md,
-                border: '1px',
-                borderColor: '#000000',
+                padding: defaultPadding,
               }),
         },
       }),
@@ -121,7 +105,7 @@ export const theme = createTheme({
           backgroundColor: paleYellow,
           color: fierceOrange,
           borderColor: fierceOrange,
-          borderWidth: '8px',
+          borderWidth: borderWidth,
         },
       }),
     },

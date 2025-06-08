@@ -1,7 +1,8 @@
 import { useCallback, useRef } from 'react'
-import { Flex, Slider, Stack, Text } from '@mantine/core'
-import { Image } from '@mantine/core'
+import { Slider, Stack } from '@mantine/core'
 import { playSlideSound } from '@utils/sound'
+
+import { DietFormSliderLabel } from './DietFormSliderLabel'
 
 interface DietFormSliderProps {
   labelStart: string
@@ -42,16 +43,12 @@ export default function DietFormSlider({
   }, [])
 
   return (
-    <Stack gap="lg" mb="xl">
-      <Flex justify="space-between" align="center">
-        <Image flex="60px" src={`/public/images/${labelStart}.png`} />
-        <Flex flex={10} justify="center" align="center" gap={8}>
-          <Text component="label" htmlFor={id}>{labelStart}</Text>
-          <Text component="label" htmlFor={id}>↔</Text>
-          <Text component="label" htmlFor={id}>{labelEnd}</Text>
-        </Flex>
-        <Image flex="60px" src={`/public/images/${labelEnd}.png`} />
-      </Flex>
+    <Stack gap="xs" mb="xl">
+      <DietFormSliderLabel
+        id={id}
+        labelStart={labelStart}
+        labelEnd={labelEnd}
+      />
       <Slider
         id={id}
         label={null}

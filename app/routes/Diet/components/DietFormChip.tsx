@@ -1,15 +1,23 @@
 import { useCallback, useRef } from 'react'
-import { Chip, Stack } from '@mantine/core'
+import { Chip } from '@mantine/core'
+import { Image } from '@mantine/core'
 import { playSlideSound } from '@utils/sound'
 
 interface DietFormChipProps {
   label: string
   id: string
+  icon: string
   value: number
   onChange: (checked: number) => void
 }
 
-export default function DietFormChip({ label, id, value, onChange }: DietFormChipProps) {
+export default function DietFormChip({
+  label,
+  id,
+  icon,
+  value,
+  onChange,
+}: DietFormChipProps) {
   const lastSoundValue = useRef(!!value)
 
   const handleOnChangeSound = useCallback((val: boolean) => {
@@ -22,10 +30,13 @@ export default function DietFormChip({ label, id, value, onChange }: DietFormChi
   }, [])
 
   return (
-    <Stack justify="center" align="flex-start">
-      <Chip id={id} checked={!!value} onChange={handleOnChangeSound}>
-        {label}
-      </Chip>
-    </Stack>
+    <Chip
+      id={id}
+      checked={!!value}
+      onChange={handleOnChangeSound}
+    >
+      <Image w="40px" mr="10px" display="inline" src={`/public/images/${icon}.png`} />
+      {label}
+    </Chip>
   )
 }

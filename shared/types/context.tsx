@@ -12,6 +12,7 @@ export type DietPreferenceTypeBoolean = {
   type: 'boolean'
   key: string
   label: string
+  icon: string
   value: number
 }
 
