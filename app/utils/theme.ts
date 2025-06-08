@@ -51,7 +51,9 @@ export const theme = createTheme({
     },
     Button: {
       styles: (theme: MantineTheme, props: ButtonProps) => ({
-
+        label: {
+          overflow: 'visible',
+        },
         root: {
           padding: '30px 18px 24px 18px',
           ...(props.variant === 'primary' && {
