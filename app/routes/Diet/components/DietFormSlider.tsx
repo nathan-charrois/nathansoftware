@@ -1,9 +1,12 @@
 import { useCallback, useRef } from 'react'
-import { Slider, Stack, Text } from '@mantine/core'
+import { Slider, Stack } from '@mantine/core'
 import { playSlideSound } from '@utils/sound'
 
+import { DietFormSliderLabel } from './DietFormSliderLabel'
+
 interface DietFormSliderProps {
-  label: string
+  labelStart: string
+  labelEnd: string
   id: string
   value: number
   min: number
@@ -19,7 +22,8 @@ function buildSliderMarks(min: number, max: number) {
 }
 
 export default function DietFormSlider({
-  label,
+  labelStart,
+  labelEnd,
   id,
   value,
   min,
@@ -39,18 +43,24 @@ export default function DietFormSlider({
   }, [])
 
   return (
-    <Stack gap="lg" mb="lg">
-      <Text component="label" htmlFor={id} fw={500} mb={4}>{label}</Text>
+    <Stack gap="xs" mb="xl">
+      <DietFormSliderLabel
+        id={id}
+        labelStart={labelStart}
+        labelEnd={labelEnd}
+      />
       <Slider
         id={id}
-        label={value.toString()}
+        label={null}
         min={min}
         max={max}
         value={value}
+        size={10}
+        thumbSize={28}
         onChange={handleOnChangeSound}
         onChangeEnd={onChangeEnd}
-        step={1}
         marks={buildSliderMarks(min, max)}
+        classNames={{ track: 'custom-slider-track' }}
       />
     </Stack>
   )

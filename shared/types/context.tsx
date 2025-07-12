@@ -1,7 +1,8 @@
 export type DietPreferenceTypeRange = {
   type: 'range'
   key: string
-  label: string
+  labelStart: string
+  labelEnd: string
   value: number
   min: number
   max: number
@@ -11,6 +12,7 @@ export type DietPreferenceTypeBoolean = {
   type: 'boolean'
   key: string
   label: string
+  icon: string
   value: number
 }
 

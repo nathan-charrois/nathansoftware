@@ -6,3 +6,12 @@ body {
   font-weight: 400;
   background-color: #FEFADF;
 }
+
+.custom-slider-track {
+  background-color: #C5DCE0 !important;
+  position: relative;
+}
+
+.custom-slider-track::before {
+  content: none !important;  /* 💥 kill the gradient layer */
+}

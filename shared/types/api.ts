@@ -6,7 +6,8 @@ export type PostPreferencesResponse = {
 export type GetPreferencesResponse = {
   type: string
   key: string
-  label: string
+  labelStart: string
+  labelEnd: string
   value: number
   min: number
   max: number
@@ -14,5 +15,6 @@ export type GetPreferencesResponse = {
   type: string
   key: string
   label: string
+  icon: string
   value: number
 }

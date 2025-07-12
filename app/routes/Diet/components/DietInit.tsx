@@ -17,7 +17,7 @@ export default function DietInit() {
           url: '/preferences',
         })
 
-        setPreferences(preferences)
+        setPreferences(preferences as DietPreference[])
         setActiveStep('form')
       }
       catch {
