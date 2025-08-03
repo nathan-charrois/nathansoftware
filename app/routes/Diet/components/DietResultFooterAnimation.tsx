@@ -3,14 +3,12 @@ import { useEffect, useState } from 'react'
 import { Transition } from '@mantine/core'
 
 import { ANIMATION_MOUNT_MS, ANIMATION_POP_MS } from '~/utils/constant'
-import { playSuccessSound } from '~/utils/sound'
 
-interface DietResultCountAnimationProps {
-  count: number
+interface DietResultFooterAnimationProps {
   children: ReactNode
 }
 
-export default function DietResultCountAnimation({ count, children }: DietResultCountAnimationProps) {
+export default function DietResultFooterAnimation({ children }: DietResultFooterAnimationProps) {
   const [textMounted, setTextMounted] = useState(false)
 
   useEffect(() => {
@@ -20,12 +18,8 @@ export default function DietResultCountAnimation({ count, children }: DietResult
       setTextMounted(true)
     }, ANIMATION_MOUNT_MS)
 
-    if (count > 0) {
-      playSuccessSound()
-    }
-
     return () => clearTimeout(timer)
-  }, [count])
+  }, [])
 
   return (
     <Transition mounted={textMounted} transition="pop" duration={ANIMATION_POP_MS} timingFunction="ease">

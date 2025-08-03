@@ -21,6 +21,13 @@ export const ru: Record<LanguageKey, string> = {
 
   // Slider labels
   arrow_symbol: '↔',
+
+  // Settings modal
+  settings: 'Настройки',
+  language: 'Язык',
+  play_sounds: 'Воспроизводить звуки',
+  apply: 'Применить',
+  close: 'Закрыть',
 } as const
 
 export type RuKeys = keyof typeof ru

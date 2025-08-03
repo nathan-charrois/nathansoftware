@@ -1,3 +1,4 @@
+// Define all language keys as a const array
 export const LANGUAGE_KEYS = [
   // Error messages
   'error_saving_preferences',
@@ -19,6 +20,13 @@ export const LANGUAGE_KEYS = [
 
   // Slider labels
   'arrow_symbol',
+
+  // Settings modal
+  'settings',
+  'language',
+  'play_sounds',
+  'apply',
+  'close',
 ] as const
 
 export type LanguageKey = typeof LANGUAGE_KEYS[number]

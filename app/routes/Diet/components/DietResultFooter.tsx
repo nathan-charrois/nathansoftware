@@ -1,11 +1,16 @@
+import { Group } from '@mantine/core'
+
 import DietResultCount from './DietResultCount'
-import DietResultLanguage from './DietResultLanguage'
+import DietResultFooterAnimation from './DietResultFooterAnimation'
+import DietSettings from './DietSettings'
 
 export default function DietResultFooter() {
   return (
-    <>
-      <DietResultCount />
-      <DietResultLanguage />
-    </>
+    <DietResultFooterAnimation>
+      <Group gap="md">
+        <DietSettings />
+        <DietResultCount />
+      </Group>
+    </DietResultFooterAnimation>
   )
 }

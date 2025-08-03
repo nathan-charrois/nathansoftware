@@ -5,7 +5,6 @@ import { Group } from '@mantine/core'
 import { Text, ThemeIcon } from '@mantine/core'
 
 import { useDietResult } from './DietResultContext'
-import DietResultCountAnimation from './DietResultCountAnimation'
 
 const icons = [SpoonIcon, Baby01Icon, EggsIcon, FishFoodIcon]
 
@@ -19,13 +18,11 @@ export default function DietResultCount() {
   }, [resultCount, icons.length])
 
   return (
-    <DietResultCountAnimation count={resultCount}>
-      <Group gap="xs" align="center">
-        <ThemeIcon variant="transparent" size="lg" color="lime">
-          <HugeiconsIcon icon={icons[currentIconIndex]} size={24} />
-        </ThemeIcon>
-        <Text size="lg" fw={400}>{resultCount}</Text>
-      </Group>
-    </DietResultCountAnimation>
+    <Group gap="xs" align="center">
+      <ThemeIcon variant="transparent" size="lg" color="lime">
+        <HugeiconsIcon icon={icons[currentIconIndex]} size={24} />
+      </ThemeIcon>
+      <Text size="lg" fw={400}>{resultCount}</Text>
+    </Group>
   )
 }

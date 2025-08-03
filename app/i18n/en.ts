@@ -21,6 +21,13 @@ export const en: Record<LanguageKey, string> = {
 
   // Slider labels
   arrow_symbol: '↔',
+
+  // Settings modal
+  settings: 'Settings',
+  language: 'Language',
+  play_sounds: 'Play sounds',
+  apply: 'Apply',
+  close: 'Close',
 } as const
 
 export type EnKeys = keyof typeof en
