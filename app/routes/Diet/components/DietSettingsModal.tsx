@@ -26,12 +26,9 @@ interface SettingsState {
 
 const loadSettingsFromStorage = (): SettingsState => {
   const storedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY)
-
-  const language = isSupportedLangauge(storedLanguage)
-    ? storedLanguage as SupportedLanguage
-    : detectLanguage()
-
   const storedSound = localStorage.getItem(SOUND_STORAGE_KEY)
+
+  const language = isSupportedLangauge(storedLanguage) ? storedLanguage : detectLanguage()
   const soundEnabled = storedSound !== null ? storedSound === 'true' : true
 
   return { language, soundEnabled }
