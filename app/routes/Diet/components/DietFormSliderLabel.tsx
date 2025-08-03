@@ -14,13 +14,13 @@ export function DietFormSliderLabel({
 }: DietFormSliderLabelProps) {
   return (
     <Flex justify="space-between" align="center">
-      <Image flex="50px" src={`/public/images/${labelStart}.png`} />
+      <Image flex="50px" src={`/images/${labelStart}.png`} />
       <Flex flex={10} justify="center" align="center" gap={10}>
         <Text component="label" htmlFor={id}>{labelStart}</Text>
         <Text component="label" htmlFor={id}>↔</Text>
         <Text component="label" htmlFor={id}>{labelEnd}</Text>
       </Flex>
-      <Image flex="50px" src={`/public/images/${labelEnd}.png`} />
+      <Image flex="50px" src={`/images/${labelEnd}.png`} />
     </Flex>
   )
 }

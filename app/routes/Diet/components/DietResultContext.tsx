@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
-import { type PostPreferencesResponse } from 'shared/types/api'
+import { type PostPreferencesResponse } from '@shared/types/api'
+import { isDietPreferenceResponseArray } from '@shared/types/typeguard'
 
 interface DietResultContextType {
   results: PostPreferencesResponse[]
@@ -18,10 +19,12 @@ export function DietResultProvider({ children }: { children: React.ReactNode }) 
   useEffect(() => {
     if (localStorage) {
       const savedResults = localStorage.getItem(LOCAL_STORAGE_KEY)
-      return savedResults ? JSON.parse(savedResults) : []
-    }
+      const parsedResults = savedResults ? JSON.parse(savedResults) : []
 
-    return []
+      if (isDietPreferenceResponseArray(parsedResults)) {
+        setResults(parsedResults)
+      }
+    }
   }, [])
 
   const addResult = useCallback((result: PostPreferencesResponse) => {

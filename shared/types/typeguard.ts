@@ -1,3 +1,4 @@
+import type { PostPreferencesResponse } from './api'
 import type {
   DietPreference,
   DietPreferenceTypeBoolean,
@@ -14,4 +15,16 @@ export const isDietPreferenceTypeBoolean = (
   preference: DietPreference,
 ): preference is DietPreferenceTypeBoolean => {
   return preference.type === 'boolean'
+}
+
+export const isDietPreferenceResponse = (
+  response: unknown,
+): response is PostPreferencesResponse => {
+  return typeof response === 'object' && response !== null && 'title' in response
+}
+
+export const isDietPreferenceResponseArray = (
+  response: unknown,
+): response is PostPreferencesResponse[] => {
+  return Array.isArray(response) && response.every(isDietPreferenceResponse)
 }

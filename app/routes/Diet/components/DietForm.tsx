@@ -11,7 +11,6 @@ import DietFormLayout from './DietFormLayout'
 import DietFormSlider from './DietFormSlider'
 import { useDietResult } from './DietResultContext'
 import { useDietStep } from './DietStepContext'
-import baby from '/public/images/baby.png'
 
 export default function DietForm() {
   const { initialValues, preferencesByType, setPreference, validate } = useDietForm()
@@ -93,7 +92,7 @@ export default function DietForm() {
             onChange={handleChange(pref.key)}
           />
         ))}
-        image={<Image src={baby} />}
+        image={<Image src="/images/baby.png" />}
         actions={<DietFormActions />}
       />
     </form>
