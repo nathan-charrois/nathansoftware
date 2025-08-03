@@ -5,7 +5,7 @@ import DietForm from './components/DietForm'
 import DietInit from './components/DietInit'
 import DietProviders from './components/DietProviders'
 import DietResult from './components/DietResult'
-import DietResultCount from './components/DietResultCount'
+import DietResultFooter from './components/DietResultFooter'
 import DietSpinner from './components/DietSpinner'
 import DietStep from './components/DietStep'
 import DietTitle from './components/DietTitle'
@@ -21,7 +21,7 @@ export function meta({}: MetaArgs) {
 export default function Diet() {
   return (
     <DietProviders>
-      <Application footer={<DietResultCount />}>
+      <Application footer={<DietResultFooter />}>
         <DietStep step="initialize">
           <DietInit />
         </DietStep>

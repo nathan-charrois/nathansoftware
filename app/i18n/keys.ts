@@ -1,4 +1,3 @@
-// Define all language keys as a const array
 export const LANGUAGE_KEYS = [
   // Error messages
   'error_saving_preferences',

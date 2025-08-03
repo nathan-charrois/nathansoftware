@@ -1,9 +1,8 @@
 import { generateMealPrompt } from '@server/services/openai'
 import { buildPrompt } from '@server/utils/prompt'
 import type { GetPreferencesResponse, PostPreferencesResponse } from '@shared/types/api'
+import { type SupportedLanguage } from '@shared/types/i18n'
 import { NextFunction, Request, Response } from 'express'
-
-type SupportedLanguage = 'en' | 'ru'
 
 const preferenceStrings = {
   en: {

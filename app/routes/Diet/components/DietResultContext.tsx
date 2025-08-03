@@ -17,7 +17,7 @@ export function DietResultProvider({ children }: { children: React.ReactNode }) 
   const [results, setResults] = useState<PostPreferencesResponse[]>([])
 
   useEffect(() => {
-    if (localStorage) {
+    if (typeof localStorage !== 'undefined') {
       const savedResults = localStorage.getItem(LOCAL_STORAGE_KEY)
       const parsedResults = savedResults ? JSON.parse(savedResults) : []
 
