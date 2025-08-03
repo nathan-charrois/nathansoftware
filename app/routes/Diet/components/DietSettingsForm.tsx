@@ -1,7 +1,6 @@
-import { useCallback, useMemo } from 'react'
-import { Checkbox, Stack, Text } from '@mantine/core'
-import { Combobox, useCombobox } from '@mantine/core'
-import { isSupportedLangauge, type SupportedLanguage } from '@shared/types/i18n'
+import { useCallback } from 'react'
+import { Checkbox, NativeSelect, Stack } from '@mantine/core'
+import { type SupportedLanguage } from '@shared/types/i18n'
 
 import { useI18n } from './DietI18nProvider'
 
@@ -20,92 +19,32 @@ interface DietSettingsFormProps {
   onSettingsChange: (settings: SettingsState) => void
 }
 
-const LanguageSelector = ({
-  value,
-  onChange,
-}: {
-  value: SupportedLanguage
-  onChange: (language: SupportedLanguage) => void
-}) => {
-  const combobox = useCombobox({
-    onDropdownClose: () => combobox.resetSelectedOption(),
-  })
-
-  const selectedOption = useMemo(() =>
-    LANGUAGE_OPTIONS.find(option => option.value === value),
-  [value],
-  )
-
-  const handleLanguageChange = useCallback((newLanguage: string) => {
-    if (isSupportedLangauge(newLanguage)) {
-      onChange(newLanguage as SupportedLanguage)
-    }
-    combobox.closeDropdown()
-  }, [onChange, combobox])
-
-  const options = useMemo(() =>
-    LANGUAGE_OPTIONS.map(option => (
-      <Combobox.Option value={option.value} key={option.value}>
-        {option.label}
-      </Combobox.Option>
-    )),
-  [],
-  )
-
-  return (
-    <Combobox
-      store={combobox}
-      onOptionSubmit={handleLanguageChange}
-    >
-      <Combobox.Target>
-        <Combobox.EventsTarget>
-          <div
-            style={{
-              cursor: 'pointer',
-              padding: '8px 12px',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              backgroundColor: '#fff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              minWidth: '120px',
-            }}
-            onClick={() => combobox.toggleDropdown()}
-          >
-            <span>{selectedOption?.label || '🇺🇸 English'}</span>
-            <Combobox.Chevron />
-          </div>
-        </Combobox.EventsTarget>
-      </Combobox.Target>
-
-      <Combobox.Dropdown>
-        <Combobox.Options>{options}</Combobox.Options>
-      </Combobox.Dropdown>
-    </Combobox>
-  )
-}
-
 export default function DietSettingsForm({ settings, onSettingsChange }: DietSettingsFormProps) {
   const { formatMessage } = useI18n()
-
-  const handleLanguageChange = useCallback((language: SupportedLanguage) => {
-    onSettingsChange({ ...settings, language })
-  }, [settings, onSettingsChange])
 
   const handleSoundToggle = useCallback((soundEnabled: boolean) => {
     onSettingsChange({ ...settings, soundEnabled })
   }, [settings, onSettingsChange])
 
+  const handleLanguageChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newLanguage = event.currentTarget.value as SupportedLanguage
+    if (newLanguage === 'en' || newLanguage === 'ru') {
+      onSettingsChange({ ...settings, language: newLanguage })
+    }
+  }, [settings, onSettingsChange])
+
   return (
     <Stack gap="lg">
-      <div>
-        <Text size="sm" mb="xs">{formatMessage('language')}</Text>
-        <LanguageSelector
-          value={settings.language}
-          onChange={handleLanguageChange}
-        />
-      </div>
+
+      <NativeSelect
+        value={settings.language}
+        label={formatMessage('language')}
+        onChange={handleLanguageChange}
+        data={LANGUAGE_OPTIONS.map(option => ({
+          value: option.value,
+          label: option.label,
+        }))}
+      />
 
       <Checkbox
         label={formatMessage('play_sounds')}
