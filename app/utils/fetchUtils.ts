@@ -1,3 +1,5 @@
+import { detectLanguage } from './languageDetection'
+
 interface FetchOptions {
   url: string
   method?: string
@@ -13,6 +15,7 @@ export async function fetchData<T>({
     method,
     headers: {
       'Content-Type': 'application/json',
+      'Accept-Language': detectLanguage(),
     },
   }
 
