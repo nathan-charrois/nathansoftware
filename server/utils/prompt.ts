@@ -16,9 +16,14 @@ const buildRulesString = (): string => {
   return `Preference level is 1 to 5. Meal name must be suitable for toddlers. Meal name is creative and fun and a maximum of 5 words.`
 }
 
-export const buildPrompt = (preferences: Preferences): string => {
+const buildLanguageString = (language: string): string => {
+  return `Return meal name in language code: ${language}`
+}
+
+export const buildPrompt = (preferences: Preferences, language: string): string => {
+  const languageString = buildLanguageString(language)
   const rulesString = buildRulesString()
   const preferencesString = buildPreferencesString(preferences)
 
-  return `. Generate a meal name on the following preferences (${rulesString}): ${preferencesString}.`
+  return `Generate a meal name on the following preferences (${rulesString}): ${preferencesString}. ${languageString}.`
 }

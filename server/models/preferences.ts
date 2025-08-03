@@ -99,7 +99,9 @@ export const handlePostPreferences = async (
   next: NextFunction,
 ) => {
   try {
-    const prompt = buildPrompt(req.body)
+    const language = getLanguage(req)
+    const prompt = buildPrompt(req.body, language)
+
     const title = await generateMealPrompt(prompt)
     const image = ''
 
