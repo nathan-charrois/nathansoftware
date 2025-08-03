@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import { Slider, Stack } from '@mantine/core'
 import { playSlideSound } from '@utils/sound'
 
@@ -19,6 +19,10 @@ function buildSliderMarks(min: number, max: number) {
   return Array
     .from({ length: max - min + 1 })
     .map((_, i) => ({ value: min + i }))
+}
+
+const sliderClassNames = {
+  track: 'custom-slider-track',
 }
 
 export default function DietFormSlider({
@@ -42,6 +46,10 @@ export default function DietFormSlider({
     onChange(val)
   }, [])
 
+  const sliderMarks = useMemo(() => (
+    buildSliderMarks(min, max)
+  ), [min, max])
+
   return (
     <Stack gap="xs" mb="xl">
       <DietFormSliderLabel
@@ -59,8 +67,8 @@ export default function DietFormSlider({
         thumbSize={28}
         onChange={handleOnChangeSound}
         onChangeEnd={onChangeEnd}
-        marks={buildSliderMarks(min, max)}
-        classNames={{ track: 'custom-slider-track' }}
+        marks={sliderMarks}
+        classNames={sliderClassNames}
       />
     </Stack>
   )

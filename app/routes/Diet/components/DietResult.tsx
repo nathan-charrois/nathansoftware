@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Button, Stack, Text, Transition } from '@mantine/core'
 
+import { useI18n } from './DietI18nProvider'
 import { useDietResult } from './DietResultContext'
 import { useDietStep } from './DietStepContext'
 
@@ -13,15 +14,24 @@ const Circle = ({ styles }: { styles: React.CSSProperties }) => (
 export default function DietResult() {
   const { setActiveStep } = useDietStep()
   const { latestResult } = useDietResult()
+  const { formatMessage } = useI18n()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  const handleClick = useCallback(() => {
+  const handleClickNextMeal = useCallback(() => {
     setActiveStep('form')
   }, [setActiveStep])
+
+  if (!latestResult) {
+    return (
+      <Stack align="center" py="xl">
+        <Text>{formatMessage('no_results_yet')}</Text>
+      </Stack>
+    )
+  }
 
   return (
     <Stack align="center" py="xl">
@@ -30,12 +40,12 @@ export default function DietResult() {
       </Transition>
       <Transition mounted={mounted} transition="fade-up" duration={300} timingFunction="ease-out" enterDelay={300}>
         {styles => (
-          <Text style={styles} fw={600} size="xl" mt="md">{latestResult?.title || '--'}</Text>
+          <Text style={styles} fw={600} size="xl" mt="md">{latestResult.title}</Text>
         )}
       </Transition>
       <Transition mounted={mounted} transition="fade" duration={600} timingFunction="ease-out" enterDelay={1200}>
         {styles => (
-          <Button style={styles} onClick={handleClick} mt="xl">Next Meal</Button>
+          <Button style={styles} onClick={handleClickNextMeal} mt="xl">{formatMessage('next_meal')}</Button>
         )}
       </Transition>
     </Stack>

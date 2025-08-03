@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { type PostPreferencesResponse } from '@shared/types/api'
 import { isDietPreferenceResponseArray } from '@shared/types/typeguard'
 
@@ -38,7 +38,10 @@ export function DietResultProvider({ children }: { children: React.ReactNode }) 
   }, [])
 
   const resultCount = results.length
-  const latestResult = results.length > 0 ? results[results.length - 1] : undefined
+
+  const latestResult = useMemo(() => (
+    results.length > 0 ? results[results.length - 1] : undefined
+  ), [results])
 
   return (
     <DietResultContext.Provider value={{

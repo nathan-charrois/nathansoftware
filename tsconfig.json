@@ -19,7 +19,8 @@
       "@app/*": ["./app/*"],
       "@route/*": ["./app/routes/*"],
       "@shared/*": ["./shared/*"],
-      "@utils/*": ["./app/utils/*"]
+      "@utils/*": ["./app/utils/*"],
+      "@i18n/*": ["./app/i18n/*"]
     },
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
