@@ -1,4 +1,6 @@
-export const en = {
+import type { LanguageKey } from './keys'
+
+export const en: Record<LanguageKey, string> = {
   // Error messages
   error_saving_preferences: 'Error saving preferences.',
   try_again: 'Try again',
