@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { createContext, useContext } from 'react'
 import { formatMessage } from '@utils/formatMessage'
+import { detectLanguage } from '@utils/languageDetection'
 
 interface I18nContextType {
   formatMessage: typeof formatMessage
@@ -14,8 +15,7 @@ interface I18nProviderProps {
 }
 
 export function DietI18nProvider({ children }: I18nProviderProps) {
-  // For now, hardcoded to English
-  const currentLanguage = 'en'
+  const currentLanguage = detectLanguage()
 
   const value: I18nContextType = {
     formatMessage,
