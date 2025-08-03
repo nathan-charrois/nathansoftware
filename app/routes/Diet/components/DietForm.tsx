@@ -61,6 +61,8 @@ export default function DietForm() {
             key={firstPreference.key}
             labelStart={firstPreference.labelStart}
             labelEnd={firstPreference.labelEnd}
+            iconStart={firstPreference.iconStart}
+            iconEnd={firstPreference.iconEnd}
             id={firstPreference.key}
             value={form.values[firstPreference.key]}
             min={firstPreference.min}
@@ -74,6 +76,8 @@ export default function DietForm() {
             key={pref.key}
             labelStart={pref.labelStart}
             labelEnd={pref.labelEnd}
+            iconStart={pref.iconStart}
+            iconEnd={pref.iconEnd}
             id={pref.key}
             min={pref.min}
             max={pref.max}

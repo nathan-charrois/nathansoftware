@@ -3,6 +3,8 @@ export type DietPreferenceTypeRange = {
   key: string
   labelStart: string
   labelEnd: string
+  iconStart: string
+  iconEnd: string
   value: number
   min: number
   max: number

@@ -7,6 +7,8 @@ import { DietFormSliderLabel } from './DietFormSliderLabel'
 interface DietFormSliderProps {
   labelStart: string
   labelEnd: string
+  iconStart: string
+  iconEnd: string
   id: string
   value: number
   min: number
@@ -28,6 +30,8 @@ const sliderClassNames = {
 export default function DietFormSlider({
   labelStart,
   labelEnd,
+  iconStart,
+  iconEnd,
   id,
   value,
   min,
@@ -56,6 +60,8 @@ export default function DietFormSlider({
         id={id}
         labelStart={labelStart}
         labelEnd={labelEnd}
+        iconStart={iconStart}
+        iconEnd={iconEnd}
       />
       <Slider
         id={id}

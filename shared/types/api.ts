@@ -7,7 +7,9 @@ export type GetPreferencesResponse = {
   type: string
   key: string
   labelStart: string
+  iconStart: string
   labelEnd: string
+  iconEnd: string
   value: number
   min: number
   max: number
