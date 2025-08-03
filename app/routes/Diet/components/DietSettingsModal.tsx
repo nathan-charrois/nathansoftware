@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Modal, Stack, Title } from '@mantine/core'
 import {
+  isSupportedLangauge,
   LANGUAGE_STORAGE_KEY,
   type SupportedLanguage,
 } from '@shared/types/i18n'
@@ -25,7 +26,8 @@ interface SettingsState {
 
 const loadSettingsFromStorage = (): SettingsState => {
   const storedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY)
-  const language = storedLanguage && (storedLanguage === 'en' || storedLanguage === 'ru')
+
+  const language = isSupportedLangauge(storedLanguage)
     ? storedLanguage as SupportedLanguage
     : detectLanguage()
 

@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { Checkbox, NativeSelect, Stack } from '@mantine/core'
-import { type SupportedLanguage } from '@shared/types/i18n'
+import { isSupportedLangauge, type SupportedLanguage } from '@shared/types/i18n'
 
 import { useI18n } from './DietI18nProvider'
 
@@ -27,25 +27,21 @@ export default function DietSettingsForm({ settings, onSettingsChange }: DietSet
   }, [settings, onSettingsChange])
 
   const handleLanguageChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLanguage = event.currentTarget.value as SupportedLanguage
-    if (newLanguage === 'en' || newLanguage === 'ru') {
-      onSettingsChange({ ...settings, language: newLanguage })
+    const language = event.currentTarget.value
+
+    if (isSupportedLangauge(language)) {
+      onSettingsChange({ ...settings, language })
     }
   }, [settings, onSettingsChange])
 
   return (
     <Stack gap="lg">
-
       <NativeSelect
-        value={settings.language}
         label={formatMessage('language')}
+        value={settings.language}
         onChange={handleLanguageChange}
-        data={LANGUAGE_OPTIONS.map(option => ({
-          value: option.value,
-          label: option.label,
-        }))}
+        data={LANGUAGE_OPTIONS}
       />
-
       <Checkbox
         label={formatMessage('play_sounds')}
         checked={settings.soundEnabled}
