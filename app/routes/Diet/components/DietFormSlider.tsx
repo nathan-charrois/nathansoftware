@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from 'react'
+import { useCallback, useMemo } from 'react'
 import { Slider, Stack } from '@mantine/core'
 import { playSlideSound } from '@utils/sound'
 
@@ -39,14 +39,8 @@ export default function DietFormSlider({
   onChange,
   onChangeEnd,
 }: DietFormSliderProps) {
-  const lastSoundValue = useRef(value)
-
   const handleOnChangeSound = useCallback((val: number) => {
-    if (val !== lastSoundValue.current) {
-      playSlideSound()
-      lastSoundValue.current = val
-    }
-
+    playSlideSound()
     onChange(val)
   }, [])
 
