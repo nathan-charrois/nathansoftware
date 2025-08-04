@@ -3,6 +3,8 @@ import { Baby01Icon, EggsIcon, FishFoodIcon, SpoonIcon } from '@hugeicons/core-f
 import { HugeiconsIcon } from '@hugeicons/react'
 import { Group } from '@mantine/core'
 import { Text, ThemeIcon } from '@mantine/core'
+import { useDidUpdate } from '@mantine/hooks'
+import { playSuccessSound } from '@utils/sound'
 
 import { useDietResult } from './DietResultContext'
 
@@ -17,12 +19,17 @@ export default function DietResultCount() {
     setCurrentIconIndex(resultCount % icons.length)
   }, [resultCount, icons.length])
 
+  useDidUpdate(
+    () => { playSuccessSound() },
+    [resultCount],
+  )
+
   return (
     <Group gap="xs" align="center">
       <ThemeIcon variant="transparent" size="lg" color="lime">
         <HugeiconsIcon icon={icons[currentIconIndex]} size={24} />
       </ThemeIcon>
-      <Text size="lg" fw={400}>{resultCount}</Text>
+      <Text size="sm">{resultCount}</Text>
     </Group>
   )
 }

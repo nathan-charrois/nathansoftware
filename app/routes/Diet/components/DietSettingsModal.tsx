@@ -6,13 +6,11 @@ import {
   type SupportedLanguage,
 } from '@shared/types/i18n'
 import { detectLanguage } from '@utils/languageDetection'
+import { SOUND_STORAGE_KEY } from '@utils/sound'
 
 import { useI18n } from './DietI18nProvider'
 import DietSettingsActions from './DietSettingsActions'
 import DietSettingsForm from './DietSettingsForm'
-
-// TODO
-const SOUND_STORAGE_KEY = 'baby-diet-sound-enabled'
 
 interface DietSettingsModalProps {
   opened: boolean

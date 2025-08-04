@@ -22,8 +22,9 @@ export const theme = createTheme({
   },
   fontFamily: 'Dongle, sans-serif',
   fontSizes: {
-    sm: '25px',
-    md: '44px',
+    xd: '28px',
+    sm: '34px',
+    md: '42px',
     lg: '126px',
   },
   lineHeights: {
@@ -45,7 +46,6 @@ export const theme = createTheme({
       styles: (theme: MantineTheme) => ({
         root: {
           color: theme.colors.bodyText[5],
-          fontSize: theme.fontSizes.md,
         },
       }),
     },

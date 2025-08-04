@@ -1,4 +1,4 @@
-const SOUND_STORAGE_KEY = 'baby-diet-sound-enabled'
+export const SOUND_STORAGE_KEY = 'baby-diet-sound-enabled'
 
 const isSoundEnabled = (): boolean => {
   if (typeof localStorage === 'undefined') return false
