@@ -11,11 +11,13 @@ import DietFormLayout from './DietFormLayout'
 import DietFormSlider from './DietFormSlider'
 import { useDietResult } from './DietResultContext'
 import { useDietStep } from './DietStepContext'
+import { useMealLibrary } from './MealLibraryContext'
 
 export default function DietForm() {
   const { initialValues, preferencesByType, setPreference, validate } = useDietForm()
   const { setActiveStep } = useDietStep()
   const { addResult } = useDietResult()
+  const { addMeal } = useMealLibrary()
 
   const form = useForm({ initialValues, validate })
 
@@ -46,6 +48,13 @@ export default function DietForm() {
       })
 
       addResult(response)
+
+      addMeal({
+        photo: '',
+        name: response.title,
+        ingredients: [],
+      })
+
       setActiveStep('result')
     }
     catch {

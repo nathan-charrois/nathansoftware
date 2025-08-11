@@ -28,6 +28,11 @@ export const en: Record<LanguageKey, string> = {
   play_sounds: 'Play sounds',
   apply: 'Apply',
   close: 'Close',
+
+  // Meal library
+  meal_library: 'Meal Library',
+  no_meals_saved: 'No meals saved yet',
+  saved_on: 'Saved on',
 } as const
 
 export type EnKeys = keyof typeof en

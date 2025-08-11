@@ -27,6 +27,11 @@ export const LANGUAGE_KEYS = [
   'play_sounds',
   'apply',
   'close',
+
+  // Meal library
+  'meal_library',
+  'no_meals_saved',
+  'saved_on',
 ] as const
 
 export type LanguageKey = typeof LANGUAGE_KEYS[number]

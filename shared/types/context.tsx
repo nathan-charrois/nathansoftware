@@ -26,3 +26,11 @@ export type DietPreferencesByType = {
   range: DietPreferenceTypeRange[]
   boolean: DietPreferenceTypeBoolean[]
 }
+
+export type DietMeal = {
+  id: string
+  dateSaved: string
+  photo: string
+  name: string
+  ingredients: string[]
+}

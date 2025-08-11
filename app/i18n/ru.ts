@@ -28,6 +28,11 @@ export const ru: Record<LanguageKey, string> = {
   play_sounds: 'Воспроизводить звуки',
   apply: 'Применить',
   close: 'Закрыть',
+
+  // Meal library
+  meal_library: 'Библиотека блюд',
+  no_meals_saved: 'Пока нет сохраненных блюд',
+  saved_on: 'Сохранено',
 } as const
 
 export type RuKeys = keyof typeof ru
