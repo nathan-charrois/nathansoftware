@@ -7,7 +7,7 @@ export default function DietTitle() {
 
   return (
     <>
-      <Title ta="center" mb="lg">
+      <Title ta="center" size="xl" mb="lg">
         {formatMessage('baby_diet_preferences')}
       </Title>
       <Space h="xl" />

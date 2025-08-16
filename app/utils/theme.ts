@@ -22,22 +22,24 @@ export const theme = createTheme({
   },
   fontFamily: 'Dongle, sans-serif',
   fontSizes: {
-    xd: '28px',
-    sm: '34px',
-    md: '42px',
-    lg: '126px',
+    xs: '30px',
+    sm: '33px',
+    md: '39px',
+    lg: '48px',
+    xl: '60px',
   },
   lineHeights: {
-    sm: '0.65',
-    md: '1.25',
-    lg: '1.50',
+    xs: '0.8',
+    sm: '1',
+    md: '1.2',
+    lg: '1.5',
+    xl: '1.75',
   },
   components: {
     Title: {
       styles: (theme: MantineTheme) => ({
         root: {
           color: theme.colors.bodyText[5],
-          fontSize: theme.fontSizes.lg,
           lineHeight: theme.lineHeights.sm,
         },
       }),

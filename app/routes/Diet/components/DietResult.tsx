@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Button, Stack, Text, Transition } from '@mantine/core'
+import { Button, Stack, Text, Title, Transition } from '@mantine/core'
 
 import { useI18n } from './DietI18nProvider'
 import { useDietResult } from './DietResultContext'
@@ -40,7 +40,7 @@ export default function DietResult() {
       </Transition>
       <Transition mounted={mounted} transition="fade-up" duration={300} timingFunction="ease-out" enterDelay={300}>
         {styles => (
-          <Text style={styles} fw={600} size="xl" mt="md">{latestResult.title}</Text>
+          <Title style={styles} size="lg">{latestResult.title}</Title>
         )}
       </Transition>
       <Transition mounted={mounted} transition="fade" duration={600} timingFunction="ease-out" enterDelay={1200}>
