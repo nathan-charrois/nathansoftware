@@ -52,7 +52,6 @@ export default function DietForm() {
       addMeal({
         name: response.title,
         ingredients: response.ingredients,
-        mealLayers: response.mealLayers,
       })
 
       setActiveStep('result')

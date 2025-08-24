@@ -1,4 +1,4 @@
-import { generateMealPrompt } from '@server/services/openai'
+import { generateMeal } from '@server/services/openai'
 import { buildPrompt } from '@server/utils/prompt'
 import type { GetPreferencesResponse, PostPreferencesResponse } from '@shared/types/api'
 import { type SupportedLanguage } from '@shared/types/i18n'
@@ -101,9 +101,9 @@ export const handlePostPreferences = async (
     const language = getLanguage(req)
     const prompt = buildPrompt(req.body, language)
 
-    const title = await generateMealPrompt(prompt)
+    const { title, ingredients } = await generateMeal(prompt)
 
-    res.status(200).json({ title, ingredients: [], mealLayers: [] })
+    res.status(200).json({ title, ingredients })
   }
   catch (error) {
     next(error)

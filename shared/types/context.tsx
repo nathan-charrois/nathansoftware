@@ -32,5 +32,4 @@ export type DietMeal = {
   dateSaved: string
   name: string
   ingredients: string[]
-  mealLayers: string[]
 }

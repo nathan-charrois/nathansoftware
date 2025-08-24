@@ -13,5 +13,25 @@ body {
 }
 
 .custom-slider-track::before {
-  content: none !important;  /* 💥 kill the gradient layer */
+  content: none !important;
+}
+
+.meal-layer-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.meal-layer-base {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.meal-layer-circle {
+  z-index: 1;
+}
+
+.meal-layer {
+  z-index: 2;
 }

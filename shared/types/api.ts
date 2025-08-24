@@ -1,6 +1,5 @@
 export type PostPreferencesResponse = {
   title: string
-  mealLayers: string[]
   ingredients: string[]
 }
 
