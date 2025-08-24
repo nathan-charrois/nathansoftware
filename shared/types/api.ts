@@ -1,6 +1,7 @@
 export type PostPreferencesResponse = {
   title: string
-  image: string
+  mealLayers: string[]
+  ingredients: string[]
 }
 
 export type GetPreferencesResponse = {

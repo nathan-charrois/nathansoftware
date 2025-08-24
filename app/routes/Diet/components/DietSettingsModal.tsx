@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Modal, Stack, Title } from '@mantine/core'
+import { Modal, Stack } from '@mantine/core'
 import {
   isSupportedLangauge,
   LANGUAGE_STORAGE_KEY,
@@ -83,7 +83,7 @@ export default function DietSettingsModal({ opened, onClose }: DietSettingsModal
     <Modal
       opened={opened}
       onClose={handleClose}
-      title={<Title>{formatMessage('settings')}</Title>}
+      title={formatMessage('settings')}
       size="md"
       withCloseButton={false}
     >

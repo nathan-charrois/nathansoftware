@@ -30,7 +30,7 @@ export type DietPreferencesByType = {
 export type DietMeal = {
   id: string
   dateSaved: string
-  photo: string
   name: string
   ingredients: string[]
+  mealLayers: string[]
 }

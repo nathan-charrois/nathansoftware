@@ -50,9 +50,9 @@ export default function DietForm() {
       addResult(response)
 
       addMeal({
-        photo: '',
         name: response.title,
-        ingredients: [],
+        ingredients: response.ingredients,
+        mealLayers: response.mealLayers,
       })
 
       setActiveStep('result')

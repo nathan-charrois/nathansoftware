@@ -60,7 +60,7 @@ export default function MealLibraryDialog({ opened, onClose }: MealLibraryDialog
                     <Card key={meal.id} withBorder padding="md">
                       <Group gap="md" align="flex-start">
                         <Image
-                          src={meal.photo || '/images/baby.png'}
+                          src="/images/baby.png"
                           alt={meal.name}
                           width={80}
                           height={80}
@@ -88,9 +88,8 @@ export default function MealLibraryDialog({ opened, onClose }: MealLibraryDialog
                             :
                             {formatDate(meal.dateSaved)}
                           </Text>
-
                           <Group gap="xs">
-                            {meal.ingredients.map((ingredient, index) => (
+                            {meal.ingredients && meal.ingredients.map((ingredient, index) => (
                               <Badge key={index} size="xs" variant="light">
                                 {ingredient}
                               </Badge>

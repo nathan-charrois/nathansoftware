@@ -102,9 +102,8 @@ export const handlePostPreferences = async (
     const prompt = buildPrompt(req.body, language)
 
     const title = await generateMealPrompt(prompt)
-    const image = ''
 
-    res.status(200).json({ title, image })
+    res.status(200).json({ title, ingredients: [], mealLayers: [] })
   }
   catch (error) {
     next(error)
