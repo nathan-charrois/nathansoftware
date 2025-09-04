@@ -12,12 +12,20 @@ For practice, not income.
 
 ## Getting Started
 
-### Installation
+### Dependencies
 
 Install the dependencies:
 
 ```bash
 npm install
+```
+
+### Enviornment
+
+Copy the default enviornment and add your OpenAI [API Key](https://platform.openai.com/settings/organization/api-keys):
+
+```bash
+cp server/.env.default server/.env
 ```
 
 ### Development
