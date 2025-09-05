@@ -3,14 +3,62 @@ export interface Preferences {
 }
 
 /**
- * Build a single preference string in the format "key preference level value"
+ * Build a single preference string based on key and level
  *
- * @param key preference category (e.g., "texture", "temperature")
- * @param level preference level (1-5)
+ * @param key preference range (e.g., "hot-cold")
+ * @param level preference level (0-20)
  * @returns formatted preference string
  */
 const buildPreference = (key: string, level: number): string => {
-  return `${key} preference level ${level}`
+  const isPreferenceTypeRange = key.includes('-')
+
+  if (isPreferenceTypeRange) {
+    return buildRangePreference(key, level)
+  }
+  else {
+    return buildBooleanPreference(key, level)
+  }
+}
+
+/**
+ * Build a preference string for range type preferences
+ *
+ * @param key preference range (e.g., "hot-cold")
+ * @param level preference level (0-20)
+ * @returns formatted preference string
+ */
+const buildRangePreference = (key: string, level: number): string => {
+  let descriptor = ''
+  let strength = 0
+
+  if (level <= 10) {
+    descriptor = key.split('-')[0]
+    strength = 10 - level
+  }
+  else {
+    descriptor = key.split('-')[1]
+    strength = level - 10
+  }
+
+  return `${descriptor} preference level ${strength}/10`
+}
+
+/**
+ * Build a preference string for boolean type preferences
+ *
+ * @param key preference range (e.g., "veggie_boost")
+ * @param level preference level (0-20)
+ * @returns formatted preference string
+ */
+const buildBooleanPreference = (key: string, level: number): string => {
+  const parsedKey = key.replaceAll('_', ' ')
+
+  if (level) {
+    return `preference is ${parsedKey}`
+  }
+  else {
+    return `preference is NOT ${parsedKey}`
+  }
 }
 
 /**
@@ -26,51 +74,28 @@ const buildPreferencesString = (preferences: Preferences): string => {
 }
 
 /**
- * Build the title rules string that defines constraints for meal title
- *
- * @returns string containing generation rules and constraints
- */
-const buildTitleRulesString = (): string => {
-  return `Preference level is 1 to 5. Meal title must be suitable for toddlers. Meal title is creative and fun and a maximum of 5 words.`
-}
-
-/**
- * Build the ingredient rules string that defines constraints for meal ingredients
- *
- * @returns string containing generation rules and constraints
- */
-const buildIngredientRulesString = (): string => {
-  return `Meal ingredients must basic. Meal ingredients should not be creative.`
-}
-
-/**
- * Build the language string for the prompt
- *
- * @param language language code string
- * @returns language string
- */
-const buildLanguageString = (language: string): string => {
-  return `Return meal title in language code: ${language}`
-}
-
-/**
  * Build the complete prompt for meal generation
  *
- * Prompt structure:
- * "Generate a meal title and ingredients based on the following preferences ($titleRules. $ingredientRules): $preferences. $language."
- *
- * Example output:
- * "Generate a meal title and ingredients list based on the following preferences (Preference level is 1 to 5. Meal title must be suitable for toddlers. Meal title is creative and fun and a maximum of 5 words. Meal ingredients must be basic. Meal ingredients should not be creative.): texture preference level 3, temperature preference level 4. Return meal title in language code: en."
- *
  * @param preferences key-pair of submitted preferences
- * @param language language code string
+ * @param languageString language code string
  * @returns complete formatted prompt for meal generation
  */
-export const buildPrompt = (preferences: Preferences, language: string): string => {
-  const languageString = buildLanguageString(language)
-  const titleRulesString = buildTitleRulesString()
-  const ingredientRulesString = buildIngredientRulesString()
+export const buildPrompt = (preferences: Preferences, languageString: string): string => {
   const preferencesString = buildPreferencesString(preferences)
 
-  return `Generate a meal title and ingredients based on the following preferences (${titleRulesString} ${ingredientRulesString}): ${preferencesString}. ${languageString}.`
+  return `
+    You are a creative chef specializing in fun and unique meals for toddlers.
+
+    Rules:
+    - Meal title is a maximum of 6 words.
+    - Meal title should not include words from the preferences.
+    - Ingredient list should be common, healthy items suitable for toddlers.
+    - Language code is provided for localization.
+
+    Preferences:
+    ${preferencesString}
+
+    Language Code:
+    ${languageString}
+  `
 }

@@ -22,7 +22,9 @@ export const generateMeal = async (prompt: string): Promise<PostPreferencesRespo
               title: { type: 'string' },
               ingredients: {
                 type: 'array',
-                items: { type: 'string' },
+                items: {
+                  type: 'string',
+                },
                 description: 'Meal ingredients',
               },
             },
