@@ -6,20 +6,10 @@ import { useDietResult } from './DietResultContext'
 import { useDietStep } from './DietStepContext'
 
 const Circle = () => (
-  <svg width="200" height="200">
-    <circle cx="100" cy="100" r="80" fill="lightblue" />
+  <svg width="400" height="400">
+    <circle cx="200" cy="200" r="200" fill="lightblue" />
   </svg>
 )
-
-function MealIngredient({ ingredient }: { ingredient: string }) {
-  return (
-    <svg width="200" height="200">
-      <text x="100" y="100" textAnchor="middle" dominantBaseline="middle" fontSize="16" fill="black">
-        {ingredient}
-      </text>
-    </svg>
-  )
-}
 
 export default function DietResult() {
   const { setActiveStep } = useDietStep()
@@ -46,11 +36,9 @@ export default function DietResult() {
   return (
     <Stack align="center" py="xl">
       <Container mb="xl" className="meal-layer-container">
-        {latestResult.ingredients?.map(ingredient => (
-          <div className="meal-layer-base meal-layer">
-            <MealIngredient ingredient={ingredient} />
-          </div>
-        ))}
+        <div className="meal-layer-base meal-layer">
+          <img src={latestResult.image} alt={latestResult.title} className="meal-image" />
+        </div>
         <div className="meal-layer-base meal-layer-circle">
           <Circle />
         </div>

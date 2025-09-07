@@ -113,9 +113,9 @@ export const buildImagePrompt = (title: string, ingredients: string[]): string =
     Generate a cartoon-style image of a meal for toddlers.
 
     Rules:
-    - Background colour must be #FEFADF.
+    - Image must have a transparent background.
+    - Meal must be served on a plate, leaf, bowl, or in a cup.
     - Do not include text.
-    - Serve meal on a plate, or on a leaf, or in a bowl, or in a cup.
 
     Meal Title:
     ${title}

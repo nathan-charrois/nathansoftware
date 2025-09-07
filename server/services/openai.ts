@@ -1,7 +1,5 @@
 import { OPENAI_API_KEY, OPENAI_ORG_ID } from '@server/utils/config.ts'
 import { PostImageResponse, PostPreferencesResponse } from '@shared/types/api'
-import fs from 'node:fs'
-import path from 'node:path'
 import OpenAI from 'openai'
 
 const openai = new OpenAI({
@@ -75,17 +73,5 @@ export const generateImage = async (prompt: string): Promise<PostImageResponse> 
     throw new Error('Model did not create image')
   }
 
-  const directory = path.join('public', 'uploads')
-
-  if (!fs.existsSync(directory)) {
-    fs.mkdirSync(directory, { recursive: true })
-  }
-
-  const buffer = Buffer.from(base64, 'base64')
-  const fileName = `${Date.now().toString().toLowerCase().replace(/\s+/g, '_')}.png`
-  const filePath = path.join(directory, fileName)
-
-  fs.writeFileSync(filePath, buffer)
-
-  return { image: fileName }
+  return { image: `data:image/png;base64,${base64}` }
 }
