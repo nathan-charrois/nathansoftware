@@ -28,7 +28,7 @@ const createThumbnail = async (base64: string) => {
   }
 
   ctx.drawImage(thumb, 0, 0, canvas.width, canvas.height)
-  return canvas.toDataURL('image/png', 0.75)
+  return canvas.toDataURL('image/png', 0.80)
 }
 
 export function MealLibraryProvider({ children }: { children: React.ReactNode }) {

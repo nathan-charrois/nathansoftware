@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Button, Container, Stack, Text, Title, Transition } from '@mantine/core'
 
 import { useI18n } from './DietI18nProvider'
@@ -33,6 +33,14 @@ export default function DietResult() {
     )
   }
 
+  const ingredientsTextList = useMemo(() => {
+    if (result.ingredients.length === 1) {
+      return result.ingredients[0]
+    }
+
+    return result.ingredients.slice(0, -1).join(', ') + ' and ' + result.ingredients.slice(-1)
+  }, [result.ingredients])
+
   return (
     <Stack align="center" py="xl">
       <Container mb="xl" className="meal-layer-container">
@@ -43,16 +51,25 @@ export default function DietResult() {
           <Circle />
         </div>
       </Container>
-      <Stack mt="xl" mb="md">
+      <Stack mt="xl" mb="md" align="center">
         <Transition mounted={mounted} transition="fade-up" duration={300} timingFunction="ease-out">
           {styles => (
-            <Title style={styles} size="lg">{result.title}</Title>
+            <>
+              <Title style={styles} size="lg">
+                {result.title}
+              </Title>
+              <Text style={styles} size="sm" opacity={0.7}>
+                {ingredientsTextList}
+              </Text>
+            </>
           )}
         </Transition>
       </Stack>
       <Transition mounted={mounted} transition="fade" duration={600} timingFunction="ease-out">
         {styles => (
-          <Button style={styles} onClick={handleClickNextMeal}>{formatMessage('next_meal')}</Button>
+          <Button style={styles} onClick={handleClickNextMeal}>
+            {formatMessage('next_meal')}
+          </Button>
         )}
       </Transition>
     </Stack>
