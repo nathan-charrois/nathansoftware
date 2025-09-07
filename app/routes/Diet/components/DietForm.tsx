@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { Image } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { type PostPreferencesResponse } from '@shared/types/api'
@@ -11,6 +11,7 @@ import DietFormLayout from './DietFormLayout'
 import DietFormSlider from './DietFormSlider'
 import { useDietResult } from './DietResultContext'
 import { useDietStep } from './DietStepContext'
+import { useDietTheme } from './DietThemeContext'
 import { useMealLibrary } from './MealLibraryContext'
 
 export default function DietForm() {
@@ -18,6 +19,7 @@ export default function DietForm() {
   const { setActiveStep } = useDietStep()
   const { addResult } = useDietResult()
   const { addToLibrary } = useMealLibrary()
+  const { theme } = useDietTheme()
 
   const form = useForm({ initialValues, validate })
 
@@ -62,6 +64,14 @@ export default function DietForm() {
     }
   }
 
+  const image = useMemo(() => {
+    if (theme === 'baby') {
+      return <Image src="/images/baby.png" />
+    }
+
+    return <Image src="/images/mommy.png" />
+  }, [theme])
+
   return (
     <form onSubmit={form.onSubmit(handleSubmit)} onReset={form.reset}>
       <DietFormLayout
@@ -105,7 +115,7 @@ export default function DietForm() {
             onChange={handleChange(pref.key)}
           />
         ))}
-        image={<Image src="/images/baby.png" />}
+        image={image}
         actions={<DietFormActions />}
       />
     </form>

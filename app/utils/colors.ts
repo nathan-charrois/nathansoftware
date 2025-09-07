@@ -1,19 +1,8 @@
-// Yellows
-export const paleYellow = '#FEFADF'
-export const sunshineYellow = '#FFF8CB'
-export const fierceYellow = '#D8923C'
+export const yellow = '#ffe437'
+export const purple = '#7358A9'
+export const green = '#CDDA86'
+export const blue = '#C5DCE0'
 
-// Greens
-export const paleGreen = '#CDDA86'
-export const fierceGreen = '#5D9220'
-
-// Oranges
-export const paleOrange = '#F8DD94'
-export const fierceOrange = '#F2B258'
-
-// Blues
-export const paleBlue = '#C5DCE0'
-
-// Other
 export const borderWidth = '8px'
 export const defaultPadding = '30px 20px'
+export const buttonPadding = '30px 18px 24px 18px'

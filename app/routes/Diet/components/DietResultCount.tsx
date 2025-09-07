@@ -26,7 +26,7 @@ export default function DietResultCount() {
 
   return (
     <Group gap="xs" align="center">
-      <ThemeIcon variant="transparent" size="lg" color="lime">
+      <ThemeIcon variant="transparent" size="lg">
         <HugeiconsIcon icon={icons[currentIconIndex]} size={24} />
       </ThemeIcon>
       <Text size="sm">{count}</Text>

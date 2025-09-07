@@ -20,7 +20,6 @@ export default function MealLibrary() {
     <>
       <ActionIcon
         variant="transparent"
-        color="lime"
         size="lg"
         onClick={handleOpenDialog}
       >

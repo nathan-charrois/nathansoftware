@@ -65,7 +65,7 @@ export const generateImage = async (prompt: string): Promise<PostImageResponse> 
     model: 'gpt-image-1',
     prompt,
     size: '1024x1024',
-    quality: 'low',
+    quality: 'medium',
   })
 
   const base64 = response.data && response.data[0].b64_json

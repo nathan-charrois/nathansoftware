@@ -1,25 +1,22 @@
 import { generateColors } from '@mantine/colors-generator'
-import { type ButtonProps, type ChipProps, createTheme, type MantineTheme } from '@mantine/core'
+import {
+  type ButtonProps,
+  type ChipProps,
+  createTheme,
+  type MantineTheme,
+} from '@mantine/core'
 
 import {
+  blue,
   borderWidth,
+  buttonPadding,
   defaultPadding,
-  fierceGreen,
-  fierceOrange,
-  fierceYellow,
-  paleBlue,
-  paleGreen,
-  paleOrange,
-  paleYellow,
-  sunshineYellow,
+  green,
+  purple,
+  yellow,
 } from './colors'
 
-export const theme = createTheme({
-  white: paleYellow,
-  colors: {
-    background: generateColors(paleYellow),
-    bodyText: generateColors(fierceOrange),
-  },
+export const themeBase = createTheme({
   fontFamily: 'Dongle, sans-serif',
   fontSizes: {
     xs: '30px',
@@ -39,7 +36,7 @@ export const theme = createTheme({
     Title: {
       styles: (theme: MantineTheme) => ({
         root: {
-          color: theme.colors.bodyText[5],
+          color: theme.colors.brand[theme.other.typography],
           lineHeight: theme.lineHeights.sm,
         },
       }),
@@ -47,7 +44,8 @@ export const theme = createTheme({
     Text: {
       styles: (theme: MantineTheme) => ({
         root: {
-          color: theme.colors.bodyText[5],
+          color: theme.colors.brand[theme.other.typography],
+          lineHeight: theme.lineHeights.sm,
         },
       }),
     },
@@ -57,17 +55,14 @@ export const theme = createTheme({
           overflow: 'visible',
         },
         root: {
-          padding: '30px 18px 24px 18px',
-          ...(props.variant === 'primary' && {
-            backgroundColor: paleGreen,
-            color: paleYellow,
-            fontSize: theme.fontSizes.md,
-          }),
-          ...(props.variant === 'secondary' && {
-            backgroundColor: paleOrange,
-            color: fierceYellow,
-            fontSize: theme.fontSizes.md,
-          }),
+          padding: buttonPadding,
+          fontSize: theme.fontSizes.md,
+          color: theme.colors.brand[theme.other.buttonText],
+          backgroundColor: theme.colors.accent[
+            props.variant === 'primary'
+              ? theme.other.button
+              : theme.other.buttonSecondary
+          ],
         },
       }),
     },
@@ -77,41 +72,78 @@ export const theme = createTheme({
           display: 'none',
         },
         label: {
-          ...(props.checked
-            ? {
-                color: fierceGreen,
-                backgroundColor: paleGreen,
-                fontSize: theme.fontSizes.md,
-                padding: defaultPadding,
-              }
-            : {
-                color: fierceOrange,
-                backgroundColor: sunshineYellow,
-                fontSize: theme.fontSizes.md,
-                padding: defaultPadding,
-              }),
+          fontSize: theme.fontSizes.md,
+          padding: defaultPadding,
+          color: props.checked
+            ? theme.colors.accent[theme.other.buttonText]
+            : theme.colors.brand[theme.other.typography],
+          backgroundColor: props.checked
+            ? theme.colors.accent[theme.other.buttonSecondary]
+            : theme.colors.brand[theme.other.surface],
+        },
+      }),
+    },
+    Switch: {
+      styles: (theme: MantineTheme) => ({
+        track: {
+          backgroundColor: theme.colors.complement[2],
+          borderColor: theme.colors.complement[2],
+        },
+        thumb: {
+          borderColor: theme.colors.brand[6],
+          backgroundColor: theme.colors.brand[6],
         },
       }),
     },
     Slider: {
-      styles: () => ({
+      styles: (theme: MantineTheme) => ({
         bar: {
-          backgroundColor: paleBlue,
+          backgroundColor: theme.colors.complement[2],
         },
         track: {
-          backgroundColor: paleBlue,
+          backgroundColor: theme.colors.complement[2],
         },
         mark: {
-          backgroundColor: paleBlue,
-          borderColor: paleBlue,
+          backgroundColor: theme.colors.complement[2],
+          borderColor: theme.colors.complement[2],
         },
         thumb: {
-          backgroundColor: paleYellow,
-          color: fierceOrange,
-          borderColor: fierceOrange,
+          borderColor: theme.colors.brand[6],
           borderWidth: borderWidth,
         },
       }),
     },
+  },
+})
+
+export const themeBaby = createTheme({
+  colors: {
+    brand: generateColors(yellow),
+    accent: generateColors(green),
+    complement: generateColors(blue),
+  },
+  primaryColor: 'brand',
+  other: {
+    surface: 0,
+    typography: 7,
+    button: 3,
+    buttonText: 0,
+    buttonSecondary: 6,
+  },
+})
+
+export const themeMommy = createTheme({
+  colors: {
+    brand: generateColors(purple),
+    accent: generateColors(purple),
+    complement: generateColors(purple),
+  },
+  primaryColor: 'brand',
+  other: {
+    surface: 5,
+    typography: 0,
+    button: 4,
+    buttonText: 0,
+    buttonSecondary: 8,
   },
 })

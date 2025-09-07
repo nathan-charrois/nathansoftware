@@ -20,7 +20,6 @@ export default function DietSettings() {
     <>
       <ActionIcon
         variant="transparent"
-        color="lime"
         size="lg"
         onClick={handleOpenSettings}
       >

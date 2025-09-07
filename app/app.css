@@ -4,11 +4,9 @@ html,
 body {
   font-family: 'Dongle', sans-serif;
   font-weight: 400;
-  background-color: #FEFADF;
 }
 
 .custom-slider-track {
-  background-color: #C5DCE0 !important;
   position: relative;
 }
 
