@@ -22,7 +22,7 @@ npm install
 
 ### Enviornment
 
-Copy the default enviornment and add your OpenAI [API Key](https://platform.openai.com/settings/organization/api-keys):
+Copy the default enviornment and add your OpenAI [API Key](https://platform.openai.com/settings/organization/api-keys) and [Organization ID](https://platform.openai.com/settings/organization/general):
 
 ```bash
 cp server/.env.default server/.env

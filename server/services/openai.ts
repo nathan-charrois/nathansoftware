@@ -1,9 +1,10 @@
-import { OPENAI_API_KEY } from '@server/utils/config.ts'
+import { OPENAI_API_KEY, OPENAI_ORG_ID } from '@server/utils/config.ts'
 import { PostPreferencesResponse } from '@shared/types/api'
 import OpenAI from 'openai'
 
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY,
+  organization: OPENAI_ORG_ID,
 })
 
 export const generateMeal = async (prompt: string): Promise<PostPreferencesResponse> => {
@@ -48,9 +49,9 @@ export const generateMeal = async (prompt: string): Promise<PostPreferencesRespo
     throw new Error('Model did not call create_meal')
   }
 
-  const mealCreated = isMealCreated[0]
+  const meal = isMealCreated[0]
 
-  const content = JSON.parse(mealCreated.function.arguments) as PostPreferencesResponse
+  const content = JSON.parse(meal.function.arguments) as PostPreferencesResponse
 
   if (!content) {
     throw new Error('Model returned invalid content for created_meal')
