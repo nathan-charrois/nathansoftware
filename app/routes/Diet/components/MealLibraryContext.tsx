@@ -3,9 +3,9 @@ import { type DietMeal } from '@shared/types/context'
 
 interface MealLibraryContextType {
   meals: DietMeal[]
-  mealCount: number
-  addMeal: (meal: Omit<DietMeal, 'id' | 'dateSaved'>) => void
-  removeMeal: (id: string) => void
+  count: number
+  addToLibrary: (meal: Omit<DietMeal, 'id' | 'dateSaved'>) => void
+  removeFromLibrary: (id: string) => void
 }
 
 const MealLibraryContext = createContext<MealLibraryContextType | undefined>(undefined)
@@ -26,7 +26,7 @@ export function MealLibraryProvider({ children }: { children: React.ReactNode })
     }
   }, [])
 
-  const addMeal = useCallback((mealData: Omit<DietMeal, 'id' | 'dateSaved'>) => {
+  const addToLibrary = useCallback((mealData: Omit<DietMeal, 'id' | 'dateSaved'>) => {
     const newMeal: DietMeal = {
       ...mealData,
       id: crypto.randomUUID(),
@@ -40,7 +40,7 @@ export function MealLibraryProvider({ children }: { children: React.ReactNode })
     })
   }, [])
 
-  const removeMeal = useCallback((id: string) => {
+  const removeFromLibrary = useCallback((id: string) => {
     setMeals((prevMeals) => {
       const newMeals = prevMeals.filter(meal => meal.id !== id)
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newMeals))
@@ -48,14 +48,12 @@ export function MealLibraryProvider({ children }: { children: React.ReactNode })
     })
   }, [])
 
-  const mealCount = meals.length
-
   return (
     <MealLibraryContext.Provider value={{
       meals,
-      mealCount,
-      addMeal,
-      removeMeal,
+      count: meals.length,
+      addToLibrary,
+      removeFromLibrary,
     }}
     >
       {children}

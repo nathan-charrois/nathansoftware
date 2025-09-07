@@ -21,7 +21,7 @@ interface MealLibraryDialogProps {
 }
 
 export default function MealLibraryDialog({ opened, onClose }: MealLibraryDialogProps) {
-  const { meals, removeMeal } = useMealLibrary()
+  const { meals, removeFromLibrary } = useMealLibrary()
   const { formatMessage } = useI18n()
 
   const sortedMeals = useMemo(() => {
@@ -30,8 +30,8 @@ export default function MealLibraryDialog({ opened, onClose }: MealLibraryDialog
     )
   }, [meals])
 
-  const handleRemoveMeal = (id: string) => {
-    removeMeal(id)
+  const handleRemoveFromLibrary = (id: string) => {
+    removeFromLibrary(id)
   }
 
   const formatDate = (dateString: string) => {
@@ -77,7 +77,7 @@ export default function MealLibraryDialog({ opened, onClose }: MealLibraryDialog
                               variant="subtle"
                               color="red"
                               size="sm"
-                              onClick={() => handleRemoveMeal(meal.id)}
+                              onClick={() => handleRemoveFromLibrary(meal.id)}
                             >
                               <IconTrash size={16} />
                             </ActionIcon>

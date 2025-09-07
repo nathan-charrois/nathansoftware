@@ -6,22 +6,22 @@ import { Text, ThemeIcon } from '@mantine/core'
 import { useDidUpdate } from '@mantine/hooks'
 import { playSuccessSound } from '@utils/sound'
 
-import { useDietResult } from './DietResultContext'
+import { useMealLibrary } from './MealLibraryContext'
 
 const icons = [SpoonIcon, Baby01Icon, EggsIcon, FishFoodIcon]
 
 export default function DietResultCount() {
-  const { resultCount } = useDietResult()
+  const { count } = useMealLibrary()
 
   const [currentIconIndex, setCurrentIconIndex] = useState(0)
 
   useEffect(() => {
-    setCurrentIconIndex(resultCount % icons.length)
-  }, [resultCount, icons.length])
+    setCurrentIconIndex(count % icons.length)
+  }, [count, icons.length])
 
   useDidUpdate(
     () => { playSuccessSound() },
-    [resultCount],
+    [count],
   )
 
   return (
@@ -29,7 +29,7 @@ export default function DietResultCount() {
       <ThemeIcon variant="transparent" size="lg" color="lime">
         <HugeiconsIcon icon={icons[currentIconIndex]} size={24} />
       </ThemeIcon>
-      <Text size="sm">{resultCount}</Text>
+      <Text size="sm">{count}</Text>
     </Group>
   )
 }

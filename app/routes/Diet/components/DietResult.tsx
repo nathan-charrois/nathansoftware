@@ -13,7 +13,7 @@ const Circle = () => (
 
 export default function DietResult() {
   const { setActiveStep } = useDietStep()
-  const { latestResult } = useDietResult()
+  const { result } = useDietResult()
   const { formatMessage } = useI18n()
   const [mounted, setMounted] = useState(false)
 
@@ -25,10 +25,10 @@ export default function DietResult() {
     setActiveStep('form')
   }, [setActiveStep])
 
-  if (!latestResult) {
+  if (!result) {
     return (
       <Stack align="center" py="xl">
-        <Text>{formatMessage('no_results_yet')}</Text>
+        <Text>{formatMessage('no_result_yet')}</Text>
       </Stack>
     )
   }
@@ -37,7 +37,7 @@ export default function DietResult() {
     <Stack align="center" py="xl">
       <Container mb="xl" className="meal-layer-container">
         <div className="meal-layer-base meal-layer">
-          <img src={latestResult.image} alt={latestResult.title} className="meal-image" />
+          <img src={result.image} alt={result.title} className="meal-image" />
         </div>
         <div className="meal-layer-base meal-layer-circle">
           <Circle />
@@ -46,7 +46,7 @@ export default function DietResult() {
       <Stack mt="xl" mb="md">
         <Transition mounted={mounted} transition="fade-up" duration={300} timingFunction="ease-out">
           {styles => (
-            <Title style={styles} size="lg">{latestResult.title}</Title>
+            <Title style={styles} size="lg">{result.title}</Title>
           )}
         </Transition>
       </Stack>

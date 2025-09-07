@@ -13,7 +13,7 @@ export const en: Record<LanguageKey, string> = {
   reset: 'Reset',
 
   // Results
-  no_results_yet: 'No results yet',
+  no_result_yet: 'No results yet',
   next_meal: 'Next Meal',
 
   // Title

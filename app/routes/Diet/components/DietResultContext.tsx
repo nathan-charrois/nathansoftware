@@ -1,53 +1,40 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { type PostPreferencesResponse } from '@shared/types/api'
-import { isDietPreferenceResponseArray } from '@shared/types/typeguard'
+import { isDietPreferenceResponse } from '@shared/types/typeguard'
 
 interface DietResultContextType {
-  results: PostPreferencesResponse[]
-  resultCount: number
-  latestResult: PostPreferencesResponse | undefined
+  result: PostPreferencesResponse | undefined
   addResult: (result: PostPreferencesResponse) => void
 }
 
 const DietResultContext = createContext<DietResultContextType | undefined>(undefined)
 
-const LOCAL_STORAGE_KEY = 'dietResults'
+const LOCAL_STORAGE_KEY = 'dietResult'
 
 export function DietResultProvider({ children }: { children: React.ReactNode }) {
-  const [results, setResults] = useState<PostPreferencesResponse[]>([])
+  const [result, setResult] = useState<PostPreferencesResponse | undefined>()
 
   useEffect(() => {
     if (typeof localStorage !== 'undefined') {
-      const savedResults = localStorage.getItem(LOCAL_STORAGE_KEY)
-      const parsedResults = savedResults ? JSON.parse(savedResults) : []
+      const storedResult = localStorage.getItem(LOCAL_STORAGE_KEY)
+      const parsedResult = storedResult ? JSON.parse(storedResult) : undefined
 
-      if (isDietPreferenceResponseArray(parsedResults)) {
-        setResults(parsedResults)
+      if (isDietPreferenceResponse(parsedResult)) {
+        setResult(parsedResult)
       }
     }
   }, [])
 
   const addResult = useCallback((result: PostPreferencesResponse) => {
-    setResults((prevResults) => {
-      const newResults = [...prevResults, result]
-
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newResults))
-
-      return newResults
+    setResult(() => {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(result))
+      return result
     })
   }, [])
 
-  const resultCount = results.length
-
-  const latestResult = useMemo(() => (
-    results.length > 0 ? results[results.length - 1] : undefined
-  ), [results])
-
   return (
     <DietResultContext.Provider value={{
-      results,
-      resultCount,
-      latestResult,
+      result,
       addResult,
     }}
     >

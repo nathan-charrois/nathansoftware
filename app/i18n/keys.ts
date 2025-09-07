@@ -12,7 +12,7 @@ export const LANGUAGE_KEYS = [
   'reset',
 
   // Results
-  'no_results_yet',
+  'no_result_yet',
   'next_meal',
 
   // Title

@@ -17,7 +17,7 @@ export default function DietForm() {
   const { initialValues, preferencesByType, setPreference, validate } = useDietForm()
   const { setActiveStep } = useDietStep()
   const { addResult } = useDietResult()
-  const { addMeal } = useMealLibrary()
+  const { addToLibrary } = useMealLibrary()
 
   const form = useForm({ initialValues, validate })
 
@@ -49,7 +49,7 @@ export default function DietForm() {
 
       addResult(response)
 
-      addMeal({
+      addToLibrary({
         name: response.title,
         ingredients: response.ingredients,
       })

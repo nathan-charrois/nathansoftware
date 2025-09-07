@@ -22,9 +22,3 @@ export const isDietPreferenceResponse = (
 ): response is PostPreferencesResponse => {
   return typeof response === 'object' && response !== null && 'title' in response
 }
-
-export const isDietPreferenceResponseArray = (
-  response: unknown,
-): response is PostPreferencesResponse[] => {
-  return Array.isArray(response) && response.every(isDietPreferenceResponse)
-}
