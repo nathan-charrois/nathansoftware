@@ -12,6 +12,25 @@ const MealLibraryContext = createContext<MealLibraryContextType | undefined>(und
 
 const LOCAL_STORAGE_KEY = 'mealLibrary'
 
+const createThumbnail = async (base64: string) => {
+  const thumb = new Image()
+  thumb.src = base64
+  await thumb.decode()
+
+  const scale = Math.min(1, 100 / thumb.width)
+  const canvas = document.createElement('canvas')
+  canvas.width = Math.round(thumb.width * scale)
+  canvas.height = Math.round(thumb.height * scale)
+
+  const ctx = canvas.getContext('2d')
+  if (!ctx) {
+    throw new Error('Could not create canvas context')
+  }
+
+  ctx.drawImage(thumb, 0, 0, canvas.width, canvas.height)
+  return canvas.toDataURL('image/png', 0.75)
+}
+
 export function MealLibraryProvider({ children }: { children: React.ReactNode }) {
   const [meals, setMeals] = useState<DietMeal[]>([])
 
@@ -26,11 +45,12 @@ export function MealLibraryProvider({ children }: { children: React.ReactNode })
     }
   }, [])
 
-  const addToLibrary = useCallback((mealData: Omit<DietMeal, 'id' | 'dateSaved'>) => {
+  const addToLibrary = useCallback(async (mealData: Omit<DietMeal, 'id' | 'dateSaved'>) => {
     const newMeal: DietMeal = {
       ...mealData,
       id: crypto.randomUUID(),
       dateSaved: new Date().toISOString(),
+      image: await createThumbnail(mealData.image),
     }
 
     setMeals((prevMeals) => {

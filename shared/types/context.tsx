@@ -32,4 +32,5 @@ export type DietMeal = {
   dateSaved: string
   name: string
   ingredients: string[]
+  image: string
 }

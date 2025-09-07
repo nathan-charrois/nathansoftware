@@ -52,6 +52,7 @@ export default function DietForm() {
       addToLibrary({
         name: response.title,
         ingredients: response.ingredients,
+        image: response.image,
       })
 
       setActiveStep('result')

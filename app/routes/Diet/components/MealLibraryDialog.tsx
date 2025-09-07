@@ -4,7 +4,6 @@ import {
   Badge,
   Card,
   Group,
-  Image,
   Modal,
   ScrollArea,
   Stack,
@@ -59,15 +58,11 @@ export default function MealLibraryDialog({ opened, onClose }: MealLibraryDialog
                   {sortedMeals.map(meal => (
                     <Card key={meal.id} withBorder padding="md">
                       <Group gap="md" align="flex-start">
-                        <Image
-                          src="/images/baby.png"
+                        <img
+                          src={meal.image}
                           alt={meal.name}
-                          width={80}
-                          height={80}
-                          radius="md"
-                          fallbackSrc="/images/baby.png"
+                          width="100px"
                         />
-
                         <Stack gap="xs" style={{ flex: 1 }}>
                           <Group justify="space-between" align="flex-start">
                             <Title order={4} size="sm">
