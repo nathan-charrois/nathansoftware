@@ -1,5 +1,7 @@
 import { OPENAI_API_KEY, OPENAI_ORG_ID } from '@server/utils/config.ts'
-import { PostPreferencesResponse } from '@shared/types/api'
+import { PostImageResponse, PostPreferencesResponse } from '@shared/types/api'
+import fs from 'node:fs'
+import path from 'node:path'
 import OpenAI from 'openai'
 
 const openai = new OpenAI({
@@ -58,4 +60,32 @@ export const generateMeal = async (prompt: string): Promise<PostPreferencesRespo
   }
 
   return content
+}
+
+export const generateImage = async (prompt: string): Promise<PostImageResponse> => {
+  const response = await openai.images.generate({
+    model: 'gpt-image-1',
+    prompt,
+    size: '1024x1024',
+  })
+
+  const base64 = response.data && response.data[0].b64_json
+
+  if (!base64) {
+    throw new Error('Model did not create image')
+  }
+
+  const directory = path.join('public', 'uploads')
+
+  if (!fs.existsSync(directory)) {
+    fs.mkdirSync(directory, { recursive: true })
+  }
+
+  const buffer = Buffer.from(base64, 'base64')
+  const fileName = `${Date.now().toString().toLowerCase().replace(/\s+/g, '_')}.png`
+  const filePath = path.join(directory, fileName)
+
+  fs.writeFileSync(filePath, buffer)
+
+  return { image: fileName }
 }

@@ -80,22 +80,47 @@ const buildPreferencesString = (preferences: Preferences): string => {
  * @param languageString language code string
  * @returns complete formatted prompt for meal generation
  */
-export const buildPrompt = (preferences: Preferences, languageString: string): string => {
+export const buildMealPrompt = (preferences: Preferences, languageString: string): string => {
   const preferencesString = buildPreferencesString(preferences)
 
   return `
     You are a creative chef specializing in fun and unique meals for toddlers.
 
     Rules:
-    - Meal title is a maximum of 6 words.
+    - Meal title is a maximum of 8 words.
     - Meal title should not include words from the preferences.
     - Ingredient list should be common, healthy items suitable for toddlers.
     - Language code is provided for localization.
+    - No pancakes!
 
     Preferences:
     ${preferencesString}
 
     Language Code:
     ${languageString}
+  `
+}
+
+/**
+ * Build the prompt for meal image generation
+ *
+ * @param title generated meal title
+ * @param ingredients generated meal ingredients
+ * @returns complete formatted prompt for meal image generation
+ */
+export const buildImagePrompt = (title: string, ingredients: string[]): string => {
+  return `
+    Generate a cartoon-style image of a meal for toddlers.
+
+    Rules:
+    - Background colour must be #FEFADF.
+    - Do not include text.
+    - Serve meal on a plate, or on a leaf, or in a bowl, or in a cup.
+
+    Meal Title:
+    ${title}
+
+    Ingredients:
+    ${ingredients.join(', ')}
   `
 }

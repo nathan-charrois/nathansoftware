@@ -1,6 +1,11 @@
 export type PostPreferencesResponse = {
   title: string
   ingredients: string[]
+  image: string
+}
+
+export type PostImageResponse = {
+  image: string
 }
 
 export type GetPreferencesResponse = {
