@@ -28,7 +28,7 @@ export default function DietFormLayout({
         </SimpleGrid>
         {actions}
       </Grid.Col>
-      <Grid.Col span={9}>
+      <Grid.Col span={9} h={520}>
         {image}
       </Grid.Col>
     </Grid>

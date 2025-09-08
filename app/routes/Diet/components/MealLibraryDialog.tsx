@@ -33,27 +33,23 @@ export default function MealLibraryDialog({ opened, onClose }: MealLibraryDialog
     removeFromLibrary(id)
   }
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString()
-  }
-
   return (
     <Modal
       opened={opened}
       onClose={onClose}
       title={formatMessage('meal_library')}
       size="lg"
-      centered
+      withCloseButton={false}
     >
-      <Stack gap="md">
+      <Stack>
         {sortedMeals.length === 0
           ? (
-              <Text c="dimmed" ta="center" py="xl">
+              <Text c="dark" ta="center" py="xl">
                 {formatMessage('no_meals_saved')}
               </Text>
             )
           : (
-              <ScrollArea h={400}>
+              <ScrollArea h="60vh">
                 <Stack gap="md">
                   {sortedMeals.map(meal => (
                     <Card key={meal.id} withBorder padding="md">
@@ -63,29 +59,23 @@ export default function MealLibraryDialog({ opened, onClose }: MealLibraryDialog
                           alt={meal.name}
                           width="100px"
                         />
-                        <Stack gap="xs" style={{ flex: 1 }}>
+                        <Stack gap="xs" flex="1">
                           <Group justify="space-between" align="flex-start">
-                            <Title order={4} size="sm">
+                            <Title order={4} c="dark" size="sm">
                               {meal.name}
                             </Title>
                             <ActionIcon
                               variant="subtle"
-                              color="red"
+                              c="dark"
                               size="sm"
                               onClick={() => handleRemoveFromLibrary(meal.id)}
                             >
                               <IconTrash size={16} />
                             </ActionIcon>
                           </Group>
-
-                          <Text size="xs" c="dimmed">
-                            {formatMessage('saved_on')}
-                            :
-                            {formatDate(meal.dateSaved)}
-                          </Text>
                           <Group gap="xs">
                             {meal.ingredients && meal.ingredients.map((ingredient, index) => (
-                              <Badge key={index} size="xs" variant="light">
+                              <Badge key={index} size="xl" variant="light">
                                 {ingredient}
                               </Badge>
                             ))}

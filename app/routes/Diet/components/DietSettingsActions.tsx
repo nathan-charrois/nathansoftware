@@ -20,12 +20,12 @@ export default function DietSettingsActions({ onApply, onClose }: DietSettingsAc
   }, [onClose])
 
   return (
-    <Group justify="flex-end" gap="sm">
-      <Button variant="subtle" onClick={handleClose}>
-        {formatMessage('close')}
-      </Button>
-      <Button onClick={handleApply}>
+    <Group justify="flex-end" gap="sm" mt="lg">
+      <Button onClick={handleApply} variant="primary">
         {formatMessage('apply')}
+      </Button>
+      <Button onClick={handleClose} variant="secondary">
+        {formatMessage('close')}
       </Button>
     </Group>
   )

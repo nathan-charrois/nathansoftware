@@ -9,7 +9,6 @@ import {
 import {
   blue,
   borderWidth,
-  buttonPadding,
   defaultPadding,
   green,
   purple,
@@ -19,7 +18,7 @@ import {
 export const themeBase = createTheme({
   fontFamily: 'Dongle, sans-serif',
   fontSizes: {
-    xs: '30px',
+    xs: '24px',
     sm: '33px',
     md: '39px',
     lg: '48px',
@@ -54,16 +53,24 @@ export const themeBase = createTheme({
         label: {
           overflow: 'visible',
         },
-        root: {
-          padding: buttonPadding,
-          fontSize: theme.fontSizes.md,
-          color: theme.colors.brand[theme.other.buttonText],
-          backgroundColor: theme.colors.accent[
-            props.variant === 'primary'
-              ? theme.other.button
-              : theme.other.buttonSecondary
-          ],
-        },
+        root: props.size === 'xs'
+          ? {
+              padding: '3px 12px 1px',
+              fontSize: theme.fontSizes.xs,
+              color: theme.colors.brand[theme.other.typography],
+              backgroundColor: 'transparent',
+            }
+          : {
+              padding: '30px 18px 24px',
+              fontSize: theme.fontSizes.md,
+              color: theme.colors.brand[theme.other.buttonText],
+              backgroundColor: theme.colors.accent[
+                props.variant === 'primary'
+                  ? theme.other.button
+                  : theme.other.buttonSecondary
+              ],
+            },
+
       }),
     },
     Chip: {
@@ -110,6 +117,13 @@ export const themeBase = createTheme({
         thumb: {
           borderColor: theme.colors.brand[6],
           borderWidth: borderWidth,
+        },
+      }),
+    },
+    ActionIcon: {
+      styles: (theme: MantineTheme) => ({
+        root: {
+          color: theme.colors.brand[theme.other.typography],
         },
       }),
     },

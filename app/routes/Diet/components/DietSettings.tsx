@@ -1,12 +1,14 @@
 import { useCallback, useState } from 'react'
 import { Settings01Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
-import { ActionIcon } from '@mantine/core'
+import { Button } from '@mantine/core'
 
+import { useI18n } from './DietI18nProvider'
 import DietSettingsModal from './DietSettingsModal'
 
 export default function DietSettings() {
   const [opened, setOpened] = useState(false)
+  const { formatMessage } = useI18n()
 
   const handleOpenSettings = useCallback(() => {
     setOpened(true)
@@ -18,13 +20,13 @@ export default function DietSettings() {
 
   return (
     <>
-      <ActionIcon
-        variant="transparent"
-        size="lg"
+      <Button
         onClick={handleOpenSettings}
+        leftSection={<HugeiconsIcon icon={Settings01Icon} />}
+        size="xs"
       >
-        <HugeiconsIcon icon={Settings01Icon} size={24} />
-      </ActionIcon>
+        {formatMessage('settings')}
+      </Button>
       <DietSettingsModal
         opened={opened}
         onClose={handleCloseSettings}

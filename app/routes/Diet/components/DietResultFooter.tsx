@@ -1,6 +1,5 @@
 import { Group } from '@mantine/core'
 
-import DietResultCount from './DietResultCount'
 import DietResultFooterAnimation from './DietResultFooterAnimation'
 import DietSettings from './DietSettings'
 import DietThemeSwitch from './DietThemeSwitch'
@@ -9,10 +8,11 @@ import MealLibrary from './MealLibrary'
 export default function DietResultFooter() {
   return (
     <DietResultFooterAnimation>
-      <Group gap="md">
-        <DietSettings />
-        <MealLibrary />
-        <DietResultCount />
+      <Group justify="space-between" maw={600} w="100%">
+        <Group gap="lg">
+          <DietSettings />
+          <MealLibrary />
+        </Group>
         <DietThemeSwitch />
       </Group>
     </DietResultFooterAnimation>

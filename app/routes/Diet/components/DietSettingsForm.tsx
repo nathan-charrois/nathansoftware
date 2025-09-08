@@ -5,8 +5,8 @@ import { isSupportedLangauge, type SupportedLanguage } from '@shared/types/i18n'
 import { useI18n } from './DietI18nProvider'
 
 const LANGUAGE_OPTIONS = [
-  { value: 'en' as const, label: '🇺🇸 English' },
-  { value: 'ru' as const, label: '🇷🇺 Русский' },
+  { value: 'en' as const, label: 'English' },
+  { value: 'ru' as const, label: 'Русский' },
 ] as const
 
 interface SettingsState {

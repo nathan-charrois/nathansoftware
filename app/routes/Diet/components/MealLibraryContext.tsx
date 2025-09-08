@@ -17,7 +17,7 @@ const createThumbnail = async (base64: string) => {
   thumb.src = base64
   await thumb.decode()
 
-  const scale = Math.min(1, 100 / thumb.width)
+  const scale = Math.min(1, 200 / thumb.width)
   const canvas = document.createElement('canvas')
   canvas.width = Math.round(thumb.width * scale)
   canvas.height = Math.round(thumb.height * scale)
@@ -28,7 +28,7 @@ const createThumbnail = async (base64: string) => {
   }
 
   ctx.drawImage(thumb, 0, 0, canvas.width, canvas.height)
-  return canvas.toDataURL('image/png', 0.80)
+  return canvas.toDataURL('image/png', 0.75)
 }
 
 export function MealLibraryProvider({ children }: { children: React.ReactNode }) {

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { useEffect, useState } from 'react'
-import { Transition } from '@mantine/core'
+import { Flex, Transition } from '@mantine/core'
 
 import { ANIMATION_MOUNT_MS, ANIMATION_POP_MS } from '~/utils/constant'
 
@@ -23,7 +23,7 @@ export default function DietResultFooterAnimation({ children }: DietResultFooter
 
   return (
     <Transition mounted={textMounted} transition="pop" duration={ANIMATION_POP_MS} timingFunction="ease">
-      {styles => <div style={styles}>{children}</div>}
+      {styles => <Flex style={styles} w="100%" justify="center">{children}</Flex>}
     </Transition>
   )
 }

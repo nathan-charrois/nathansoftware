@@ -84,15 +84,18 @@ export default function DietSettingsModal({ opened, onClose }: DietSettingsModal
       opened={opened}
       onClose={handleClose}
       title={formatMessage('settings')}
-      size="md"
+      size="sm"
       withCloseButton={false}
     >
-      <Stack gap="lg">
+      <Stack gap="xl">
         <DietSettingsForm
           settings={tempSettings}
           onSettingsChange={handleSettingsChange}
         />
-        <DietSettingsActions onApply={handleApply} onClose={handleClose} />
+        <DietSettingsActions
+          onApply={handleApply}
+          onClose={handleClose}
+        />
       </Stack>
     </Modal>
   )
