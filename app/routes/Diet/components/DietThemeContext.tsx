@@ -27,6 +27,10 @@ export function DietThemeProvider({ children }: { children: React.ReactNode }) {
       if (isTheme(storedTheme)) {
         setTheme(storedTheme)
       }
+
+      if (!storedTheme) {
+        setTheme('baby')
+      }
     }
   }, [])
 
