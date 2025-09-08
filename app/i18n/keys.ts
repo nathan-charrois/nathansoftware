@@ -15,8 +15,9 @@ export const LANGUAGE_KEYS = [
   'no_result_yet',
   'next_meal',
 
-  // Title
+  // Titles
   'baby_diet_preferences',
+  'mommy_diet_preferences',
 
   // Slider labels
   'arrow_symbol',

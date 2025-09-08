@@ -25,3 +25,5 @@ export type GetPreferencesResponse = {
   icon: string
   value: number
 }
+
+export type QueryParamTheme = 'baby' | 'mommy'

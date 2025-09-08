@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { MantineProvider, mergeThemeOverrides } from '@mantine/core'
 import { themeBaby, themeBase, themeMommy } from '@utils/theme'
 
-type ThemeName = 'baby' | 'mommy'
+type ThemeName = 'baby' | 'mommy' | undefined
 
 interface DietThemeContextType {
   theme: ThemeName
@@ -18,7 +18,7 @@ const isTheme = (theme: unknown): theme is ThemeName => {
 }
 
 export function DietThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<ThemeName>('baby')
+  const [theme, setTheme] = useState<ThemeName>(undefined)
 
   useEffect(() => {
     if (typeof localStorage !== 'undefined') {
@@ -31,7 +31,9 @@ export function DietThemeProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, theme)
+    if (theme) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, theme)
+    }
   }, [theme])
 
   const currentTheme = useMemo(() =>

@@ -18,6 +18,7 @@ export const ru: Record<LanguageKey, string> = {
 
   // Title
   baby_diet_preferences: 'питании малыша',
+  mommy_diet_preferences: 'питание мамы',
 
   // Slider labels
   arrow_symbol: '↔',

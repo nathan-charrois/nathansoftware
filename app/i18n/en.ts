@@ -18,6 +18,7 @@ export const en: Record<LanguageKey, string> = {
 
   // Title
   baby_diet_preferences: 'Baby Diet Preferences',
+  mommy_diet_preferences: 'Mommy Diet Preferences',
 
   // Slider labels
   arrow_symbol: '↔',

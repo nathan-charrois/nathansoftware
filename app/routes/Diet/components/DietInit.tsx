@@ -5,28 +5,34 @@ import { type GetPreferencesResponse } from 'shared/types/api'
 
 import { useDietForm } from './DietFormContext'
 import { useDietStep } from './DietStepContext'
+import { useDietTheme } from './DietThemeContext'
 
 export default function DietInit() {
   const { setActiveStep } = useDietStep()
   const { setPreferences } = useDietForm()
+  const { theme } = useDietTheme()
+  console.log('theme', theme)
 
   useEffect(() => {
-    const fetchPreferences = async () => {
-      try {
-        const preferences = await fetchData<GetPreferencesResponse[]>({
-          url: '/preferences',
-        })
+    if (theme) {
+      const fetchPreferences = async () => {
+        try {
+          const preferences = await fetchData<GetPreferencesResponse[]>({
+            url: '/preferences?theme=' + theme,
+            method: 'GET',
+          })
 
-        setPreferences(preferences as DietPreference[])
-        setActiveStep('form')
+          setPreferences(preferences as DietPreference[])
+          setActiveStep('form')
+        }
+        catch {
+          setActiveStep('error')
+        }
       }
-      catch {
-        setActiveStep('error')
-      }
+
+      fetchPreferences()
     }
-
-    fetchPreferences()
-  }, [setActiveStep, setPreferences])
+  }, [setActiveStep, setPreferences, theme])
 
   return null
 }

@@ -3,13 +3,16 @@ import { Baby01Icon, Female02Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { Group, Switch, ThemeIcon } from '@mantine/core'
 
+import { useDietStep } from './DietStepContext'
 import { useDietTheme } from './DietThemeContext'
 
 export default function DietThemeSwitch() {
   const { theme, setTheme } = useDietTheme()
+  const { setActiveStep } = useDietStep()
 
   const handleOnChange = useCallback((checked: boolean) => {
     setTheme(checked ? 'mommy' : 'baby')
+    setActiveStep('initialize')
   }, [setTheme])
 
   return (
