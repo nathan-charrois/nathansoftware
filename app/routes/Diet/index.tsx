@@ -14,7 +14,7 @@ import Application from '~/components/Layout/Application'
 export function meta({}: MetaArgs) {
   return [
     { title: 'Diet' },
-    { name: 'description', content: 'This is Diet!' },
+    { name: 'description', content: 'Generate a delicious meal.' },
   ]
 }
 

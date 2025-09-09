@@ -49,7 +49,7 @@ export default function MealLibraryDialog({ opened, onClose }: MealLibraryDialog
               </Text>
             )
           : (
-              <ScrollArea h="60vh">
+              <ScrollArea h="40vh">
                 <Stack gap="md">
                   {sortedMeals.map(meal => (
                     <Card key={meal.id} withBorder padding="md">

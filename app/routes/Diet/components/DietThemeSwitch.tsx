@@ -11,8 +11,11 @@ export default function DietThemeSwitch() {
   const { setActiveStep } = useDietStep()
 
   const handleOnChange = useCallback((checked: boolean) => {
-    setTheme(checked ? 'mommy' : 'baby')
-    setActiveStep('initialize')
+    setActiveStep('loading')
+    setTimeout(() => {
+      setTheme(checked ? 'mommy' : 'baby')
+      setActiveStep('initialize')
+    }, 150)
   }, [setTheme])
 
   return (

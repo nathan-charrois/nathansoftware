@@ -3,6 +3,8 @@ import { Chip } from '@mantine/core'
 import { Image } from '@mantine/core'
 import { playSlideSound } from '@utils/sound'
 
+import { useDietTheme } from './DietThemeContext'
+
 interface DietFormChipProps {
   label: string
   id: string
@@ -19,6 +21,7 @@ export default function DietFormChip({
   onChange,
 }: DietFormChipProps) {
   const lastSoundValue = useRef(!!value)
+  const { theme } = useDietTheme()
 
   const handleOnChangeSound = useCallback((val: boolean) => {
     if (val !== lastSoundValue.current) {
@@ -34,8 +37,9 @@ export default function DietFormChip({
       id={id}
       checked={!!value}
       onChange={handleOnChangeSound}
+      ml={-15}
     >
-      <Image w="40px" mr="10px" display="inline" src={`/images/${icon}.png`} />
+      <Image w="50px" mr="10px" display="inline" src={`/images/${theme}/${icon}.png`} />
       {label}
     </Chip>
   )

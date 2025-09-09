@@ -6,7 +6,6 @@ import { NextFunction, Request, Response } from 'express'
 
 const preferenceStrings = {
   en: {
-    // Baby
     squishy: 'Squishy',
     crunchy: 'Crunchy',
     hot: 'Hot',
@@ -15,10 +14,11 @@ const preferenceStrings = {
     veggieBoost: 'Veggie Boost',
     onTheGo: 'On-the-Go',
     brainFood: 'Brain Food',
-    // Mommy
     light: 'Light',
     rich: 'Rich',
     sweet: 'Sweet',
+    easyToDigest: 'Easy-to-Digest',
+    protein: 'Protein',
   },
   ru: {
     squishy: 'Мягкий',
@@ -29,10 +29,11 @@ const preferenceStrings = {
     veggieBoost: 'Овощной буст',
     onTheGo: 'На ходу',
     brainFood: 'Пища для ума',
-    // Mommy
     light: 'Легкий',
     rich: 'Питательный',
     sweet: 'Сладкий',
+    easyToDigest: 'легкоусвояемый',
+    protein: 'белок',
   },
 }
 
@@ -51,10 +52,42 @@ const getPreferencesByLanguage = (language: SupportedLanguage, theme: QueryParam
         max: 20,
       },
       {
+        type: 'range',
+        key: 'hot-cold',
+        labelStart: preferenceStrings[language].hot,
+        labelEnd: preferenceStrings[language].cold,
+        iconStart: 'hot',
+        iconEnd: 'cold',
+        value: 10,
+        min: 0,
+        max: 20,
+      },
+      {
         type: 'boolean',
         key: 'sweet',
         label: preferenceStrings[language].sweet,
         icon: 'sweet',
+        value: 0,
+      },
+      {
+        type: 'boolean',
+        key: 'veggieBoost',
+        label: preferenceStrings[language].veggieBoost,
+        icon: 'veggieBoost',
+        value: 0,
+      },
+      {
+        type: 'boolean',
+        key: 'easyToDigest',
+        label: preferenceStrings[language].easyToDigest,
+        icon: 'easyToDigest',
+        value: 0,
+      },
+      {
+        type: 'boolean',
+        key: 'protein',
+        label: preferenceStrings[language].protein,
+        icon: 'protein',
         value: 0,
       },
     ]
@@ -87,21 +120,21 @@ const getPreferencesByLanguage = (language: SupportedLanguage, theme: QueryParam
       type: 'boolean',
       key: 'cute',
       label: preferenceStrings[language].cute,
-      icon: 'brain',
+      icon: 'cute',
       value: 0,
     },
     {
       type: 'boolean',
       key: 'veggie_boost',
       label: preferenceStrings[language].veggieBoost,
-      icon: 'veggie',
+      icon: 'veggieBoost',
       value: 0,
     },
     {
       type: 'boolean',
       key: 'on_the_go',
       label: preferenceStrings[language].onTheGo,
-      icon: 'brain',
+      icon: 'onTheGo',
       value: 0,
     },
     {
