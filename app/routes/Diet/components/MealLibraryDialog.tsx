@@ -1,4 +1,6 @@
 import { useMemo } from 'react'
+import { GarageIcon } from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
 import {
   ActionIcon,
   Badge,
@@ -9,7 +11,6 @@ import {
   Stack,
   Text,
   Title } from '@mantine/core'
-import { IconTrash } from '@tabler/icons-react'
 
 import { useI18n } from './DietI18nProvider'
 import { useMealLibrary } from './MealLibraryContext'
@@ -70,7 +71,7 @@ export default function MealLibraryDialog({ opened, onClose }: MealLibraryDialog
                               size="sm"
                               onClick={() => handleRemoveFromLibrary(meal.id)}
                             >
-                              <IconTrash size={16} />
+                              <HugeiconsIcon icon={GarageIcon} size={16} />
                             </ActionIcon>
                           </Group>
                           <Group gap="xs">
