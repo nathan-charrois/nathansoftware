@@ -19,14 +19,13 @@
     "@mantine/hooks": "^7.17.5",
     "@react-router/node": "^7.5.2",
     "@react-router/serve": "^7.5.2",
-    "@vercel/react-router": "^1.2.3",
     "isbot": "^5.1.17",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.5.2"
+    "react-router": "^7.8.2"
   },
   "devDependencies": {
-    "@react-router/dev": "^7.5.2",
+    "@react-router/dev": "^7.8.2",
     "@stylistic/eslint-plugin": "^4.2.0",
     "@tailwindcss/vite": "^4.0.0",
     "@types/cors": "^2.8.18",
@@ -34,6 +33,7 @@
     "@types/node": "^20",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.1",
+    "@vercel/react-router": "^1.2.3",
     "eslint": "^9.25.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "react-router-devtools": "^1.1.0",
