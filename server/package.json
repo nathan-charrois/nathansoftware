@@ -3,7 +3,7 @@
   "type": "module",
   "main": "index.ts",
   "scripts": {
-    "dev": "tsx watch ./index.ts"
+    "dev": "tsx watch ./dev.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",

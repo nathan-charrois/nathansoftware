@@ -18,7 +18,7 @@ export default function DietInit() {
       const fetchPreferences = async () => {
         try {
           const preferences = await fetchData<GetPreferencesResponse[]>({
-            url: '/api/preferences?theme=' + theme,
+            url: '/preferences?theme=' + theme,
             method: 'GET',
           })
 
