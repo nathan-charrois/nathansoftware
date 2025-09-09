@@ -3,6 +3,7 @@ import { Slider, Stack } from '@mantine/core'
 import { playSlideSound } from '@utils/sound'
 
 import { DietFormSliderLabel } from './DietFormSliderLabel'
+import { useIsMobile } from '~/hooks/useIsMobile'
 
 interface DietFormSliderProps {
   labelStart: string
@@ -39,6 +40,8 @@ export default function DietFormSlider({
   onChange,
   onChangeEnd,
 }: DietFormSliderProps) {
+  const isMobile = useIsMobile()
+
   const handleOnChangeSound = useCallback((val: number) => {
     playSlideSound()
     onChange(val)
@@ -48,8 +51,12 @@ export default function DietFormSlider({
     buildSliderMarks(min, max)
   ), [min, max])
 
+  const marginBottom = useMemo(() => {
+    return isMobile ? 'md' : 'xl'
+  }, [isMobile])
+
   return (
-    <Stack gap="xs" mb="xl">
+    <Stack gap="xs" mb={marginBottom}>
       <DietFormSliderLabel
         id={id}
         labelStart={labelStart}

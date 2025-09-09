@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
 import { Grid, SimpleGrid } from '@mantine/core'
 
+import { useIsMobile } from '~/hooks/useIsMobile'
+
 interface DietFormLayoutProps {
   slotOne: ReactNode
   slotTwo: ReactNode
@@ -16,6 +18,30 @@ export default function DietFormLayout({
   image,
   actions,
 }: DietFormLayoutProps) {
+  const isMobile = useIsMobile()
+
+  if (isMobile) {
+    return (
+      <Grid columns={20}>
+        <Grid.Col span={20}>
+          {slotOne}
+        </Grid.Col>
+        <Grid.Col span={20}>
+          {slotTwo}
+        </Grid.Col>
+        <Grid.Col span={14}>
+          {slotThree}
+        </Grid.Col>
+        <Grid.Col span={6}>
+          {image}
+        </Grid.Col>
+        <Grid.Col span={20}>
+          {actions}
+        </Grid.Col>
+      </Grid>
+    )
+  }
+
   return (
     <Grid columns={20}>
       <Grid.Col span={20}>
