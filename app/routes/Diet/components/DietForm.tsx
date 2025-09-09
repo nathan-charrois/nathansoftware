@@ -44,7 +44,7 @@ export default function DietForm() {
 
     try {
       const response = await fetchData<PostPreferencesResponse>({
-        url: `/preferences`,
+        url: `/api/preferences`,
         method: 'POST',
         body: {
           ...formValues,
