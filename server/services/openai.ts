@@ -1,4 +1,4 @@
-import { OPENAI_API_KEY, OPENAI_ORG_ID } from '@server/utils/config.ts'
+import { OPENAI_API_KEY, OPENAI_ORG_ID } from '@server/utils/config'
 import { PostImageResponse, PostPreferencesResponse } from '@shared/types/api'
 import OpenAI from 'openai'
 
