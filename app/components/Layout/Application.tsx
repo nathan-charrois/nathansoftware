@@ -14,7 +14,7 @@ export default function Application({ children, footer }: ApplicationProps) {
   const isMobile = useIsMobile()
 
   const appShellHeight = useMemo(() =>
-    isMobile ? '90vh' : '80vh',
+    isMobile ? '92vh' : '85vh',
   [isMobile],
   )
 
@@ -27,7 +27,7 @@ export default function Application({ children, footer }: ApplicationProps) {
           </Stack>
         </Center>
       </AppShell.Main>
-      <AppShell.Footer bg={bg} h="10vh" pl="lg" pr="lg">
+      <AppShell.Footer bg={bg} h="8vh" pl="lg" pr="lg">
         {footer}
       </AppShell.Footer>
     </AppShell>

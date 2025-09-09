@@ -15,7 +15,7 @@ const preferenceStrings = {
     onTheGo: 'On-the-Go',
     brainFood: 'Brain Food',
     light: 'Light',
-    rich: 'Rich',
+    hearty: 'Hearty',
     sweet: 'Sweet',
     easyToDigest: 'Easy-to-Digest',
     protein: 'Protein',
@@ -30,7 +30,7 @@ const preferenceStrings = {
     onTheGo: 'На ходу',
     brainFood: 'Пища для ума',
     light: 'Легкий',
-    rich: 'Питательный',
+    hearty: 'Сытный',
     sweet: 'Сладкий',
     easyToDigest: 'легкоусвояемый',
     protein: 'белок',
@@ -42,11 +42,11 @@ const getPreferencesByLanguage = (language: SupportedLanguage, theme: QueryParam
     return [
       {
         type: 'range',
-        key: 'light-rich',
+        key: 'light-hearty',
         labelStart: preferenceStrings[language].light,
-        labelEnd: preferenceStrings[language].rich,
+        labelEnd: preferenceStrings[language].hearty,
         iconStart: 'light',
-        iconEnd: 'rich',
+        iconEnd: 'hearty',
         value: 10,
         min: 0,
         max: 20,
@@ -158,6 +158,7 @@ export const getLanguage = (req: Request): SupportedLanguage => {
 
   return language
 }
+
 export const getTheme = (req: Request): 'baby' | 'mommy' => {
   const theme = req.query.theme as string | undefined
 
@@ -176,10 +177,10 @@ export const handlePostPreferences = async (
   try {
     const language = getLanguage(req)
 
-    const mealPrompt = buildMealPrompt(req.body, language)
+    const mealPrompt = buildMealPrompt(req.body, language, req.body.theme)
     const { title, ingredients } = await generateMeal(mealPrompt)
 
-    const imagePrompt = buildImagePrompt(title, ingredients)
+    const imagePrompt = buildImagePrompt(title, ingredients, req.body.theme)
     const { image } = await generateImage(imagePrompt)
 
     res.status(200).json({ title, ingredients, image })

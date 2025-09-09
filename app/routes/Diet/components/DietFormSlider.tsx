@@ -52,7 +52,7 @@ export default function DietFormSlider({
   ), [min, max])
 
   const marginBottom = useMemo(() => {
-    return isMobile ? 'md' : 'xl'
+    return isMobile ? 'xs' : 'xl'
   }, [isMobile])
 
   return (

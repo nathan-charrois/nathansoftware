@@ -13,7 +13,7 @@ export default function DietFormActions() {
   }, [isMobile])
 
   return (
-    <Group pt={marginBottom}>
+    <Group mt={marginBottom}>
       <Button type="submit" variant="primary" radius="lg">{formatMessage('submit')}</Button>
       <Button type="reset" variant="secondary" radius="lg">{formatMessage('reset')}</Button>
     </Group>

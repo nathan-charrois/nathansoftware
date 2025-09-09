@@ -6,16 +6,20 @@ import { Group, Switch, ThemeIcon } from '@mantine/core'
 import { useDietStep } from './DietStepContext'
 import { useDietTheme } from './DietThemeContext'
 
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
+
 export default function DietThemeSwitch() {
   const { theme, setTheme } = useDietTheme()
   const { setActiveStep } = useDietStep()
 
-  const handleOnChange = useCallback((checked: boolean) => {
+  const handleOnChange = useCallback(async (checked: boolean) => {
     setActiveStep('loading')
-    setTimeout(() => {
-      setTheme(checked ? 'mommy' : 'baby')
-      setActiveStep('initialize')
-    }, 150)
+
+    await delay(250)
+    setTheme(checked ? 'mommy' : 'baby')
+
+    await delay(250)
+    setActiveStep('initialize')
   }, [setTheme])
 
   return (

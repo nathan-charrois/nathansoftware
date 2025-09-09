@@ -51,7 +51,7 @@ export default function DietResult() {
           <Circle />
         </div>
       </Container>
-      <Stack mt="xl" mb="md" align="center" mx="xl">
+      <Stack mt="xl" mb="md" align="center" mx="xl" justify="center">
         <Transition mounted={mounted} transition="fade-up" duration={300} timingFunction="ease-out">
           {styles => (
             <>
