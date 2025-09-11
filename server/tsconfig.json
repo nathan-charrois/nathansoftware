@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
+    "module": "CommonJS",
+    "outDir": "dist",
     "moduleResolution": "Node",
     "target": "ESNext",
     "allowImportingTsExtensions": true,

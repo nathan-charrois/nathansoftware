@@ -1,9 +1,10 @@
 {
   "name": "nathan-software-server",
-  "type": "module",
+  "type": "commonjs",
   "main": "index.ts",
   "scripts": {
-    "dev": "tsx watch ./index.ts"
+    "dev": "tsx watch ./index.ts",
+    "build": "tsc --project ."
   },
   "dependencies": {
     "cors": "^2.8.5",

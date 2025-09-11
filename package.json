@@ -7,7 +7,7 @@
     "app:dev": "react-router dev",
     "app:build": "react-router build",
     "server:dev": "cd server && npm run dev",
-    "server:build": "tsc --project server",
+    "server:build": "cd server && npm run build",
     "app:start": "react-router-serve ./build/server/index.js",
     "app:typecheck": "react-router typegen && tsc",
     "app:lint": "eslint . --fix"
