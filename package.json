@@ -2,6 +2,8 @@
   "name": "nathan-software",
   "type": "module",
   "scripts": {
+    "build": "npm run app:build && npm run server:build",
+    "start": "npm --prefix server run dev",
     "app:dev": "react-router dev",
     "app:build": "react-router build",
     "server:dev": "cd server && npm run dev",
