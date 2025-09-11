@@ -30,13 +30,13 @@ export default function DietThemeSwitch() {
         size="lg"
         color="dark.4"
         onLabel={(
-          <ThemeIcon variant="transparent" size="lg" color="dark.3">
-            <HugeiconsIcon icon={Female02Icon} size={24} />
+          <ThemeIcon variant="transparent" size="lg" color="brand.9">
+            <HugeiconsIcon icon={Female02Icon} size={22} />
           </ThemeIcon>
         )}
         offLabel={(
-          <ThemeIcon variant="transparent" size="lg" color="dark.3">
-            <HugeiconsIcon icon={Baby01Icon} size={24} />
+          <ThemeIcon variant="transparent" size="lg" color="brand.4">
+            <HugeiconsIcon icon={Baby01Icon} size={22} />
           </ThemeIcon>
         )}
       />

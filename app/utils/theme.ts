@@ -99,12 +99,12 @@ export const themeBase = createTheme({
     Switch: {
       styles: (theme: MantineTheme) => ({
         track: {
-          backgroundColor: theme.colors.complement[2],
-          borderColor: theme.colors.complement[2],
+          backgroundColor: theme.colors.brand[theme.other.surface],
+          borderColor: theme.colors.brand[theme.other.typography],
         },
         thumb: {
-          borderColor: theme.colors.brand[6],
-          backgroundColor: theme.colors.brand[6],
+          borderColor: theme.colors.brand[theme.other.typography],
+          backgroundColor: theme.colors.brand[theme.other.typography],
         },
       }),
     },

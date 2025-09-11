@@ -29,12 +29,12 @@ export default function DietFormLayout({
         <Grid.Col span={20}>
           {slotTwo}
         </Grid.Col>
-        <Grid.Col span={14}>
+        <Grid.Col span={13}>
           <Group gap="xs" mx={-10}>
             {slotThree}
           </Group>
         </Grid.Col>
-        <Grid.Col span={6}>
+        <Grid.Col span={7} pl={0}>
           {image}
         </Grid.Col>
         <Grid.Col span={20}>
