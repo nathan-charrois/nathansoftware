@@ -11,7 +11,7 @@ export default function DietTitle() {
   const isMobile = useIsMobile()
 
   const titleBottomMargin = useMemo(() =>
-    isMobile ? 'sm' : 'lg',
+    isMobile ? 'sm' : 'xl',
   [isMobile],
   )
 

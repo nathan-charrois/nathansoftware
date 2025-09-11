@@ -21,7 +21,7 @@ export const themeBase = createTheme({
     sm: '32px',
     md: '38px',
     lg: '48px',
-    xl: '65px',
+    xl: '75px',
   },
   lineHeights: {
     xs: '0.8',
@@ -35,7 +35,7 @@ export const themeBase = createTheme({
       styles: (theme: MantineTheme) => ({
         root: {
           color: theme.colors.brand[theme.other.typography],
-          lineHeight: theme.lineHeights.sm,
+          lineHeight: theme.lineHeights.xs,
         },
       }),
     },
