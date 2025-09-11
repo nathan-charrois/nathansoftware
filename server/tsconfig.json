@@ -4,20 +4,16 @@
     "outDir": "dist",
     "moduleResolution": "Node",
     "target": "ESNext",
-    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "noEmit": true,
+    "noEmit": false,
     "paths": {
-      "@server/*": ["./*"],
       "@shared/*": ["../shared/*"]
     },
     "noImplicitAny": true,
     "strictNullChecks": true
   },
-  "include": [
-    "**/*.ts"
-  ]
+  "include": ["**/*.ts"]
 }

@@ -1,8 +1,9 @@
-import { generateImage, generateMeal } from '@server/services/openai'
-import { buildImagePrompt, buildMealPrompt } from '@server/utils/prompt'
 import type { GetPreferencesResponse, PostPreferencesResponse, QueryParamTheme } from '@shared/types/api'
 import { type SupportedLanguage } from '@shared/types/i18n'
 import { NextFunction, Request, Response } from 'express'
+
+import { generateImage, generateMeal } from '../services/openai'
+import { buildImagePrompt, buildMealPrompt } from '../utils/prompt'
 
 const preferenceStrings = {
   en: {

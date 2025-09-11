@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "build": "npm run app:build && npm run server:build",
-    "start": "npm --prefix server run dev",
+    "start": "cd server && npm run start",
     "app:dev": "react-router dev",
     "app:build": "react-router build",
     "server:dev": "cd server && npm run dev",

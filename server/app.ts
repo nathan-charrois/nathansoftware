@@ -15,6 +15,7 @@ app.post('/preferences', handlePostPreferences)
 
 const candidates = [
   path.resolve(process.cwd(), '..', 'build', 'client'),
+  path.resolve(__dirname, '..', '..', '..', 'build', 'client'),
   path.resolve(__dirname, '..', '..', 'build', 'client'),
   path.resolve(__dirname, '..', 'build', 'client'),
 ]

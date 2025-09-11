@@ -1,6 +1,7 @@
-import { OPENAI_API_KEY, OPENAI_ORG_ID } from '@server/utils/config'
 import { PostImageResponse, PostPreferencesResponse } from '@shared/types/api'
 import OpenAI from 'openai'
+
+import { OPENAI_API_KEY, OPENAI_ORG_ID } from '../utils/config'
 
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY,
