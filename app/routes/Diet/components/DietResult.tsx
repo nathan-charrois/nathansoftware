@@ -58,7 +58,7 @@ export default function DietResult() {
               <Title style={styles} size="lg">
                 {result.title}
               </Title>
-              <Text style={styles} size="sm" opacity={0.7}>
+              <Text style={styles} size="sm" opacity={0.7} ta="center">
                 {ingredientsTextList}
               </Text>
             </>

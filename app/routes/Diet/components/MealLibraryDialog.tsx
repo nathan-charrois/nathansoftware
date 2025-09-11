@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { GarageIcon } from '@hugeicons/core-free-icons'
+import { Delete02Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
   ActionIcon,
@@ -66,12 +66,12 @@ export default function MealLibraryDialog({ opened, onClose }: MealLibraryDialog
                               {meal.name}
                             </Title>
                             <ActionIcon
-                              variant="subtle"
-                              c="dark"
-                              size="sm"
+                              variant="light"
+                              c="brand.8"
+                              size="md"
                               onClick={() => handleRemoveFromLibrary(meal.id)}
                             >
-                              <HugeiconsIcon icon={GarageIcon} size={16} />
+                              <HugeiconsIcon icon={Delete02Icon} size={16} />
                             </ActionIcon>
                           </Group>
                           <Group gap="xs">
