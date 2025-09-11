@@ -30,6 +30,8 @@ if (!clientDir) {
 
 app.use(express.static(clientDir, { index: false, maxAge: '1h' }))
 
+app.get('/healthz', (_req, res) => res.sendStatus(200))
+
 app.get(/.*/, (_req, res) => {
   res.sendFile(path.join(clientDir, 'index.html'))
 })

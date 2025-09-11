@@ -23,7 +23,7 @@ export async function fetchData<T>({
     options.body = JSON.stringify(body)
   }
 
-  const res = await fetch(`http://localhost:3001${url}`, options)
+  const res = await fetch(`/${url}`, options)
 
   if (!res.ok) {
     throw new Error(`HTTP error! status: ${res.status}`)
