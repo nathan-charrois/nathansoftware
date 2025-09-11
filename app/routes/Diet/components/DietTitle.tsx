@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Space, Title } from '@mantine/core'
+import { Flex, Space, Title } from '@mantine/core'
 
 import { useI18n } from './DietI18nProvider'
 import { useDietTheme } from './DietThemeContext'
@@ -16,13 +16,13 @@ export default function DietTitle() {
   )
 
   return (
-    <>
-      <Title ta="center" size="xl" mb={titleBottomMargin}>
+    <Flex justify="center">
+      <Title ta="center" size="xl" mb={titleBottomMargin} maw={375}>
         {theme === 'baby'
           ? formatMessage('baby_diet_preferences')
           : formatMessage('mommy_diet_preferences')}
       </Title>
       {isMobile ? null : <Space h="xl" />}
-    </>
+    </Flex>
   )
 }

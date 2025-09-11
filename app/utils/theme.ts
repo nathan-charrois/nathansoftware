@@ -9,7 +9,6 @@ import {
 import {
   blue,
   borderWidth,
-  defaultPadding,
   green,
   purple,
   yellow,
@@ -19,17 +18,17 @@ export const themeBase = createTheme({
   fontFamily: 'Dongle, sans-serif',
   fontSizes: {
     xs: '24px',
-    sm: '33px',
-    md: '39px',
+    sm: '32px',
+    md: '38px',
     lg: '48px',
-    xl: '60px',
+    xl: '65px',
   },
   lineHeights: {
     xs: '0.8',
     sm: '1',
     md: '1.2',
     lg: '1.5',
-    xl: '1.75',
+    xl: '1.5',
   },
   components: {
     Title: {
@@ -61,7 +60,7 @@ export const themeBase = createTheme({
               backgroundColor: 'transparent',
             }
           : {
-              padding: '30px 18px 24px',
+              padding: '28px 18px 24px',
               fontSize: theme.fontSizes.md,
               color: theme.colors.brand[theme.other.buttonText],
               backgroundColor: theme.colors.accent[
@@ -80,7 +79,7 @@ export const themeBase = createTheme({
         },
         label: {
           fontSize: theme.fontSizes.md,
-          padding: defaultPadding,
+          padding: '30px 18px',
           color: props.checked
             ? theme.colors.accent[theme.other.buttonText]
             : theme.colors.brand[theme.other.typography],

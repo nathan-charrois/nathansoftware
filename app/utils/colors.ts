@@ -4,4 +4,3 @@ export const green = '#CDDA86'
 export const blue = '#C5DCE0'
 
 export const borderWidth = '8px'
-export const defaultPadding = '30px 20px'

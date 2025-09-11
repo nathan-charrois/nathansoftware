@@ -37,9 +37,6 @@ export default function DietFormChip({
       id={id}
       checked={!!value}
       onChange={handleOnChangeSound}
-      ml={-15}
-      mr={-15}
-      mb="xs"
     >
       <Image w="50px" mr="10px" display="inline" src={`/images/${theme}/${icon}.png`} />
       {label}

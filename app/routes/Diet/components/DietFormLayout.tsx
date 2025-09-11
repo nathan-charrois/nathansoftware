@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Grid, SimpleGrid } from '@mantine/core'
+import { Grid, Group, SimpleGrid } from '@mantine/core'
 
 import { useIsMobile } from '~/hooks/useIsMobile'
 
@@ -30,7 +30,9 @@ export default function DietFormLayout({
           {slotTwo}
         </Grid.Col>
         <Grid.Col span={14}>
-          {slotThree}
+          <Group gap="xs" mx={-10}>
+            {slotThree}
+          </Group>
         </Grid.Col>
         <Grid.Col span={6}>
           {image}
@@ -49,7 +51,7 @@ export default function DietFormLayout({
       </Grid.Col>
       <Grid.Col span={11}>
         {slotTwo}
-        <SimpleGrid cols={1} mb="lg">
+        <SimpleGrid cols={1} mb="lg" mx={-10}>
           {slotThree}
         </SimpleGrid>
         {actions}
