@@ -33,3 +33,26 @@ body {
 .meal-layer {
   z-index: 2;
 }
+
+.background-theme {
+  background-size: 38px 38px;
+  background-repeat: repeat;
+}
+
+.background-theme.baby {
+  background-color: #fffDe0;
+  background-position:  19px 0, 19px 0, 0 0, 0 0;
+  background-image:
+    linear-gradient(135deg, #fff9da 25%, transparent 25%),
+    linear-gradient(225deg, #fff9da 25%, transparent 25%),
+    linear-gradient(45deg, #fff9da 25%, transparent 25%),
+    linear-gradient(315deg, #fff9da 25%, #fffDe0 25%);
+}
+
+.background-theme.mommy {
+  background-color: #7f67af;
+  background-position: 0 0,19px 19px;
+  background-image:
+    radial-gradient(#8e75be 0.9500000000000001px, transparent 0.9500000000000001px),
+    radial-gradient(#8e75be 0.9500000000000001px, #7f67af 0.9500000000000001px);
+}
