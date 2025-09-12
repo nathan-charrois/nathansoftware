@@ -83,7 +83,7 @@ export const themeBase = createTheme({
             ? theme.colors.accent[theme.other.buttonText]
             : theme.colors.brand[theme.other.typography],
           backgroundColor: props.checked
-            ? theme.colors.accent[theme.other.buttonSecondary]
+            ? theme.colors.accent[theme.other.button]
             : 'transparent',
         },
       }),
@@ -148,9 +148,9 @@ export const themeBaby = createTheme({
   other: {
     surface: 0,
     typography: 7,
-    button: 3,
+    button: 6,
     buttonText: 0,
-    buttonSecondary: 6,
+    buttonSecondary: 3,
   },
   components: {
     AppShell: {
@@ -172,9 +172,9 @@ export const themeMommy = createTheme({
   other: {
     surface: 5,
     typography: 0,
-    button: 4,
+    button: 8,
     buttonText: 0,
-    buttonSecondary: 8,
+    buttonSecondary: 4,
   },
   components: {
     AppShell: {
