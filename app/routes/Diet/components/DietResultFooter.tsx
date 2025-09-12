@@ -1,4 +1,4 @@
-import { Group, Stack, Text } from '@mantine/core'
+import { Anchor, Group, Stack, Text } from '@mantine/core'
 
 import DietResultFooterAnimation from './DietResultFooterAnimation'
 import DietSettings from './DietSettings'
@@ -14,7 +14,12 @@ export default function DietResultFooter() {
           <MealLibrary />
           <DietThemeSwitch />
         </Group>
-        <Text size="xs" ta="center"> © 2025 Nathan Software </Text>
+        <Text size="xs" ta="center">
+          © 2025
+          <Anchor pl="xs" href="https://nathansoftware.ca" target="_blank">
+            Nathan Software
+          </Anchor>
+        </Text>
       </Stack>
     </DietResultFooterAnimation>
   )

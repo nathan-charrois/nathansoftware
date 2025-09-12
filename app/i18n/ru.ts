@@ -2,8 +2,8 @@ import type { LanguageKey } from './keys'
 
 export const ru: Record<LanguageKey, string> = {
   // Error messages
-  error_saving_preferences: 'Ошибка сохранения предпочтений.',
-  try_again: 'Попробовать снова',
+  error_saving_preferences: 'Что-то пошло не так!',
+  try_again: 'Хорошо',
 
   // Loading messages
   saving_preferences: 'Сохранение ваших предпочтений...',

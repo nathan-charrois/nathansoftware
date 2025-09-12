@@ -14,8 +14,8 @@ export default function DietError() {
 
   return (
     <Stack align="center" py="xl">
-      <Text c="red" fw={600} size="lg">{formatMessage('error_saving_preferences')}</Text>
-      <Button onClick={handleClickTryAgain}>{formatMessage('try_again')}</Button>
+      <Text ta="center" mb="md">{formatMessage('error_saving_preferences')}</Text>
+      <Button onClick={handleClickTryAgain} radius="lg">{formatMessage('try_again')}</Button>
     </Stack>
   )
 }

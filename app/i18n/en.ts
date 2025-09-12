@@ -2,7 +2,7 @@ import type { LanguageKey } from './keys'
 
 export const en: Record<LanguageKey, string> = {
   // Error messages
-  error_saving_preferences: 'Error saving preferences.',
+  error_saving_preferences: 'Something went wrong!',
   try_again: 'Try again',
 
   // Loading messages
