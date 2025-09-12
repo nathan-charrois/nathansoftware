@@ -1,8 +1,8 @@
 export const SOUND_STORAGE_KEY = 'baby-diet-sound-enabled'
 
 let slideSound: HTMLAudioElement | null = null
-
 let successSound: HTMLAudioElement | null = null
+let babySound: HTMLAudioElement | null = null
 
 const isSoundEnabled = (): boolean => {
   if (typeof localStorage === 'undefined') return false
@@ -15,7 +15,7 @@ const isSoundEnabled = (): boolean => {
 const getSlideSound = (): HTMLAudioElement => {
   if (!slideSound) {
     slideSound = new Audio('/sounds/drag-slider.wav')
-    slideSound.volume = 0.1
+    slideSound.volume = 0.50
   }
 
   return slideSound
@@ -24,10 +24,19 @@ const getSlideSound = (): HTMLAudioElement => {
 const getSuccessSound = (): HTMLAudioElement => {
   if (!successSound) {
     successSound = new Audio('/sounds/result-success.wav')
-    successSound.volume = 0.20
+    successSound.volume = 0.40
   }
 
   return successSound
+}
+
+const getBabySound = (): HTMLAudioElement => {
+  if (!babySound) {
+    babySound = new Audio('/sounds/click-baby.wav')
+    babySound.volume = 0.60
+  }
+
+  return babySound
 }
 
 export const playSuccessSound = () => {
@@ -43,6 +52,16 @@ export const playSuccessSound = () => {
 export const playSlideSound = () => {
   if (isSoundEnabled()) {
     const audio = getSlideSound()
+    audio.currentTime = 0.05
+    audio.play()
+  }
+
+  return null
+}
+
+export const playBabySound = () => {
+  if (isSoundEnabled()) {
+    const audio = getBabySound()
     audio.currentTime = 0
     audio.play()
   }

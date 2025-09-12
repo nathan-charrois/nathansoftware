@@ -3,7 +3,7 @@ import { Image } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { type PostPreferencesResponse } from '@shared/types/api'
 import { fetchData } from '@utils/fetchUtils'
-import { playSlideSound } from '@utils/sound'
+import { playBabySound, playSlideSound } from '@utils/sound'
 
 import DietFormActions from './DietFormActions'
 import DietFormChip from './DietFormChip'
@@ -14,6 +14,7 @@ import { useDietResult } from './DietResultContext'
 import { useDietStep } from './DietStepContext'
 import { useDietTheme } from './DietThemeContext'
 import { useMealLibrary } from './MealLibraryContext'
+import { useAnimationTrigger } from '~/hooks/useAnimationTrigger'
 
 export default function DietForm() {
   const { initialValues, preferencesByType, setPreference, validate } = useDietForm()
@@ -21,8 +22,12 @@ export default function DietForm() {
   const { addResult } = useDietResult()
   const { addToLibrary } = useMealLibrary()
   const { theme } = useDietTheme()
-
   const form = useForm({ initialValues, validate })
+
+  const { ref, handleTriggerAnimation } = useAnimationTrigger({
+    className: 'animate-headShake',
+    playSound: () => playBabySound(),
+  })
 
   const [firstPreference, ...restPreferences] = preferencesByType.range
 
@@ -66,10 +71,10 @@ export default function DietForm() {
 
   const image = useMemo(() => {
     if (theme === 'baby') {
-      return <Image src="/images/baby.png" />
+      return <Image src="/images/baby.png" onClick={handleTriggerAnimation} ref={ref} />
     }
 
-    return <Image src="/images/mommy.png" />
+    return <Image src="/images/mommy.png" onClick={handleTriggerAnimation} ref={ref} />
   }, [theme])
 
   return (
