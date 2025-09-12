@@ -22,7 +22,7 @@ export default function DietResult() {
   }, [])
 
   const handleClickNextMeal = useCallback(() => {
-    setActiveStep('form')
+    setActiveStep('initialize')
   }, [setActiveStep])
 
   if (!result) {

@@ -18,7 +18,7 @@ const isSoundEnabled = (): boolean => {
 const getButtonSound = (): HTMLAudioElement => {
   if (!buttonSound) {
     buttonSound = new Audio('/sounds/click-button.wav')
-    buttonSound.volume = 0.50
+    buttonSound.volume = 0.60
   }
 
   return buttonSound
@@ -27,7 +27,7 @@ const getButtonSound = (): HTMLAudioElement => {
 const getSlideUpSound = (): HTMLAudioElement => {
   if (!slideUpSound) {
     slideUpSound = new Audio('/sounds/drag-slider-up.wav')
-    slideUpSound.volume = 0.30
+    slideUpSound.volume = 0.20
   }
 
   return slideUpSound
@@ -36,7 +36,7 @@ const getSlideUpSound = (): HTMLAudioElement => {
 const getSlideDownSound = (): HTMLAudioElement => {
   if (!slideDownSound) {
     slideDownSound = new Audio('/sounds/drag-slider-down.wav')
-    slideDownSound.volume = 0.30
+    slideDownSound.volume = 0.20
   }
 
   return slideDownSound
@@ -45,7 +45,7 @@ const getSlideDownSound = (): HTMLAudioElement => {
 const getSuccessSound = (): HTMLAudioElement => {
   if (!successSound) {
     successSound = new Audio('/sounds/result-success.wav')
-    successSound.volume = 0.40
+    successSound.volume = 0.50
   }
 
   return successSound
@@ -63,7 +63,7 @@ const getBabySound = (): HTMLAudioElement => {
 const getThemeSound = (): HTMLAudioElement => {
   if (!themeSound) {
     themeSound = new Audio('/sounds/switch-theme.wav')
-    themeSound.volume = 0.80
+    themeSound.volume = 0.50
   }
 
   return themeSound

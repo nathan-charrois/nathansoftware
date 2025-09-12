@@ -60,6 +60,7 @@ export default function DietForm() {
   )
 
   const handleSubmit = async (formValues: typeof initialValues) => {
+    playButtonSound()
     setActiveStep('loading')
 
     try {
