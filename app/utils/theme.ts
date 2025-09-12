@@ -31,13 +31,6 @@ export const themeBase = createTheme({
     xl: '1.5',
   },
   components: {
-    AppShell: {
-      styles: {
-        footer: {
-          background: 'transparent',
-        },
-      },
-    },
     Title: {
       styles: (theme: MantineTheme) => ({
         root: {
@@ -163,6 +156,7 @@ export const themeBaby = createTheme({
     AppShell: {
       classNames: {
         root: 'background-theme baby',
+        footer: 'background-theme baby',
       },
     },
   },
@@ -186,6 +180,7 @@ export const themeMommy = createTheme({
     AppShell: {
       classNames: {
         root: 'background-theme mommy',
+        footer: 'background-theme mommy',
       },
     },
   },

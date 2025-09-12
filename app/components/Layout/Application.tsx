@@ -13,13 +13,13 @@ export default function Application({ children, footer }: ApplicationProps) {
 
   if (isMobile) {
     return (
-      <AppShell withBorder={false} padding="lg" offsetScrollbars={false}>
-        <AppShell.Main>
-          <Stack gap="xl" my="lg" justify="space-between" mih="100vh">
-            {children}
-            {footer}
-          </Stack>
+      <AppShell withBorder={false} padding="lg" offsetScrollbars={false} h="105vh">
+        <AppShell.Main h="100vh">
+          {children}
         </AppShell.Main>
+        <AppShell.Footer h="8vh">
+          {footer}
+        </AppShell.Footer>
       </AppShell>
     )
   }
