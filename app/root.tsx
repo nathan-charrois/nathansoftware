@@ -4,7 +4,6 @@ import '@mantine/core/styles.css'
 import './app.css'
 import './animate.css'
 
-import { DietThemeProvider } from './routes/Diet/components/DietThemeContext'
 import RootErrorBoundary from '~/components/ErrorBoundary/ErrorBoundary'
 import RootLayout from '~/components/Layout/Layout'
 
@@ -20,9 +19,7 @@ export function Layout(props: LayoutProps) {
 
 export default function App() {
   return (
-    <DietThemeProvider>
-      <Outlet />
-    </DietThemeProvider>
+    <Outlet />
   )
 }
 
