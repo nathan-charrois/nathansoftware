@@ -34,12 +34,18 @@ export default function DietFormChip({
     onChange(val ? 1 : 0)
   }, [])
 
-  const marginTop = useMemo(() => {
-    return currentLanguage === 'ru' ? '-6px' : ''
-  }, [currentLanguage])
+  const marginTop = useMemo(() => (
+    currentLanguage === 'ru' ? '-6px' : ''
+  ), [currentLanguage])
 
-  const padding = useMemo(() => {
-    return currentLanguage === 'ru' ? '31px 18px 25px' : '28px 16px'
+  const styles = useMemo(() => {
+    return currentLanguage === 'ru'
+      ? {
+          label: { padding: '31px 18px 25px' },
+        }
+      : {
+          label: { padding: '28px 16px' },
+        }
   }, [currentLanguage])
 
   return (
@@ -47,9 +53,7 @@ export default function DietFormChip({
       id={id}
       checked={!!value}
       onChange={handleOnChangeSound}
-      styles={{
-        label: { padding },
-      }}
+      styles={styles}
     >
       <Image w="50px" mr="10px" mt={marginTop} display="inline" src={`/images/${theme}/${icon}.png`} />
       {label}

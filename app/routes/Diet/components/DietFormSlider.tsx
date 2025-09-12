@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Slider, Stack } from '@mantine/core'
 import { playSlideSound } from '@utils/sound'
 
@@ -14,7 +14,6 @@ interface DietFormSliderProps {
   value: number
   min: number
   max: number
-  onChange: (val: number) => void
   onChangeEnd: (val: number) => void
 }
 
@@ -37,23 +36,27 @@ export default function DietFormSlider({
   value,
   min,
   max,
-  onChange,
   onChangeEnd,
 }: DietFormSliderProps) {
   const isMobile = useIsMobile()
+  const [localValue, setLocalValue] = useState(value)
 
-  const handleOnChangeSound = useCallback((val: number) => {
+  useEffect(() => {
+    setLocalValue(value)
+  }, [value])
+
+  const handleOnChange = useCallback((val: number) => {
     playSlideSound()
-    onChange(val)
+    setLocalValue(val)
   }, [])
 
   const sliderMarks = useMemo(() => (
     buildSliderMarks(min, max)
   ), [min, max])
 
-  const marginBottom = useMemo(() => {
-    return isMobile ? 'xs' : 'xl'
-  }, [isMobile])
+  const marginBottom = useMemo(() => (
+    isMobile ? 'xs' : 'xl'
+  ), [isMobile])
 
   return (
     <Stack gap="xs" mb={marginBottom}>
@@ -69,10 +72,10 @@ export default function DietFormSlider({
         label={null}
         min={min}
         max={max}
-        value={value}
+        value={localValue}
         size={10}
         thumbSize={28}
-        onChange={handleOnChangeSound}
+        onChange={handleOnChange}
         onChangeEnd={onChangeEnd}
         marks={sliderMarks}
         classNames={sliderClassNames}

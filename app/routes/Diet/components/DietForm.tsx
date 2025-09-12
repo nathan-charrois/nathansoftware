@@ -25,18 +25,12 @@ export default function DietForm() {
 
   const [firstPreference, ...restPreferences] = preferencesByType.range
 
-  const handleChange = useCallback(
-    (key: string) => (val: number) => {
-      form.setFieldValue(key, val)
-    },
-    [form],
-  )
-
   const handleChangeEnd = useCallback(
     (key: string) => (val: number) => {
       setPreference(key, typeof val === 'number' ? val : 0)
+      form.setFieldValue(key, val)
     },
-    [setPreference],
+    [setPreference, form.setFieldValue],
   )
 
   const handleSubmit = async (formValues: typeof initialValues) => {
@@ -89,7 +83,6 @@ export default function DietForm() {
             value={form.values[firstPreference.key]}
             min={firstPreference.min}
             max={firstPreference.max}
-            onChange={handleChange(firstPreference.key)}
             onChangeEnd={handleChangeEnd(firstPreference.key)}
           />
         )}
@@ -104,7 +97,6 @@ export default function DietForm() {
             min={pref.min}
             max={pref.max}
             value={form.values[pref.key]}
-            onChange={handleChange(pref.key)}
             onChangeEnd={handleChangeEnd(pref.key)}
           />
         ))}
@@ -115,7 +107,7 @@ export default function DietForm() {
             id={pref.key}
             icon={pref.icon}
             value={form.values[pref.key]}
-            onChange={handleChange(pref.key)}
+            onChange={handleChangeEnd(pref.key)}
           />
         ))}
         image={image}

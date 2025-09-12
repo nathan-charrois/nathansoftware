@@ -5,7 +5,6 @@ import type { DietPreference, DietPreferencesByType } from '@shared/types/contex
 
 interface DietFormContextType {
   initialValues: Record<string, number>
-  preferences: DietPreference[]
   preferencesByType: DietPreferencesByType
   setPreferences: (preferences: DietPreference[]) => void
   setPreference: (key: string, value: number) => void
@@ -17,22 +16,22 @@ const DietFormContext = createContext<DietFormContextType | undefined>(undefined
 export const DietFormProvider = ({ children }: { children: ReactNode }) => {
   const [preferences, setPreferences] = useState<DietPreference[]>([])
 
-  const setPreference = (key: string, value: number) => {
+  const setPreference = useMemo(() => (key: string, value: number) => {
     setPreferences(prev =>
       prev.map(pref => (pref.key === key ? { ...pref, value } : pref)),
     )
-  }
+  }, [setPreferences])
 
-  const initialValues = Object.fromEntries(
+  const initialValues = useMemo(() => Object.fromEntries(
     preferences.map(pref => [pref.key, pref.value]),
-  )
+  ), [preferences])
 
   const preferencesByType = useMemo(() => ({
     range: preferences.filter(pref => pref.type === 'range'),
     boolean: preferences.filter(pref => pref.type === 'boolean'),
   }), [preferences])
 
-  const validate = Object.fromEntries(
+  const validate = useMemo(() => Object.fromEntries(
     (
       preferencesByType.range.map(pref => [
         pref.key, isInRange({ min: pref.min, max: pref.max }),
@@ -41,12 +40,11 @@ export const DietFormProvider = ({ children }: { children: ReactNode }) => {
         pref.key, isNotEmpty(),
       ])
     ),
-  )
+  ), [preferencesByType])
 
   return (
     <DietFormContext.Provider value={{
       initialValues,
-      preferences,
       preferencesByType,
       setPreference,
       setPreferences,
