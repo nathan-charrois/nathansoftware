@@ -24,13 +24,13 @@ export function DietFormSliderLabel({
 
   return (
     <Flex justify="space-between" align="center">
-      <Image flex="50px" src={`/images/${theme}/${iconStart}.png`} />
+      <Image flex="50px" miw="75px" maw="100px" src={`/images/${theme}/${iconStart}.png`} />
       <Flex flex={10} justify="space-between" align="center">
         <Text component="label" htmlFor={id} ml="sm">{labelStart}</Text>
         <Text component="label" htmlFor={id}>{formatMessage('arrow_symbol')}</Text>
         <Text component="label" htmlFor={id} mr="sm">{labelEnd}</Text>
       </Flex>
-      <Image flex="50px" src={`/images/${theme}/${iconEnd}.png`} />
+      <Image flex="50px" miw="75px" maw="100px" src={`/images/${theme}/${iconEnd}.png`} />
     </Flex>
   )
 }
