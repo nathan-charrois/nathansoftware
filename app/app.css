@@ -16,7 +16,8 @@ body {
 
 .meal-layer-container {
   position: relative;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   height: 400px;
 }
 

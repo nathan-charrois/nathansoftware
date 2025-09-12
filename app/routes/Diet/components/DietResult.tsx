@@ -43,19 +43,16 @@ export default function DietResult() {
 
   return (
     <Stack align="center" py="xl">
-      <Container mb="xl" className="meal-layer-container">
+      <Container mb="md" className="meal-layer-container">
         <div className="meal-layer-base meal-layer">
           <img src={result.image} alt={result.title} className="meal-image" />
         </div>
-        <div className="meal-layer-base meal-layer-circle">
-          <Circle />
-        </div>
       </Container>
-      <Stack mt="xl" mb="md" align="center" mx="xl" justify="center">
+      <Stack mt="md" mb="md" align="center" mx="xl" justify="center">
         <Transition mounted={mounted} transition="fade-up" duration={300} timingFunction="ease-out">
           {styles => (
             <>
-              <Title style={styles} size="lg">
+              <Title style={styles} size="lg" ta="center">
                 {result.title}
               </Title>
               <Text style={styles} size="sm" opacity={0.7} ta="center">
