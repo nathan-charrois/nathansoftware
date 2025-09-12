@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Slider, Stack } from '@mantine/core'
-import { playSlideSound } from '@utils/sound'
 
 import { DietFormSliderLabel } from './DietFormSliderLabel'
 import { useIsMobile } from '~/hooks/useIsMobile'
@@ -46,7 +45,6 @@ export default function DietFormSlider({
   }, [value])
 
   const handleOnChange = useCallback((val: number) => {
-    playSlideSound()
     setLocalValue(val)
   }, [])
 

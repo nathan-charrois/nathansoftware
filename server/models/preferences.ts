@@ -18,7 +18,7 @@ const preferenceStrings = {
     light: 'Light',
     hearty: 'Hearty',
     sweet: 'Sweet',
-    easyToDigest: 'Easy-to-Digest',
+    easyToDigest: 'Easy to Digest',
     protein: 'Protein',
   },
   ru: {

@@ -3,6 +3,7 @@ import { Image } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { type PostPreferencesResponse } from '@shared/types/api'
 import { fetchData } from '@utils/fetchUtils'
+import { playSlideSound } from '@utils/sound'
 
 import DietFormActions from './DietFormActions'
 import DietFormChip from './DietFormChip'
@@ -29,6 +30,8 @@ export default function DietForm() {
     (key: string) => (val: number) => {
       setPreference(key, typeof val === 'number' ? val : 0)
       form.setFieldValue(key, val)
+
+      playSlideSound()
     },
     [setPreference, form.setFieldValue],
   )

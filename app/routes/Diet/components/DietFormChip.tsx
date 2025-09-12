@@ -1,7 +1,6 @@
-import { useCallback, useMemo, useRef } from 'react'
+import { useCallback, useMemo } from 'react'
 import { Chip } from '@mantine/core'
 import { Image } from '@mantine/core'
-import { playSlideSound } from '@utils/sound'
 
 import { useI18n } from './DietI18nProvider'
 import { useDietTheme } from './DietThemeContext'
@@ -21,16 +20,10 @@ export default function DietFormChip({
   value,
   onChange,
 }: DietFormChipProps) {
-  const lastSoundValue = useRef(!!value)
   const { theme } = useDietTheme()
   const { currentLanguage } = useI18n()
 
   const handleOnChangeSound = useCallback((val: boolean) => {
-    if (val !== lastSoundValue.current) {
-      playSlideSound()
-      lastSoundValue.current = val
-    }
-
     onChange(val ? 1 : 0)
   }, [])
 

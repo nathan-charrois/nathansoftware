@@ -8,7 +8,7 @@ import MealLibrary from './MealLibrary'
 export default function DietResultFooter() {
   return (
     <DietResultFooterAnimation>
-      <Stack gap="lg" mt="sm">
+      <Stack gap="md" mt="xs">
         <Group gap="lg">
           <DietSettings />
           <MealLibrary />
