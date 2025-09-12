@@ -39,7 +39,7 @@ export default function DietFormChip({
   }, [currentLanguage])
 
   const padding = useMemo(() => {
-    return currentLanguage === 'ru' ? '33px 18px 27px' : '30px 18px'
+    return currentLanguage === 'ru' ? '31px 18px 25px' : '28px 16px'
   }, [currentLanguage])
 
   return (

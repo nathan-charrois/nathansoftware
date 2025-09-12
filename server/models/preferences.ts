@@ -33,8 +33,8 @@ const preferenceStrings = {
     light: 'Легкий',
     hearty: 'Сытный',
     sweet: 'Сладкий',
-    easyToDigest: 'легкоусвояемый',
-    protein: 'белок',
+    easyToDigest: 'Легкоусвояемый',
+    protein: 'Белок',
   },
 }
 

@@ -24,7 +24,7 @@ export const themeBase = createTheme({
     xl: '75px',
   },
   lineHeights: {
-    xs: '0.8',
+    xs: '0.7',
     sm: '1',
     md: '1.2',
     lg: '1.5',
