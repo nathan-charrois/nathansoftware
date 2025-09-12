@@ -15,7 +15,7 @@ export default function Application({ children, footer }: ApplicationProps) {
     return (
       <AppShell withBorder={false} padding="lg" offsetScrollbars={false}>
         <AppShell.Main>
-          <Stack gap="xl" my="lg" justify="space-between">
+          <Stack gap="xl" my="lg" justify="space-between" mih="100vh">
             {children}
             {footer}
           </Stack>
