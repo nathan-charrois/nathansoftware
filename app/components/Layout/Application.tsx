@@ -15,7 +15,9 @@ export default function Application({ children, footer }: ApplicationProps) {
     return (
       <AppShell withBorder={false} padding="lg" offsetScrollbars={false} h="105vh">
         <AppShell.Main h="100vh">
-          {children}
+          <Center h="100%">
+            {children}
+          </Center>
         </AppShell.Main>
         <AppShell.Footer h="8vh">
           {footer}
