@@ -3,7 +3,7 @@ import { Image } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { type PostPreferencesResponse } from '@shared/types/api'
 import { fetchData } from '@utils/fetchUtils'
-import { playBabySound, playSlideSound } from '@utils/sound'
+import { playBabySound, playButtonSound, playSlideDownSound, playSlideUpSound } from '@utils/sound'
 
 import DietFormActions from './DietFormActions'
 import DietFormChip from './DietFormChip'
@@ -31,12 +31,30 @@ export default function DietForm() {
 
   const [firstPreference, ...restPreferences] = preferencesByType.range
 
-  const handleChangeEnd = useCallback(
+  const handleOnSlideEnd = useCallback(
     (key: string) => (val: number) => {
       setPreference(key, typeof val === 'number' ? val : 0)
       form.setFieldValue(key, val)
 
-      playSlideSound()
+      if (form.values[key] < val) {
+        playSlideUpSound()
+      }
+      else if (form.values[key] > val) {
+        playSlideDownSound()
+      }
+      else {
+        playButtonSound()
+      }
+    },
+    [setPreference, form.setFieldValue],
+  )
+
+  const handleOnButtonEnd = useCallback(
+    (key: string) => (val: number) => {
+      setPreference(key, typeof val === 'number' ? val : 0)
+      form.setFieldValue(key, val)
+
+      playButtonSound()
     },
     [setPreference, form.setFieldValue],
   )
@@ -91,7 +109,7 @@ export default function DietForm() {
             value={form.values[firstPreference.key]}
             min={firstPreference.min}
             max={firstPreference.max}
-            onChangeEnd={handleChangeEnd(firstPreference.key)}
+            onChangeEnd={handleOnSlideEnd(firstPreference.key)}
           />
         )}
         slotTwo={restPreferences.map(pref => (
@@ -105,7 +123,7 @@ export default function DietForm() {
             min={pref.min}
             max={pref.max}
             value={form.values[pref.key]}
-            onChangeEnd={handleChangeEnd(pref.key)}
+            onChangeEnd={handleOnSlideEnd(pref.key)}
           />
         ))}
         slotThree={preferencesByType.boolean.map(pref => (
@@ -115,7 +133,7 @@ export default function DietForm() {
             id={pref.key}
             icon={pref.icon}
             value={form.values[pref.key]}
-            onChange={handleChangeEnd(pref.key)}
+            onChange={handleOnButtonEnd(pref.key)}
           />
         ))}
         image={image}

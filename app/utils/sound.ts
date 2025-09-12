@@ -1,8 +1,11 @@
 export const SOUND_STORAGE_KEY = 'baby-diet-sound-enabled'
 
-let slideSound: HTMLAudioElement | null = null
+let buttonSound: HTMLAudioElement | null = null
+let slideUpSound: HTMLAudioElement | null = null
+let slideDownSound: HTMLAudioElement | null = null
 let successSound: HTMLAudioElement | null = null
 let babySound: HTMLAudioElement | null = null
+let themeSound: HTMLAudioElement | null = null
 
 const isSoundEnabled = (): boolean => {
   if (typeof localStorage === 'undefined') return false
@@ -12,13 +15,31 @@ const isSoundEnabled = (): boolean => {
   return storedSound !== null ? storedSound === 'true' : true
 }
 
-const getSlideSound = (): HTMLAudioElement => {
-  if (!slideSound) {
-    slideSound = new Audio('/sounds/drag-slider.wav')
-    slideSound.volume = 0.50
+const getButtonSound = (): HTMLAudioElement => {
+  if (!buttonSound) {
+    buttonSound = new Audio('/sounds/click-button.wav')
+    buttonSound.volume = 0.50
   }
 
-  return slideSound
+  return buttonSound
+}
+
+const getSlideUpSound = (): HTMLAudioElement => {
+  if (!slideUpSound) {
+    slideUpSound = new Audio('/sounds/drag-slider-up.wav')
+    slideUpSound.volume = 0.30
+  }
+
+  return slideUpSound
+}
+
+const getSlideDownSound = (): HTMLAudioElement => {
+  if (!slideDownSound) {
+    slideDownSound = new Audio('/sounds/drag-slider-down.wav')
+    slideDownSound.volume = 0.30
+  }
+
+  return slideDownSound
 }
 
 const getSuccessSound = (): HTMLAudioElement => {
@@ -39,6 +60,15 @@ const getBabySound = (): HTMLAudioElement => {
   return babySound
 }
 
+const getThemeSound = (): HTMLAudioElement => {
+  if (!themeSound) {
+    themeSound = new Audio('/sounds/switch-theme.wav')
+    themeSound.volume = 0.80
+  }
+
+  return themeSound
+}
+
 export const playSuccessSound = () => {
   if (isSoundEnabled()) {
     const audio = getSuccessSound()
@@ -49,10 +79,30 @@ export const playSuccessSound = () => {
   return null
 }
 
-export const playSlideSound = () => {
+export const playButtonSound = () => {
   if (isSoundEnabled()) {
-    const audio = getSlideSound()
+    const audio = getButtonSound()
     audio.currentTime = 0.05
+    audio.play()
+  }
+
+  return null
+}
+
+export const playSlideUpSound = () => {
+  if (isSoundEnabled()) {
+    const audio = getSlideUpSound()
+    audio.currentTime = 0
+    audio.play()
+  }
+
+  return null
+}
+
+export const playSlideDownSound = () => {
+  if (isSoundEnabled()) {
+    const audio = getSlideDownSound()
+    audio.currentTime = 0
     audio.play()
   }
 
@@ -62,6 +112,16 @@ export const playSlideSound = () => {
 export const playBabySound = () => {
   if (isSoundEnabled()) {
     const audio = getBabySound()
+    audio.currentTime = 0
+    audio.play()
+  }
+
+  return null
+}
+
+export const playThemeSound = () => {
+  if (isSoundEnabled()) {
+    const audio = getThemeSound()
     audio.currentTime = 0
     audio.play()
   }

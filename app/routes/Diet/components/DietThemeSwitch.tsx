@@ -5,6 +5,7 @@ import { Group, Switch, ThemeIcon } from '@mantine/core'
 
 import { useDietStep } from './DietStepContext'
 import { useDietTheme } from './DietThemeContext'
+import { playButtonSound, playThemeSound } from '~/utils/sound'
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
 
@@ -13,6 +14,7 @@ export default function DietThemeSwitch() {
   const { setActiveStep } = useDietStep()
 
   const handleOnChange = useCallback(async (checked: boolean) => {
+    playButtonSound()
     setActiveStep('loading')
 
     await delay(250)
@@ -20,6 +22,9 @@ export default function DietThemeSwitch() {
 
     await delay(250)
     setActiveStep('initialize')
+
+    await delay(200)
+    playThemeSound()
   }, [setTheme])
 
   return (
