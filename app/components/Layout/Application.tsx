@@ -27,13 +27,13 @@ export default function Application({ children, footer }: ApplicationProps) {
   return (
     <AppShell withBorder={false}>
       <AppShell.Main>
-        <Center h="85vh">
+        <Center h="80vh">
           <Stack maw={600}>
             {children}
           </Stack>
         </Center>
       </AppShell.Main>
-      <AppShell.Footer h="10vh">
+      <AppShell.Footer mih="175px">
         {footer}
       </AppShell.Footer>
     </AppShell>

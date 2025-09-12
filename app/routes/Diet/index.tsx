@@ -13,8 +13,8 @@ import Application from '~/components/Layout/Application'
 
 export function meta({}: MetaArgs) {
   return [
-    { title: 'Diet' },
-    { name: 'description', content: 'Generate a delicious meal.' },
+    { title: 'BabyDiet.ca - Generate a unique meal for your baby' },
+    { name: 'description', content: 'Generate a unique meal for your baby' },
   ]
 }
 
