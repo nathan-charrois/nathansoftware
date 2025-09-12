@@ -23,13 +23,6 @@ export const themeBase = createTheme({
     lg: '48px',
     xl: '75px',
   },
-  // fontSizes: {
-  //   xs: '18px',
-  //   sm: '20px',
-  //   md: '22px',
-  //   lg: '48px',
-  //   xl: '75px',
-  // },
   lineHeights: {
     xs: '0.8',
     sm: '1',
@@ -75,7 +68,6 @@ export const themeBase = createTheme({
             }
           : {
               padding: '28px 18px 24px',
-              // padding: '28px 18px 20px',
               fontSize: theme.fontSizes.md,
               color: theme.colors.brand[theme.other.buttonText],
               backgroundColor: theme.colors.accent[
@@ -140,6 +132,16 @@ export const themeBase = createTheme({
         },
       }),
     },
+  },
+})
+
+export const russianOverrides = createTheme({
+  fontSizes: {
+    xs: '18px',
+    sm: '20px',
+    md: '22px',
+    lg: '40px',
+    xl: '62px',
   },
 })
 

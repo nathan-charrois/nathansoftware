@@ -1,6 +1,9 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { MantineProvider, mergeThemeOverrides } from '@mantine/core'
-import { themeBaby, themeBase, themeMommy } from '@utils/theme'
+import { isSupportedLangauge } from '@shared/types/i18n'
+import { russianOverrides, themeBaby, themeBase, themeMommy } from '@utils/theme'
+
+import { detectLanguage } from '~/utils/languageDetection'
 
 type ThemeName = 'baby' | 'mommy' | undefined
 
@@ -19,6 +22,8 @@ const isTheme = (theme: unknown): theme is ThemeName => {
 
 export function DietThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<ThemeName>(undefined)
+
+  const language = detectLanguage()
 
   useEffect(() => {
     if (typeof localStorage !== 'undefined') {
@@ -40,12 +45,22 @@ export function DietThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, [theme])
 
-  const currentTheme = useMemo(() =>
-    mergeThemeOverrides(
+  const currentTheme = useMemo(() => {
+    if (isSupportedLangauge(language) && language === 'ru') {
+      return mergeThemeOverrides(
+        themeBase,
+        theme === 'baby' ? themeBaby : themeMommy,
+        russianOverrides,
+      )
+    }
+
+    return mergeThemeOverrides(
       themeBase,
       theme === 'baby' ? themeBaby : themeMommy,
-    ), [
+    )
+  }, [
     theme,
+    language,
   ])
 
   return (
