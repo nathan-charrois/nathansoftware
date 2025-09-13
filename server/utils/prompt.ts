@@ -142,6 +142,14 @@ export const buildMealPromptForMommy = (preferences: Preferences, languageString
     - Ingredients should be healthy and safe for pregnant women.
     - Language code is provided for localization.
 
+    Do NOT include these ingredients:
+    - Tomatoes
+    - Garlic
+    - Pepper
+    - Lemon
+    - Onion
+    - Sugar
+
     Preferences:
     ${preferencesString}
 

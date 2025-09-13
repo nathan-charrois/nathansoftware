@@ -11,7 +11,6 @@ export default function DietInit() {
   const { setActiveStep } = useDietStep()
   const { setPreferences } = useDietForm()
   const { theme } = useDietTheme()
-  console.log('theme', theme)
 
   useEffect(() => {
     if (theme) {

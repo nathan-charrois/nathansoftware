@@ -9,7 +9,7 @@ export default function DietError() {
   const { formatMessage } = useI18n()
 
   const handleClickTryAgain = useCallback(() => {
-    setActiveStep('form')
+    setActiveStep('initialize')
   }, [setActiveStep])
 
   return (

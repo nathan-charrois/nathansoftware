@@ -53,11 +53,14 @@ export function MealLibraryProvider({ children }: { children: React.ReactNode })
       image: await createThumbnail(mealData.image),
     }
 
-    setMeals((prevMeals) => {
-      const newMeals = [...prevMeals, newMeal]
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newMeals))
-      return newMeals
-    })
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newMeal))
+    }
+    catch (e) {
+      console.error(`Error settings localStorage ${LOCAL_STORAGE_KEY}`, e)
+    }
+
+    setMeals(prevMeals => [...prevMeals, newMeal])
   }, [])
 
   const removeFromLibrary = useCallback((id: string) => {
