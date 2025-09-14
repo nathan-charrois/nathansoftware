@@ -20,6 +20,7 @@ function Layout({ children }: LayoutProps) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon.png"></link>
       </head>
       <body>
         {children}
